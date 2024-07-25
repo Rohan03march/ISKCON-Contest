@@ -53,9 +53,9 @@
         <ul>
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#win">How To Win</a></li>
-          <li><a href="#Q/A">Questions</a></li>
-          <li><a href="#sm">Contest</a></li>
-          <li><a href="#price">Winning Prize</a></li>
+          <!--<li><a href="#Q/A">Questions</a></li>-->
+          <li><a href="#Q/A">Contest</a></li>
+          <!--<li><a href="#price">Winning Prize</a></li>-->
          <!-- <li>
             <a class="wel">
               <div>Welcome!  <span id="loggedUserFName"></span><span id="loggedUserLName"></span></div>
@@ -91,7 +91,7 @@
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-            <img src="assets/img/Banner.jpg" class="img-fluid animated" alt="banner">
+            <img src="assets/img/Banner.jpg" class="img-fluid " alt="banner">
           </div>
         </div>
       </div>
@@ -137,20 +137,12 @@
             <p>
             </p>
             <ul>
-              <li><i class="bi bi-check2-circle"></i> <span><b>Login</b> To Participate, So That We Can Know Who Is Winning .</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span>Answers Some Exiting Questions About Krishna.</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span><b>Note:</b> After you Answer All The Question you Will Be Eligible For The Contest.</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span>Share with as many people as possible to earn more points.</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span>More The Share More The Points.</span></li>
+              <li><i class="bi bi-check2-circle"></i> <span><b>SignUp</b> And Take The Quiz. </span></li>
+              <li><i class="bi bi-check2-circle"></i> <span>Share The Contest Link On Social Media Platforms.</span></li>
+              <li><i class="bi bi-check2-circle"></i> <span><b>Note:</b>The Contestants With The Most Shares , Win Exiting Prizes.</span></li>
             </ul>
           </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <p>Join the Krishna Janmashtami contest and win exciting prizes! Share with as many people as you can to earn more points and increase your chances of winning.</p><br/>
-               <p><b>Login → Answer Questions → Follow Us on Social Media → Copy The Message →Share To Your friends → Earn Points → Win</b></p> 
-            <a href="#Q/A" class="read-more"><span>Win</span><i class="bi bi-arrow-right"></i></a>
-          </div>
-
+          <p><b>Login → Answer Questions → Follow Us on Social Media → Copy The Message →Share To Your friends → Earn Points → Win</b></p>
         </div>
 
       </div>
@@ -171,8 +163,6 @@
 
       <div class="container" >
         <div class="row gy-4">
-
-
           <!--style-->
           <style>
             .quiz-box {
@@ -236,20 +226,22 @@
                 text-align: left; /* Align text to the left */
             }
           
-            .result {
-                margin-top: 20px;
-                font-weight: bold;
-                color: #28a745; /* Green color for correct answers */
-                transition: opacity 0.3s ease;
-            }
-          
             .points {
-                margin-top: 20px;
-                font-size: 1.2rem; /* Increased font size for points */
-                font-weight: 500;
-                color: #007bff; /* Blue color for points */
-                transition: color 0.3s ease;
-            }
+              margin-top: 20px;
+              font-size: 1.2rem;
+              font-weight: 500;
+              color: #007bff;
+              transition: color 0.3s ease;
+              align-self: flex-start; /* Align points to the left */
+          }
+          
+          .result {
+              margin-top: 20px;
+              font-weight: bold;
+              color: #28a745;
+              transition: opacity 0.3s ease;
+              align-self: flex-start; /* Align result to the left */
+          }
           
             .navigation-buttons {
                 display: flex;
@@ -257,9 +249,8 @@
                 gap: 10px;
                 margin-top: 20px;
             }
-          
             .button {
-                background-color: #007bff;
+                background-color: ;
                 color: white;
                 border: none;
                 padding: 10px 20px;
@@ -312,12 +303,12 @@
         <div class="quiz-box">
             <div class="question" id="question"></div>
             <div class="options" id="options"></div>
+            <button class="button" onclick="prevQuestion()" id="prev-btn">Previous</button>
             <button onclick="checkAnswer()" id="submit-btn" class="button">Submit</button>
+            <button class="button" onclick="nextQuestion()" id="next-btn">Next</button>
             <div class="result" id="result"></div>
             <div class="points" id="points">Points: 0</div>
             <div class="navigation-buttons">
-                <button class="button" onclick="prevQuestion()" id="prev-btn">Previous</button>
-                <button class="button" onclick="nextQuestion()" id="next-btn">Next</button>
                 <button class="button" onclick="tryAgain()" id="try-again-btn" style="display:none;">Try Again</button>
             </div>
         </div>
