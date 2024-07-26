@@ -164,6 +164,8 @@
 
       <div class="container" >
         <div class="row gy-4">
+
+
           <!--style-->
           <style>
             .quiz-box {
@@ -227,21 +229,25 @@
                 text-align: left; /* Align text to the left */
             }
           
-            .points {
-              margin-top: 20px;
+            .score-container {
+              display: flex; /* Use flexbox for horizontal alignment */
+              justify-content: center; /* Distribute space between items */
+              align-items: center; /* Vertically align items */
+              margin-top: 20px; /* Adjust margin as needed */
+          }
+          
+          .points {
               font-size: 1.2rem;
               font-weight: 500;
               color: #007bff;
               transition: color 0.3s ease;
-              align-self: flex-start; /* Align points to the left */
           }
           
           .result {
-              margin-top: 20px;
               font-weight: bold;
               color: #28a745;
-              transition: opacity 0.3s ease;
-              align-self: flex-start; /* Align result to the left */
+              margin-left: 10px; /* Optional: Add space between points and result */
+              margin-top: 20.2px;
           }
           
             .navigation-buttons {
@@ -250,8 +256,20 @@
                 gap: 10px;
                 margin-top: 20px;
             }
+          
+            .button-container {
+              display: flex;
+              justify-content: space-between; /* Distribute buttons with space between them */
+              align-items: center; /* Center items vertically */
+              margin-top: 20px; /* Adjust margin as needed */
+              max-width: 800px; /* Optional: limit the width of the container */
+              margin: 0 auto; /* Center the container horizontally */
+          }
+
+         
+
             .button {
-                background-color:#007bff ;
+                background-color: #007bff;
                 color: white;
                 border: none;
                 padding: 10px 20px;
@@ -304,11 +322,17 @@
         <div class="quiz-box">
             <div class="question" id="question"></div>
             <div class="options" id="options"></div>
-            <button class="button" onclick="prevQuestion()" id="prev-btn">Previous</button>
-            <button onclick="checkAnswer()" id="submit-btn" class="button">Submit</button>
-            <button class="button" onclick="nextQuestion()" id="next-btn">Next</button>
-            <div class="result" id="result"></div>
-            <div class="points" id="points">Points: 0</div>
+            <div class="button-container">
+              <button class="button" onclick="prevQuestion()" id="prev-btn"><</button>
+              <button onclick="checkAnswer()" id="submit-btn" class="button">Submit</button>
+            <button class="button" id="next-btn" onclick="nextQuestion()">></button>
+
+          </div>
+            <div class="score-container">
+              <div class="points" id="points">Points: 0</div>
+              <div class="result" id="result"></div>
+            </div>
+
             <div class="navigation-buttons">
                 <button class="button" onclick="tryAgain()" id="try-again-btn" style="display:none;">Try Again</button>
             </div>
@@ -351,7 +375,7 @@
           
                       document.getElementById('result').textContent = '';
                       document.getElementById('prev-btn').style.display = currentQuestionIndex === 0 ? 'none' : 'inline';
-                      document.getElementById('next-btn').textContent = currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next';
+                      document.getElementById('next-btn').textContent = currentQuestionIndex === questions.length - 1 ? 'Finish' : '>';
                       document.getElementById('submit-btn').style.display = 'inline';
                       document.getElementById('try-again-btn').style.display = 'none';
                       document.querySelector('.footer-newsletter').style.display = 'none'; // Hide footer-newsletter during quiz
