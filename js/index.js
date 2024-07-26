@@ -52,6 +52,55 @@ document.getElementById('copyLink').addEventListener('click', async () => {
     }
 });
 
+
+
+// Define the different share URLs for each platform
+const shareUrls = {
+    whatsapp: "https://api.whatsapp.com/send?text=",
+    facebook: "https://www.facebook.com/sharer/sharer.php?u=",
+    instagram: "https://www.instagram.com/?url=", // This might not work as expected
+    linkedin: "https://www.linkedin.com/sharing/share-offsite/?url="
+};
+
+// Function to handle share button clicks
+async function handleShare(platform) {
+    try {
+        // Update user shares count in Firestore (assuming userId is defined somewhere)
+        const userRef = doc(db, "users", userId);
+        await updateDoc(userRef, {
+            shares: increment(1)
+        });
+
+        // Define the message to be shared
+        const url = "https://iskcon-contest.netlify.app/";
+        const message = `Hare Krishna! Welcome to the contest. Your friend has sent you this message to participate. ${url}`;
+        
+        // Encode the message for URL
+        const encodedMessage = encodeURIComponent(message);
+
+        // Create the full share URL
+        const shareUrl = shareUrls[platform] + encodedMessage;
+
+        // Open the share URL in a new tab
+        window.open(shareUrl, '_blank');
+    } catch (error) {
+        console.error("Error updating document: ", error);
+    }
+}
+
+// Add event listeners for different buttons
+document.getElementById('copyLink1').addEventListener('click', () => handleShare('whatsapp'));
+document.getElementById('copyLink3').addEventListener('click', () => handleShare('facebook'));
+document.getElementById('copyLink2').addEventListener('click', () => handleShare('instagram'));
+document.getElementById('copyLink4').addEventListener('click', () => handleShare('linkedin'));
+
+
+
+
+
+
+
+
 //------------------------------------------------------------------------------
 //Follow Data 
 
