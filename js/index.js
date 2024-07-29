@@ -38,7 +38,7 @@ document.getElementById('copyLink').addEventListener('click', async () => {
         });
 
         // Define the message to be copied
-        const url = "https://www.iskconbangalore.org";
+        const url = "https://iskcon-contest.netlify.app/";
         const message = `Hare Krishna! Welcome to the contest. Your friend has sent you this message to participate. ${url}`;
 
         // Copy message to clipboard
