@@ -7,11 +7,8 @@
   <title>Contest | ISKCON Banglore</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
   <!-- Favicons -->
   <link href="assets/img/iskcon-fevicon.png" rel="icon">
-  <link href="" rel="apple-touch-icon">
-
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -490,11 +487,12 @@
     <div class="points" id="Points">Total Points: 0</div>
     <div id="shareMessage">
       <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
-      <button id="copyLink"></button>
+      <button id="copyLink">share</button>
       <button id="copyLink1" class="button"> Share on Whatsapp</button>
-      <button id="copyLink2" class="button"> Share on Instagram</button>
-      <button id="copyLink3" class="button"> Share on Facebook</button>
-      <button id="copyLink4" class="button"> Share on LinkedIn</button>
+      <a href="javascript:" onclick="window.open('//www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app/','Facebook','width=800,height=300');return false;" target="_blank" title="Share On Facebook">
+      <button id="copyLink3" class="button"> Share on Facebook</button></a>
+      <a href="javascript:" onclick="javascript:window.open('//www.linkedin.com/shareArticle?mini=true&amp;url=https://iskcon-contest.netlify.app/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share On Linkedin">
+      <button id="copyLink4" class="button"> Share on LinkedIn</button></a>
   </div>
   </div>
   <style>

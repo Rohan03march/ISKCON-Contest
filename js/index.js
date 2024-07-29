@@ -58,8 +58,7 @@ document.getElementById('copyLink').addEventListener('click', async () => {
 const shareUrls = {
     whatsapp: "https://api.whatsapp.com/send?text=",
     facebook: "https://www.facebook.com/sharer/sharer.php?u=",
-    instagram: "https://www.instagram.com/?url=", // This might not work as expected
-    linkedin: "https://www.linkedin.com/sharing/share-offsite/?url="
+    linkedin: "https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl="
 };
 
 // Function to handle share button clicks
@@ -72,8 +71,8 @@ async function handleShare(platform) {
         });
 
         // Define the message to be shared
-        const url = "https://iskcon-contest.netlify.app/";
-        const message = `Hare Krishna! Welcome to the contest. Your friend has sent you this message to participate. ${url}`;
+        const url = "https://Iskcon-contest.netlify.app/";
+        const message = `Join me on ISKCON Contest to win some Exiting Prizes. Create your account by using this link here: ${url}`;
         
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
@@ -91,7 +90,6 @@ async function handleShare(platform) {
 // Add event listeners for different buttons
 document.getElementById('copyLink1').addEventListener('click', () => handleShare('whatsapp'));
 document.getElementById('copyLink3').addEventListener('click', () => handleShare('facebook'));
-document.getElementById('copyLink2').addEventListener('click', () => handleShare('instagram'));
 document.getElementById('copyLink4').addEventListener('click', () => handleShare('linkedin'));
 
 
