@@ -137,10 +137,10 @@
             <ul>
               <li><i class="bi bi-check2-circle"></i> <span><b>SignUp</b> And Take The Quiz. </span></li>
               <li><i class="bi bi-check2-circle"></i> <span>Share The Contest Link On Social Media Platforms.</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span><b>Note:</b>The Contestants With The Most Shares , Win Exiting Contest.</span></li>
+              <li><i class="bi bi-check2-circle"></i> <span><b>Note:The Contestants With The Most Shares , Win Exiting Contest.</b></span></li>
             </ul>
           </div>
-          <p><b>Login → Answer Questions → Follow Us on Social Media → Copy The Message →Share To Your friends → Earn Points → Win</b></p>
+          <p><b>Login → Answer Questions → Follow Us on Social Media →Share To Your friends → Earn Points → Win</b></p>
         </div>
 
       </div>
@@ -487,14 +487,19 @@
     <div class="points" id="Points">Total Points: 0</div>
     <div id="shareMessage">
       <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
-      <button id="copyLink">share</button>
-      <button id="copyLink1" class="button"> Share on Whatsapp</button>
+      <button id="copyLink" style="background-color: transparent;"></button>
+      <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends</h3>
+      <button id="copyLink1" class="button" title="Share on WhatsApp"><img src="img/icons8-whatsapp-48.png" alt=""></button>
       <a href="javascript:" onclick="window.open('//www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app/','Facebook','width=800,height=300');return false;" target="_blank" title="Share On Facebook">
-      <button id="copyLink3" class="button"> Share on Facebook</button></a>
+      <button id="copyLink3" class="button"><img src="img/icons8-facebook-48.png" alt=""></button></a>
       <a href="javascript:" onclick="javascript:window.open('//www.linkedin.com/shareArticle?mini=true&amp;url=https://iskcon-contest.netlify.app/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share On Linkedin">
-      <button id="copyLink4" class="button"> Share on LinkedIn</button></a>
+      <button id="copyLink4" class="button"> <img src="img/icons8-linkedin-48.png" alt=""></button></a>
+
+      <a href="javascript:" onclick="javascript:window.open('//twitter.com/share?url=https://iskcon-contest.netlify.app/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share On X">
+        <button id="copyLink5" class="button"> <img src="img/icons8-twitterx-48.png" alt=""></button></a>
   </div>
   </div>
+
   <style>
     .options {
       display: flex;
@@ -528,6 +533,19 @@
       margin-top: 20px;
       font-size: 18px;
     }
+
+    #copyLink4, #copyLink3, #copyLink1, #copyLink5{
+      background-color: transparent;
+      width: 30px;
+      height: 30px;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 70px;
+      align-items: center;
+    }
+   
+    
+ 
 
   </style>
 
