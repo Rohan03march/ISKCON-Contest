@@ -494,8 +494,9 @@
     </a>
     <script>
       function shareOnWhatsApp() {
+        const image = 'https://iskcon-contest.netlify.app/assets/img/iskcon.jpg';
         const url = encodeURIComponent("https://iskcon-contest.netlify.app/");
-        const message = encodeURIComponent("Join me on ISKCON Contest to win some exciting prizes! Check it out: " + url);
+        const message = encodeURIComponent(image +"Join me on ISKCON Contest to win some exciting prizes! Check it out: " + url);
         const whatsappUrl = `https://api.whatsapp.com/send?text=${message}`;
     
         window.open(whatsappUrl, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
