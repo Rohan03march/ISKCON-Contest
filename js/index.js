@@ -128,7 +128,7 @@ async function handleShare(platform) {
         // Update user shares count in Firestore (assuming userId is defined somewhere)
         const userRef = doc(db, "users", userId);
         await updateDoc(userRef, {
-            shares: increment(10)
+            shares: increment(5)
         });
 
         // Define the message to be shared
