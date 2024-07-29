@@ -58,7 +58,8 @@ document.getElementById('copyLink').addEventListener('click', async () => {
 const shareUrls = {
     whatsapp: "https://api.whatsapp.com/send?text=",
     facebook: "https://www.facebook.com/sharer/sharer.php?u=",
-    linkedin: "https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl="
+    linkedin: "https://www.linkedin.com/feed/?linkOrigin=LI_BADGE&shareActive=true&shareUrl=",
+    twitter: "https://twitter.com/intent/tweet?text="
 };
 
 // Function to handle share button clicks
@@ -72,7 +73,7 @@ async function handleShare(platform) {
 
         // Define the message to be shared
         const url = "https://Iskcon-contest.netlify.app/";
-        const message = `Join me on ISKCON Contest to win some Exiting Prizes. Create your account by using this link here: ${url}`;
+        const message = `Join me on ISKCON Contest to win some Exciting Prizes. Create your account by using this link here: ${url}`;
         
         // Encode the message for URL
         const encodedMessage = encodeURIComponent(message);
@@ -91,6 +92,9 @@ async function handleShare(platform) {
 document.getElementById('copyLink1').addEventListener('click', () => handleShare('whatsapp'));
 document.getElementById('copyLink3').addEventListener('click', () => handleShare('facebook'));
 document.getElementById('copyLink4').addEventListener('click', () => handleShare('linkedin'));
+document.getElementById('copyLink5').addEventListener('click', () => handleShare('twitter')); // Twitter button
+
+
 
 
 
