@@ -516,7 +516,7 @@
       <a href="javascript:" onclick="window.open('//www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app/','Facebook','width=800,height=300');return false;" target="_blank" title="Share On Facebook">
       <button id="copyLink3" class="button"><img src="img/icons8-facebook-48.png" alt=""></button></a>
       <a href="javascript:" onclick="javascript:window.open('//twitter.com/share?url=https://iskcon-contest.netlify.app/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share On X">
-        <button id="copyLink5" class="button"> <img src="img/icons8-twitterx-48.png" alt=""></button></a>
+        <button id="copyLink4" class="button"> <img src="img/icons8-twitterx-48.png" alt=""></button></a>
   </div>
   </div>
 
@@ -563,15 +563,10 @@
       margin-right: 70px;
       align-items: center;
     }
-   
-    
- 
-
+  
   </style>
-
-
-<script>
-  totalPoints = 0;
+  <script>
+    totalPoints = 0;
   // Load points from session storage if available
 if (sessionStorage.getItem('totalPoints')) {
   totalPoints = parseInt(sessionStorage.getItem('totalPoints'));
@@ -615,9 +610,8 @@ function updatePointsDisplay() {
 window.addEventListener('beforeunload', () => {
   sessionStorage.removeItem('totalPoints');
 });
-</script>
 
-
+  </script>
 </section>
 
 <!--/Social media Section-->

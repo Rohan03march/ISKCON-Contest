@@ -52,7 +52,67 @@ document.getElementById('copyLink').addEventListener('click', async () => {
     }
 });
 
+document.getElementById('sbutton').addEventListener('click',async() => {
+    try {
+        const userRef = doc(db,"users",userId);
+        await updateDoc(userRef, {
+            points: increment(10)
+        });
+    } catch (error) {
+        console.error("Error",error);
+    }
+});
 
+document.getElementById('sbutton2').addEventListener('click',async() => {
+    try {
+        const userRef = doc(db,"users",userId);
+        await updateDoc(userRef, {
+            points: increment(10)
+        });
+    } catch (error) {
+        console.error("Error",error);
+    }
+});
+document.getElementById('sbutton3').addEventListener('click',async() => {
+    try {
+        const userRef = doc(db,"users",userId);
+        await updateDoc(userRef, {
+            points: increment(10)
+        });
+    } catch (error) {
+        console.error("Error",error);
+    }
+});
+document.getElementById('sbutton4').addEventListener('click',async() => {
+    try {
+        const userRef = doc(db,"users",userId);
+        await updateDoc(userRef, {
+            points: increment(10)
+        });
+    } catch (error) {
+        console.error("Error",error);
+    }
+});
+document.getElementById('sbutton5').addEventListener('click',async() => {
+    try {
+        const userRef = doc(db,"users",userId);
+        await updateDoc(userRef, {
+            points: increment(10)
+        });
+    } catch (error) {
+        console.error("Error",error);
+    }
+});
+document.getElementById('sbutton6').addEventListener('click',async() => {
+    try {
+        const userRef = doc(db,"users",userId);
+        await updateDoc(userRef, {
+            points: increment(10)
+        });
+    } catch (error) {
+        console.error("Error",error);
+    }
+});
 
 // Define the different share URLs for each platform
 const shareUrls = {
@@ -92,7 +152,7 @@ async function handleShare(platform) {
 document.getElementById('copyLink1').addEventListener('click', () => handleShare('whatsapp'));
 document.getElementById('copyLink3').addEventListener('click', () => handleShare('facebook'));
 document.getElementById('copyLink4').addEventListener('click', () => handleShare('linkedin'));
-document.getElementById('copyLink5').addEventListener('click', () => handleShare('twitter')); // Twitter button
+document.getElementById('copyLink5').addEventListener('click', () => handleShare('linkedin'));
 
 
 
@@ -107,56 +167,6 @@ document.getElementById('copyLink5').addEventListener('click', () => handleShare
 //Follow Data 
 
 document.getElementById('sbutton').addEventListener('click',async() => {
-    try {
-        const userRef = doc(db, "users", userId);
-        await updateDoc(userRef, {
-                Points: increment(10)
-        });
-    } catch (error) {
-            console.error("Error updating document:", error);
-    }
-});
-document.getElementById('sbutton2').addEventListener('click',async() => {
-    try {
-        const userRef = doc(db, "users", userId);
-        await updateDoc(userRef, {
-                Points: increment(10)
-        });
-    } catch (error) {
-            console.error("Error updating document:", error);
-    }
-});
-document.getElementById('sbutton3').addEventListener('click',async() => {
-    try {
-        const userRef = doc(db, "users", userId);
-        await updateDoc(userRef, {
-                Points: increment(10)
-        });
-    } catch (error) {
-            console.error("Error updating document:", error);
-    }
-});
-document.getElementById('sbutton4').addEventListener('click',async() => {
-    try {
-        const userRef = doc(db, "users", userId);
-        await updateDoc(userRef, {
-                Points: increment(10)
-        });
-    } catch (error) {
-            console.error("Error updating document:", error);
-    }
-});
-document.getElementById('sbutton5').addEventListener('click',async() => {
-    try {
-        const userRef = doc(db, "users", userId);
-        await updateDoc(userRef, {
-                Points: increment(10)
-        });
-    } catch (error) {
-            console.error("Error updating document:", error);
-    }
-});
-document.getElementById('sbutton6').addEventListener('click',async() => {
     try {
         const userRef = doc(db, "users", userId);
         await updateDoc(userRef, {
@@ -195,5 +205,6 @@ onAuthStateChanged(auth, (user) => {
         console.log("User Id not found in Local storage");
     }
 });
+
 
 
