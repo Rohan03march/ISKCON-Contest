@@ -72,7 +72,7 @@ async function handleShare(platform) {
         });
 
         // Define the message to be shared
-        const url = "https://Iskcon-contest.netlify.app/";
+        const url = "https://iskcon-contest.netlify.app/";
         const message = `Join me on ISKCON Contest to win some Exciting Prizes. Create your account by using this link here: ${url}`;
         
         // Encode the message for URL
