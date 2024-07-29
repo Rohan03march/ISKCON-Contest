@@ -489,7 +489,20 @@
       <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
       <button id="copyLink" style="background-color: transparent;"></button>
       <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends</h3>
-      <button id="copyLink1" class="button" title="Share on WhatsApp"><img src="img/icons8-whatsapp-48.png" alt=""></button>
+      <a href="javascript:" onclick="shareOnWhatsApp(); return false;" title="Share On WhatsApp">
+        <button id="copyLink1" class="button"> <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp"></button>
+    </a>
+    <script>
+      function shareOnWhatsApp() {
+        const url = encodeURIComponent("https://iskcon-contest.netlify.app/");
+        const message = encodeURIComponent("Join me on ISKCON Contest to win some exciting prizes! Check it out: " + url);
+        const whatsappUrl = `https://api.whatsapp.com/send?text=${message}`;
+    
+        window.open(whatsappUrl, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    }
+    
+    </script>
+    
       <a href="javascript:" onclick="window.open('//www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app/','Facebook','width=800,height=300');return false;" target="_blank" title="Share On Facebook">
       <button id="copyLink3" class="button"><img src="img/icons8-facebook-48.png" alt=""></button></a>
       <a href="javascript:" onclick="javascript:window.open('//www.linkedin.com/shareArticle?mini=true&amp;url=https://iskcon-contest.netlify.app/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share On Linkedin">
