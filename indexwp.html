@@ -537,7 +537,7 @@
               1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
               2. Join the Fun: Follow the instructions and get involved.
               3. Spread the Joy: Share the excitement with friends and family!
-      
+                  
               🕉️ Hare Krishna!
           `);
       
@@ -548,8 +548,44 @@
 
       <a href="javascript:" onclick="window.open('//www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app/','Facebook','width=800,height=300');return false;" target="_blank" title="Share On Facebook">
       <button id="copyLink3" class="button"><img src="img/icons8-facebook-48.png" alt=""></button></a>
-      <a href="javascript:" onclick="javascript:window.open('//twitter.com/share?url=https://iskcon-contest.netlify.app/','', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" title="Share On X">
-        <button id="copyLink4" class="button"> <img src="img/icons8-twitterx-48.png" alt=""></button></a>
+
+        <a href="javascript:" onclick="shareOnTwitter(); return false;" target="_blank" title="Share On Twitter">
+          <button id="copyLink4" class="button">
+              <img src="img/icons8-twitterx-48.png" alt="Share on Twitter">
+          </button>
+      </a>
+        <script>
+          // Function to generate a random hash
+          function generateRandomHash(length) {
+              const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+              let hash = '';
+              for (let i = 0; i < length; i++) {
+                  const randomIndex = Math.floor(Math.random() * charset.length);
+                  hash += charset[randomIndex];
+              }
+              return hash;
+          }
+          
+          // Function to share on Twitter
+          function shareOnTwitter() {
+              // Generate a random hash as the user ID each time the button is clicked
+              const userId = generateRandomHash(8); // Example hash length of 8 characters
+          
+              // Construct the tweet text with the user ID
+              const tweetText = encodeURIComponent(`
+                  🎉 Welcome to the Krishna Janmashtami Contest! 🎉
+          
+                  Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
+          
+                  Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
+          
+                  🕉️ Hare Krishna!
+              `);
+          
+              // Open Twitter Share Dialog with the tweet text
+              window.open(`https://twitter.com/intent/tweet?text=${tweetText}`, 'twitter', 'width=800,height=600');
+          }
+          </script>
   </div>
   </div>
 
