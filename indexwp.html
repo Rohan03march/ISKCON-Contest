@@ -135,6 +135,30 @@
         font-weight: bold; /* Optionally make the text bold */
       }
     </style>
+    <script>
+      onAuthStateChanged(auth, (user) => {
+        const loggedInUserId = localStorage.getItem('loggedInUserId');
+        if (loggedInUserId) {
+            const docRef = doc(db, "users", loggedInUserId);
+            getDoc(docRef)
+                .then((docSnap) => {
+                    if (docSnap.exists()) {
+                        const userData = docSnap.data();
+                        document.getElementById('loggedUserFName').innerText = userData.firstName;
+                        document.getElementById('loggedUserEmail').innerText = userData.email;
+                        document.getElementById('loggedUserLName').innerText = userData.lastName;
+                    } else {
+                        console.log("No document found matching id");
+                    }
+                })
+                .catch((error) => {
+                    console.log("Error getting document:", error);
+                });
+        } else {
+            console.log("User Id not found in Local storage");
+        }
+    });
+    </script>
 
 <!--__________________________________________________________________________________-->
 
@@ -465,7 +489,7 @@
     <p><b>Follow Us On All The Social And Increase The Change Of Winning.</b></p>
   </div><!-- End Section Title -->
   
-  <div class="quiz-box1">
+  <div class="quiz-box1 ">
     <div class="options" id="options">
       <div>
         <img src="img/icons8-instagram-48.png" alt="Instagram Logo" style="width: 30px; height: 30px;">
