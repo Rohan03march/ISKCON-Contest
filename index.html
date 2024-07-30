@@ -134,101 +134,99 @@
 <!--___________________________________________________________________________________-->
 
 <!--Footer-->
-  <footer id="footer" class="footer dark-background">
-
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <div id="shareMessage">
-                <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
-                <button id="copyLink">Share!</button>
-            </div>
-        </div>
-          <style>
-            /* Container for the button and messages */
-
-/* Style for the Share button */
-#shareButton {
-  background-color: #007bff; /* Bright blue for attention */
-  color: white; /* White text for contrast */
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#shareButton:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: scale(1.05); /* Slight scale effect on hover */
-}
-
-/* Style for the click count */
-#clickCount {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #555; /* Slightly lighter text color */
-  text-align: center;
-}
-/* Style for the Copy to Clipboard button */
-#copyLink {
-  background-color: #28a745; /* Fresh green color */
-  color: white; /* White text for contrast */
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#copyLink:hover {
-  background-color: #218838; /* Darker green on hover */
-  transform: scale(1.05); /* Slight scale effect on hover */
-}
-
-#copyLink:focus {
-  outline: none; /* Remove default focus outline */
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5); /* Green focus ring */
-}
-
-.footer-newsletter {
-display: none;
-}
-
-</style>
-        </div>
+<footer id="footer" class="footer">
+  <div class="footer-content dark-background">
+      <!-- Logo -->
+      <div class="footer-logo">
+          <img src="assets/img/iskcon-bangalore-logo-n.png" alt="ISKCON Bangalore Logo">
       </div>
-    </div>
-
-
-
-</div>
-    <!--Copyrights-->
-    <div class="container copyright text-center mt-4">
-      <p>© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangslore</strong> <span>All Rights Reserved</span></p>
+      <!-- Copyrights -->
+      <div class="copyright">
+          <p>© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
       </div>
-      <!--/Copyrights-->
-<!--Socialmedia-->
-<div class="container-fluid d-flex justify-content-center align-items-center">
-  <div class="col-lg-4 col-md-12 text-center">
-    <img src="assets/img/iskcon-bangalore-logo-n.png" alt="">
-    <p></p>
-      <div class="social-links d-flex justify-content-center">
+      <!-- Social Media -->
+      <div class="social-links d-flex">
           <a href="https://x.com/iskconbangalore"><i class="bi bi-twitter-x"></i></a>
           <a href="https://www.facebook.com/ISKCONBangaloreTemple"><i class="bi bi-facebook"></i></a>
           <a href="https://www.instagram.com/ISKCONBangaloreTemple/"><i class="bi bi-instagram"></i></a>
           <a href="https://in.linkedin.com/company/iskcon-bangalore"><i class="bi bi-linkedin"></i></a>
           <a href="https://www.whatsapp.com/channel/0029VaADajtIiRozhnfEuo06"><i class="bi bi-whatsapp"></i></a>
           <a href="https://open.spotify.com/artist/0bbrfmzNUJe9L7i3c7bNU4"><i class="bi bi-spotify"></i></a>
+      </div>
   </div>
-</div>
-<!--Socialmedia-->
-  </footer>
+  <style>
+  /* General Styles */
+  .footer {
+      background-color: #5b1b6c ; /* Dark background for footer */
+      color: white; /* White text color */
+      padding: 20px 0;
+      position: relative;
+  }
+
+  .footer img {
+      max-width: 100px; /* Adjust based on your logo size */
+      height: auto;
+  }
+
+  /* Container for the footer content */
+  .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Distribute space between items */
+      padding: 0 20px; /* Padding to avoid content sticking to edges */
+  }
+
+  .footer-content .social-links {
+      margin: 0;
+  }
+
+  .social-links a {
+      font-size: 20px; /* Adjust icon size */
+      color: white; /* Default icon color */
+      margin: 2 5px; /* Space between icons */
+      transition: color 0.3s; /* Smooth color transition */
+  }
+
+  .social-links a:hover {
+      color: black; /* Change icon color on hover */
+  }
+
+  .copyright {
+      text-align: center;
+      margin-left: 12.5%;
+  }
+
+  
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+      .footer-content {
+          flex-direction: column; /* Stack items vertically */
+          align-items: center; /* Center items horizontally */
+          text-align: center; /* Center text */
+      }
+
+      .footer-logo {
+          margin-bottom: 10px; /* Space between logo and copyright */
+          margin-left: -2%;
+      }
+
+      .social-links {
+          margin-top: 10px; /* Space above social links */
+      }
+
+      .social-links a {
+          font-size: 20px; /* Smaller icon size for mobile */
+          margin: 0 5px; /* Reduced space between icons */
+      }
+
+      .copyright {
+          margin-top: 10px; /* Space above copyright text */
+          margin-left: -2%;
+      }
+  }
+</style>
+</footer>
 <!--footer-->
 
 <!--___________________________________________________________________________________-->
