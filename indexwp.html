@@ -68,10 +68,10 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#home" class="active">Home</a></li>
+         <!--<li><a href="#home" class="active">Home</a></li>
           <li><a href="#win">How To Win</a></li>
-          <!--<li><a href="#Q/A">Questions</a></li>-->
-          <li><a href="#Q/A">Contest</a></li>
+          <li><a href="#Q/A">Questions</a></li>
+          <li><a href="#Q/A">Contest</a></li>-->
 
           <!--<li><a href="#price">Winning Prize</a></li>-->
          <!-- <li>
@@ -554,7 +554,7 @@
         // Function to share on WhatsApp
         function shareOnTwitter() {
             // Retrieve the user ID from localStorage
-            const userId = localStorage.getItem('loggedInUserId');
+            const shortuserId= localStorage.getItem('loggedInUserId');
     
             if (!userId) {
                 // Handle the case where the user ID is not available
@@ -568,7 +568,7 @@
     
                 Join us in celebrating Krishna Janmashtami by participating in our exciting contest.
     
-                Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
+                Visit Our Website: https://iskcon-contest.netlify.app/?${shortuserId}
     
                 🕉️ Hare Krishna!
             `);
