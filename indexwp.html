@@ -554,7 +554,7 @@
         // Function to share on WhatsApp
         function shareOnTwitter() {
             // Retrieve the user ID from localStorage
-            const shortuserId= localStorage.getItem('loggedInUserId');
+            const userId= localStorage.getItem('loggedInUserId');
     
             if (!userId) {
                 // Handle the case where the user ID is not available
@@ -568,7 +568,7 @@
     
                 Join us in celebrating Krishna Janmashtami by participating in our exciting contest.
     
-                Visit Our Website: https://iskcon-contest.netlify.app/?${shortuserId}
+                Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
     
                 🕉️ Hare Krishna!
             `);
