@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged ,sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -90,7 +90,7 @@ signIn.addEventListener('click', (event) => {
         });
 });
 
-// Sign Out Event Listener
+ /*Sign Out Event Listener
 const logoutButton = document.getElementById('logout');
 logoutButton.addEventListener('click', () => {
     signOut(auth)
@@ -102,10 +102,20 @@ logoutButton.addEventListener('click', () => {
         .catch((error) => {
             console.error('Error Signing Out: ', error);
         });
-});
+});*/
 
 
+const ForgotPassLabel = document.getElementById('forgotpasslabel');
 
+const ForgotPassowrd = () => {
+    sendPasswordResetEmail (auth, email.value)
+    .then(()=> {
+        alert("Password reset as been sent to your mail.")
+    })
+    .catch ((error) => {
+        console.log(error.code);
+        console.log(error.message);
+    })
+}
 
-
-
+ForgotPassLabel.addEventListener('click', ForgotPassowrd );

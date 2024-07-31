@@ -124,6 +124,7 @@ button:hover{
     animation: fadeOut 7s forwards;
 }
 
+
 @media (max-width: 600px) {
     .input-group i {
         font-size: 1rem;
