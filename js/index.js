@@ -152,7 +152,7 @@ async function handleShare(platform) {
 document.getElementById('copyLink1').addEventListener('click', () => handleShare('whatsapp'));
 document.getElementById('copyLink3').addEventListener('click', () => handleShare('facebook'));
 document.getElementById('copyLink4').addEventListener('click', () => handleShare('linkedin'));
-document.getElementById('copyLink5').addEventListener('click', () => handleShare('linkedin'));
+
 
 
 

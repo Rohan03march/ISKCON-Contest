@@ -171,6 +171,8 @@
  
 <!--__________________________________________________________________________________-->
 
+     <!-- Q/A Section -->
+    
        <!-- Q/A Section -->
        <section id="Q/A" class="about section dark-background">
         <!-- Section Title -->
@@ -326,7 +328,7 @@
                 <div class="button-container">
                     <button class="button" onclick="tryAgain()" id="try-again-btn" style="display:none;">Try Again</button>
                     <button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display: none;">End Quiz</button>
-                    <button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display: block;">End Quiz</button>
+                    
                 </div>
                 <div class="score-container">
                     <div class="points" id="points">Points: 0</div>
@@ -435,7 +437,7 @@ function endRound(allCorrect) {
 
     if (allCorrect) {
         document.getElementById('questions-container').style.display = 'none';
-        document.getElementById('result').textContent = `Congratulations! You answered all questions correctly. You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
+        document.getElementById('result').textContent = `Congratulations! You answered all questions . You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
         document.getElementById('try-again-btn').style.display = 'none';
         document.getElementById('end-quiz-btn').style.display = 'inline'; // Show "End Quiz" button
     } else {
@@ -471,6 +473,8 @@ loadQuestions();
 
        </script>
     </section>
+       
+      <!-- /Q/A Section -->
        
       <!-- /Q/A Section -->
 <!--__________________________________________________________________________________-->
@@ -521,43 +525,26 @@ loadQuestions();
     <div class="points" id="Points">Total Points: 0</div>
     <div id="shareMessage">
       <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
-      <button id="copyLink" style="background-color: transparent;"></button>
-      <!--<h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends</h3>-->
+      <!--<button id="copyLink" style="background-color: transparent;"></button>-->
+      <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends And Increase The Chance Of Winning!</h3>
       <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp">
         <button id="copyLink1" class="button">
             <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">
         </button>
     </a>
+
+    <a href="javascript:" onclick="shareOnFacebook(); return false;" target="_blank" title="Share On Facebook">
+      <button id="copyLink3" class="button">
+          <img src="img/icons8-facebook-48.png" alt="Share on Facebook">
+      </button> </a>
+
       <a href="javascript:" onclick="shareOnTwitter(); return false;" target="_blank" title="Share On Twitter">
         <button id="copyLink4" class="button">
             <img src="img/icons8-twitterx-48.png" alt="Share on Twitter">
         </button>
     </a>
-    <a href="javascript:" onclick="shareOnFacebook(); return false;" target="_blank" title="Share On Facebook">
-      <button id="copyLink3" class="button">
-          <img src="img/icons8-facebook-48.png" alt="Share on Facebook">
-      </button>
-    <div id="toggleButtonContainer">
-      <button id="toggleButton" class="button">Play Quiz</button>
-    </div>
-  </div>
 
-    <script>
-      document.getElementById('toggleButton').addEventListener('click', () => {
-        const smSection = document.getElementById('sm');
-        const qaSection = document.getElementById('Q/A');
-      
-        if (smSection.style.display === 'none') {
-          smSection.style.display = 'block';
-          qaSection.style.display = 'none';
-          document.getElementById('toggleButton').innerText = 'Play Quiz';
-        } else {
-          smSection.style.display = 'none';
-          qaSection.style.display = 'block';
-          document.getElementById('toggleButton').innerText = 'Play Quiz ';
-        }
-      });
-      
+    <script> 
       // Function to share on WhatsApp
       function shareOnWhatsApp() {
           // Retrieve the user ID from localStorage
@@ -612,30 +599,30 @@ loadQuestions();
           // Open WhatsApp with the encoded message
           window.open(`https://m.me/?text=${message}`, 'facebook', 'width=800,height=300');
       }
-  </script>
-      <script>
-        // Function to share on WhatsApp
-        function shareOnTwitter() {
-            // Retrieve the user ID from localStorage
-            const userId= localStorage.getItem('loggedInUserId');
-    
-            if (!userId) {
-                // Handle the case where the user ID is not available
-                console.error('User ID not found in localStorage');
-                return;
-            }
-    
-            // Encode the message with the user ID as a query parameter
-            const message = encodeURIComponent(`
-                🎉 Welcome to the Krishna Janmashtami Contest! 🎉
-                Join us in celebrating Krishna Janmashtami by participating in our exciting contest.
-                Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
-                🕉️ Hare Krishna!
-            `);
-    // Open Twitter Share Dialog with the tweet text
-    window.open(`https://twitter.com/intent/tweet?text=${message}`, 'twitter', 'width=800,height=600');
+
+      // Function to share on WhatsApp
+      function shareOnTwitter() {
+        // Retrieve the user ID from localStorage
+        const userId= localStorage.getItem('loggedInUserId');
+
+        if (!userId) {
+            // Handle the case where the user ID is not available
+            console.error('User ID not found in localStorage');
+            return;
         }
-    </script>    
+
+        // Encode the message with the user ID as a query parameter
+        const message = encodeURIComponent(`
+            🎉 Welcome to the Krishna Janmashtami Contest! 🎉
+            Join us in celebrating Krishna Janmashtami by participating in our exciting contest.
+            Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
+            🕉️ Hare Krishna!
+        `);
+// Open Twitter Share Dialog with the tweet text
+window.open(`https://twitter.com/intent/tweet?text=${message}`, 'twitter', 'width=800,height=600');
+    }
+    
+  </script>   
   </div>
   </div>
 
@@ -887,7 +874,6 @@ window.addEventListener('beforeunload', () => {
 
  
 </section>
-
 <!--/Social media Section-->
 <!--__________________________________________________________________________________-->
 
