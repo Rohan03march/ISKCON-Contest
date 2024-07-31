@@ -125,16 +125,30 @@ button:hover{
 }
 
 
+/* Responsive Styles */
 @media (max-width: 600px) {
-    .input-group i {
-        font-size: 1rem;
+    .container {
+        width: 95%;
+        padding: 15px;
     }
 
-    .form-title {
-        font-size: 1.25rem;
+    h1.form-title {
+        font-size: 20px;
     }
 
-    button {
-        font-size: 1rem;
+    .input-group input {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+
+    .links button {
+        font-size: 14px;
+    }
+
+    .recover a {
+        font-size: 14px;
     }
 }
