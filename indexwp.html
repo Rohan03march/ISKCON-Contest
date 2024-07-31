@@ -168,297 +168,315 @@
 
     </section>
     <!-- /How to win Section -->
-
+ 
 <!--__________________________________________________________________________________-->
 
        <!-- Q/A Section -->
-       <section id="Q/A" class="about section dark-background ">
-
+       <section id="Q/A" class="about section dark-background">
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-          <h2>Answer Some Exiting Questions On Krishna</h2>
-          <p><b>Earn Points On Correct Answers.</b></p>
+            <h2>Answer Some Exciting Questions On Krishna</h2>
+            <p><b>Earn Points On Correct Answers.</b></p>
         </div><!-- End Section Title -->
-  
-        <div class="container" >
-          <div class="row gy-4">
-  
-  
-            <!--style-->
-            <style>
-              /* Your existing CSS here */
-              .quiz-box {
-                  background-color: #c9d2db;
-                  padding: 30px;
-                  border: 1px solid #ddd;
-                  border-radius: 10px;
-                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                  width: 100%;
-                  max-width: 800px;
-                  margin: 0 auto;
-                  text-align: center;
-                  transition: transform 0.3s ease, box-shadow 0.3s ease;
-                  font-family: 'Arial', sans-serif; /* Use a common font for readability */
-              }
-      
-              .quiz-box:hover {
-                  transform: translateY(-5px);
-                  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-              }
-      
-              .question {
-                  font-size: 1.5rem; /* Increased font size for questions */
-                  font-weight: 600; /* Bolder font weight for emphasis */
-                  margin-bottom: 20px;
-                  color: #333; /* Darker color for better contrast */
-              }
-      
-              .options {
-                  display: flex;
-                  flex-direction: column;
-                  align-items: flex-start; /* Align items to the left */
-                  margin-bottom: 20px;
-                  color: black;
-              }
-      
-              .options div {
-                  display: flex; /* Use flexbox to align items */
-                  align-items: center; /* Center items vertically */
-                  margin-bottom: 10px;
-                  padding: 10px 20px; /* Add padding to make it look like a box */
-                  background-color: #f0f0f0; /* Light background color for the box */
-                  border-radius: 5px; /* Rounded corners for the box */
-                  cursor: pointer; /* Change cursor to pointer on hover */
-                  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-                  width: 100%; /* Make the box take full width */
-                  border: 2px solid transparent; /* Add border for selection indication */
-              }
-      
-              .options div.selected {
-                  background-color: #007bff; /* Selected background color */
-                  color: white; /* Text color when selected */
-              }
-      
-              .options div:hover {
-                  background-color: #e0e0e0; /* Slightly darker background color on hover */
-                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
-              }
-      
-              .score-container {
-                  display: flex; /* Use flexbox for horizontal alignment */
-                  justify-content: center; /* Distribute space between items */
-                  align-items: center; /* Vertically align items */
-                  margin-top: 20px; /* Adjust margin as needed */
-              }
-      
-              .points {
-                  font-size: 1.2rem;
-                  font-weight: 500;
-                  color: #007bff;
-                  transition: color 0.3s ease;
-              }
-      
-              .result {
-                  font-weight: bold;
-                  color: #28a745;
-                  margin-left: 10px; /* Optional: Add space between points and result */
-                  margin-top: 20.2px;
-              }
-      
-              .navigation-buttons {
-                  display: flex;
-                  justify-content: center;
-                  gap: 10px;
-                  margin-top: 20px;
-              }
-      
-              .button-container {
-                  display: flex;
-                  justify-content: space-between; /* Distribute buttons with space between them */
-                  align-items: center; /* Center items vertically */
-                  margin-top: 20px; /* Adjust margin as needed */
-                  max-width: 800px; /* Optional: limit the width of the container */
-                  margin: 0 auto; /* Center the container horizontally */
-              }
-      
-              .button {
-                  background-color: #007bff;
-                  color: white;
-                  border: none;
-                  padding: 10px 20px;
-                  border-radius: 5px;
-                  cursor: pointer;
-                  font-size: 1rem;
-                  transition: background-color 0.3s ease, transform 0.2s ease;
-              }
-      
-              .button:hover {
-                  background-color: #0056b3;
-                  transform: translateY(-2px);
-              }
-      
-              .button:disabled {
-                  background-color: #6c757d;
-                  cursor: not-allowed;
-              }
-      
-              #try-again-btn {
-                  background-color: #dc3545;
-              }
-      
-              #try-again-btn:hover {
-                  background-color: #c82333;
-              }
-      
-              /* Responsive adjustments */
-              @media (max-width: 600px) {
-                  .quiz-box {
-                      padding: 20px;
-                  }
-                  .question {
-                      font-size: 1.3rem;
-                  }
-                  .options div {
-                      margin-bottom: 8px;
-                  }
-                  .points {
-                      font-size: 1rem;
-                  }
-              }
-          </style>
-      </head>
-      <body>
-          <div class="quiz-box">
-              <div class="question" id="question"></div>
-              <div class="options" id="options"></div>
-              <div class="button-container">
-                  <button class="button" onclick="prevQuestion()" id="prev-btn"><</button>
-                  <button onclick="checkAnswer()" id="submit-btn" class="button">Submit</button>
-                  <button class="button" id="next-btn" onclick="nextQuestion()">></button>
-              </div>
-              <div class="score-container">
-                  <div class="points" id="points">Points: 0</div>
-                  <div class="result" id="result"></div>
-              </div>
-              <div class="navigation-buttons">
-                  <button class="button" onclick="tryAgain()" id="try-again-btn" style="display:none;">Try Again</button>
-              </div>
-          </div>
-      
-          <script>
-              const questions = [
-                  { question: 'What is the birth day of Lord Krishna ?', answer: 'Janmashtami', options: ['Diwali', 'Holi', 'Janmashtami', 'Navratri'] },
-                  { question: 'What is the name of Lord Krishna\'s Mother ?', answer: 'Devaki', options: ['Yashoda', 'Devaki', 'Radha', 'Parvati'] },
-                  { question: 'What is the name of Lord Krishna\'s brother ?', answer: 'Balarama', options: ['Karna', 'Arjuna', 'Balarama', 'Bhima'] },
-                  { question: 'Which city was Lord Krishna born in ?', answer: 'Mathura', options: ['Ayodhya', 'Mathura', 'Dwarka', 'Hastinapur'] },
-                  { question: 'What is the name of Lord Krishna\'s father ?', answer: 'Vasudeva', options: ['Dasharatha', 'Vasudeva', 'Nanda', 'Shantanu'] },
-                  { question: 'Which demon did Lord Krishna defeat in his childhood ?', answer: 'Putana', options: ['Kamsa', 'Putana', 'Ravana', 'Hiranyakashipu'] },
-                  { question: 'What is the name of Lord Krishna\'s flute ?', answer: 'Murli', options: ['Murli', 'Veena', 'Bansuri', 'Sitar'] },
-                  { question: 'Which Goddess is Lord Krishna\'s consort?', answer: 'Radha', options: ['Sita', 'Parvati', 'Radha', 'Lakshmi'] },
-                  { question: 'In which battle did Lord Krishna reveal the Bhagavad gita?', answer: 'Mahabharata', options: ['Kurukshetra', 'Mahabharata', 'Ramayana', 'Panipat'] },
-                  { question: 'Which color is associated with Krishna ?', answer: 'Blue', options: ['Blue','Yellow', 'Red','Green'] }
-              ];
-      
-              let currentQuestionIndex = 0;
-              let points = 0;
-              let correctAnswers = 0;
-              let selectedOption = '';
-      
-              function loadQuestion() {
-                  if (currentQuestionIndex < questions.length) {
-                      document.getElementById('question').textContent = questions[currentQuestionIndex].question;
-                      const options = questions[currentQuestionIndex].options;
-                      const optionsContainer = document.getElementById('options');
-                      optionsContainer.innerHTML = ''; // Clear previous options
-      
-                      options.forEach(option => {
-                          const optionElement = document.createElement('div');
-                          optionElement.textContent = option;
-                          optionElement.classList.add('option-box');
-                          optionElement.addEventListener('click', () => selectOption(optionElement, option));
-                          optionsContainer.appendChild(optionElement);
-                      });
-      
-                      document.getElementById('result').textContent = '';
-                      document.getElementById('prev-btn').style.display = currentQuestionIndex === 0 ? 'none' : 'inline';
-                      document.getElementById('next-btn').textContent = currentQuestionIndex === questions.length - 1 ? 'Finish' : '>';
-                      document.getElementById('submit-btn').style.display = 'inline';
-                      document.getElementById('try-again-btn').style.display = 'none';
-                      document.querySelector('.footer-newsletter').style.display = 'none'; // Hide footer-newsletter during quiz
-                  } else {
-                      document.getElementById('question').textContent = `Quiz completed! You got ${correctAnswers} out of ${questions.length} correct.`;
-                      document.getElementById('options').style.display = 'none';
-                      document.getElementById('submit-btn').style.display = 'none';
-                      document.getElementById('prev-btn').style.display = 'none';
-                      document.getElementById('next-btn').style.display = 'none';
-                      document.getElementById('try-again-btn').style.display = 'inline';
-                      document.querySelector('.footer-newsletter').style.display = 'block'; // Show footer-newsletter after quiz completion
-                  }
-              }
-      
-              function selectOption(element, option) {
-                  document.querySelectorAll('.options div').forEach(div => div.classList.remove('selected'));
-                  element.classList.add('selected');
-                  selectedOption = option;
-              }
-      
-              function checkAnswer() {
-                  const result = document.getElementById('result');
-                  const pointsDisplay = document.getElementById('points');
-      
-                  if (selectedOption && selectedOption === questions[currentQuestionIndex].answer) {
-                      points += 10;
-                      correctAnswers++;
-                      result.textContent = 'Correct!';
-                      result.style.color = 'green';
-                  } else {
-                      result.textContent = 'Incorrect.';
-                      result.style.color = 'red';
-                  }
-      
-                  pointsDisplay.textContent = 'Points: ' + points;
-                  currentQuestionIndex++;
-                  setTimeout(loadQuestion, 1000); // Proceed to next question after 1 second
-              }
-      
-              function nextQuestion() {
-                  currentQuestionIndex++;
-                  loadQuestion();
-              }
-      
-              function prevQuestion() {
-                  currentQuestionIndex--;
-                  loadQuestion();
-              }
-      
-              function tryAgain() {
-                  currentQuestionIndex = 0;
-                  points = 0;
-                  correctAnswers = 0;
-                  selectedOption = '';
-                  document.getElementById('options').style.display = 'block';
-                  document.getElementById('submit-btn').style.display = 'inline';
-                  document.getElementById('points').textContent = 'Points: 0';
-                  document.getElementById('try-again-btn').style.display = 'none';
-                  document.getElementById('next-btn').style.display = 'inline';
-                  document.getElementById('prev-btn').style.display = currentQuestionIndex === 0 ? 'none' : 'inline'; // Adjust previous button visibility based on current index
-                  loadQuestion();
-              }
-      
-              loadQuestion();
-          </script>
-            
-            
-          <!--scripts-->  
-            
-          </div>
-      </div>
-      </section>
+    
+        <!-- Style -->
+        <style>
+            /* Your existing CSS here */
+            .quiz-box {
+                background-color: #c9d2db;
+                padding: 30px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+                font-family: 'Arial', sans-serif; /* Use a common font for readability */
+            }
+    
+            .question-container {
+                margin-bottom: 20px;
+            }
+    
+            .question {
+                font-size: 1.5rem; /* Increased font size for questions */
+                font-weight: 600; /* Bolder font weight for emphasis */
+                margin-bottom: 10px;
+                color: #333; /* Darker color for better contrast */
+            }
+    
+            .options {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch; /* Stretch items to full width */
+                margin-bottom: 20px;
+                color: black;
+            }
+    
+            .option {
+                background-color: #f0f0f0; /* Default background color */
+                color: #333; /* Default text color */
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+                border: 2px solid transparent; /* Border for selection indication */
+                margin-bottom: 10px;
+            }
+    
+            .option.correct {
+                background-color: #28a745; /* Green background for correct answers */
+                color: white; /* White text color */
+            }
+    
+            .option.incorrect {
+                background-color: #dc3545; /* Red background for incorrect answers */
+                color: white; /* White text color */
+            }
+    
+            .score-container {
+                display: flex; /* Use flexbox for horizontal alignment */
+                justify-content: center; /* Distribute space between items */
+                align-items: center; /* Vertically align items */
+                margin-top: 20px; /* Adjust margin as needed */
+            }
+    
+            .points {
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: #007bff;
+                transition: color 0.3s ease;
+            }
+    
+            .result {
+                font-weight: bold;
+                color: #28a745;
+                margin-left: 10px; /* Optional: Add space between points and result */
+            }
+    
+            .navigation-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 20px;
+            }
+    
+            .button-container {
+                display: flex;
+                justify-content: space-between; /* Distribute buttons with space between them */
+                align-items: center; /* Center items vertically */
+                margin-top: 20px; /* Adjust margin as needed */
+                max-width: 800px; /* Optional: limit the width of the container */
+                margin: 0 auto; /* Center the container horizontally */
+            }
+    
+            .button {
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1rem;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+    
+            .button:hover {
+                background-color: #0056b3;
+                transform: translateY(-2px);
+            }
+    
+            .button:disabled {
+                background-color: #6c757d;
+                cursor: not-allowed;
+            }
+    
+            #try-again-btn {
+                background-color: #dc3545;
+            }
+    
+            #try-again-btn:hover {
+                background-color: #c82333;
+            }
+    
+            /* Responsive adjustments */
+            @media (max-width: 600px) {
+                .quiz-box {
+                    padding: 20px;
+                }
+    
+                .question {
+                    font-size: 1.3rem;
+                }
+    
+                .option {
+                    margin-bottom: 8px;
+                }
+    
+                .points {
+                    font-size: 1rem;
+                }
+            }
+        </style>
+    
+        <div class="container">
+            <div class="quiz-box">
+                <div id="questions-container"></div>
+                <div class="button-container">
+                    <button class="button" onclick="tryAgain()" id="try-again-btn" style="display:none;">Try Again</button>
+                    <button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display: none;">End Quiz</button>
+                    <button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display: none;">End Quiz</button>
+                </div>
+                <div class="score-container">
+                    <div class="points" id="points">Points: 0</div>
+                    <div class="result" id="result"></div>
+                </div>
+            </div>
+        </div>
+       <script>
+        const questions = [
+    { question: 'What is the birth day of Lord Krishna?', answer: 'Janmashtami', options: ['Diwali', 'Holi', 'Janmashtami', 'Navratri'] },
+    { question: 'What is the name of Lord Krishna\'s Mother?', answer: 'Devaki', options: ['Yashoda', 'Devaki', 'Radha', 'Parvati'] },
+    { question: 'What is the name of Lord Krishna\'s brother?', answer: 'Balarama', options: ['Karna', 'Arjuna', 'Balarama', 'Bhima'] },
+    { question: 'Which city was Lord Krishna born in?', answer: 'Mathura', options: ['Ayodhya', 'Mathura', 'Dwarka', 'Hastinapur'] },
+    { question: 'What is the name of Lord Krishna\'s father?', answer: 'Vasudeva', options: ['Dasharatha', 'Vasudeva', 'Nanda', 'Shantanu'] },
+    { question: 'Which demon did Lord Krishna defeat in his childhood?', answer: 'Putana', options: ['Kamsa', 'Putana', 'Ravana', 'Hiranyakashipu'] },
+    { question: 'What is the name of Lord Krishna\'s flute?', answer: 'Murli', options: ['Murli', 'Veena', 'Bansuri', 'Sitar'] },
+    { question: 'Which Goddess is Lord Krishna\'s consort?', answer: 'Radha', options: ['Sita', 'Parvati', 'Radha', 'Lakshmi'] },
+    { question: 'In which battle did Lord Krishna reveal the Bhagavad gita?', answer: 'Mahabharata', options: ['Kurukshetra', 'Mahabharata', 'Ramayana', 'Panipat'] },
+    { question: 'Which color is associated with Krishna?', answer: 'Blue', options: ['Blue', 'Yellow', 'Red', 'Green'] }
+];
+
+let points = 0;
+let currentQuestionIndex = 0;
+let roundAttempts = 0; // Track the number of rounds completed
+const maxRounds = 5;
+let userRoundsPoints = []; // Track points for each round
+
+function loadQuestions() {
+    if (roundAttempts >= maxRounds) {
+        // Hide Q/A section and show social section
+        document.getElementById('Q/A').style.display = 'none';
+        document.getElementById('sm').style.display = 'block';
+        return;
+    }
+
+    const container = document.getElementById('questions-container');
+    container.innerHTML = ''; // Clear previous questions
+
+    questions.forEach((q, index) => {
+        const questionContainer = document.createElement('div');
+        questionContainer.classList.add('question-container');
+        
+        const questionElement = document.createElement('div');
+        questionElement.textContent = `${index + 1}. ${q.question}`;
+        questionElement.classList.add('question');
+        questionContainer.appendChild(questionElement);
+
+        const optionsContainer = document.createElement('div');
+        optionsContainer.classList.add('options');
+
+        q.options.forEach(option => {
+            const optionElement = document.createElement('div');
+            optionElement.textContent = option;
+            optionElement.classList.add('option');
+            optionElement.addEventListener('click', () => selectOption(optionElement, option, q.answer));
+            optionsContainer.appendChild(optionElement);
+        });
+
+        questionContainer.appendChild(optionsContainer);
+        container.appendChild(questionContainer);
+    });
+
+    document.getElementById('result').textContent = '';
+    document.getElementById('try-again-btn').style.display = 'none';
+    document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
+    document.getElementById('points').textContent = 'Points: ' + points; // Ensure points are displayed
+}
+
+function selectOption(element, selectedOption, correctAnswer) {
+    const allOptions = document.querySelectorAll('.options .option');
+    let allCorrect = true;
+
+    allOptions.forEach(opt => {
+        const optionValue = opt.textContent;
+        if (optionValue === correctAnswer) {
+            opt.classList.add('correct'); // Mark correct answer
+        } else if (optionValue === selectedOption) {
+            opt.classList.add('incorrect'); // Mark selected wrong answer
+            allCorrect = false; // If any wrong answer is selected
+        }
+    });
+
+    if (selectedOption === correctAnswer) {
+        points += 10;
+        document.getElementById('result').textContent = 'Correct!';
+        document.getElementById('result').style.color = 'green';
+    } else {
+        document.getElementById('result').textContent = 'Incorrect.';
+        document.getElementById('result').style.color = 'red';
+    }
+
+    document.getElementById('points').textContent = 'Points: ' + points;
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex >= questions.length) {
+        endRound(allCorrect);
+    }
+}
+
+function endRound(allCorrect) {
+    userRoundsPoints.push(points); // Save points for the current round
+
+    roundAttempts++;
+    currentQuestionIndex = 0;
+    points = 0; // Reset points for the new round
+
+    if (allCorrect) {
+        document.getElementById('questions-container').style.display = 'none';
+        document.getElementById('result').textContent = `Congratulations! You answered all questions correctly. You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
+        document.getElementById('try-again-btn').style.display = 'none';
+        document.getElementById('end-quiz-btn').style.display = 'inline'; // Show "End Quiz" button
+    } else {
+        document.getElementById('questions-container').style.display = 'none';
+        document.getElementById('result').textContent = `Round ${roundAttempts} completed! You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
+        document.getElementById('try-again-btn').style.display = 'inline';
+        document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
+    }
+}
+
+function endQuiz() {
+    document.getElementById('Q/A').style.display = 'none'; // Hide Q/A section
+    document.getElementById('sm').style.display = 'block'; // Show social section
+}
+
+function tryAgain() {
+    if (roundAttempts < maxRounds) {
+        currentQuestionIndex = 0;
+        points = 0; // Reset points to 0
+        document.getElementById('points').textContent = 'Points: ' + points; // Ensure points display is reset
+        document.getElementById('questions-container').style.display = 'block';
+        document.getElementById('try-again-btn').style.display = 'none';
+        document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
+        loadQuestions(); // Reload questions
+    } else {
+        // Hide Q/A section and show social section
+        document.getElementById('Q/A').style.display = 'none';
+        document.getElementById('sm').style.display = 'block';
+    }
+}
+
+loadQuestions();
+
+       </script>
+    </section>
+       
       <!-- /Q/A Section -->
 <!--__________________________________________________________________________________-->
 
 <!--Social media Section-->
-<section id="sm" class="social section  dark-background ">
+<section id="sm" class="social section  dark-background" style="display: none;">
 
    <!-- Section Title -->
    <div class="container section-title" data-aos="fade-up">
@@ -504,14 +522,46 @@
     <div id="shareMessage">
       <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
       <button id="copyLink" style="background-color: transparent;"></button>
-      <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends</h3>
-
+      <!--<h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends</h3>-->
+      <div class="options" id="share">
+        <div>
+            <img src="img/icons8-facebook-48.png" alt="FaceBook Logo" style="width: 30px; height: 30px;">
+            <label>Copy To Clipboard And Share It On FaceBook</label>
+            <button class="button" id="sbutton4">Copy</button>
+        </div>
+    </div>
+    
       <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp">
         <button id="copyLink1" class="button">
             <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">
         </button>
     </a>
+      <a href="javascript:" onclick="shareOnTwitter(); return false;" target="_blank" title="Share On Twitter">
+        <button id="copyLink4" class="button">
+            <img src="img/icons8-twitterx-48.png" alt="Share on Twitter">
+        </button>
+    </a>
+    <div id="toggleButtonContainer">
+      <button id="toggleButton" class="button">Play Quiz</button>
+    </div>
+  </div>
+
     <script>
+      document.getElementById('toggleButton').addEventListener('click', () => {
+        const smSection = document.getElementById('sm');
+        const qaSection = document.getElementById('Q/A');
+      
+        if (smSection.style.display === 'none') {
+          smSection.style.display = 'block';
+          qaSection.style.display = 'none';
+          document.getElementById('toggleButton').innerText = 'Play Quiz';
+        } else {
+          smSection.style.display = 'none';
+          qaSection.style.display = 'block';
+          document.getElementById('toggleButton').innerText = 'Play Quiz ';
+        }
+      });
+      
       // Function to share on WhatsApp
       function shareOnWhatsApp() {
           // Retrieve the user ID from localStorage
@@ -540,16 +590,6 @@
           window.open(`https://api.whatsapp.com/send?text=${message}`, 'whatsApp', 'width=800,height=300');
       }
   </script>
-  
-
-      <a href="javascript:" onclick="window.open('//www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app/','Facebook','width=800,height=300');return false;" target="_blank" title="Share On Facebook">
-      <button id="copyLink3" class="button"><img src="img/icons8-facebook-48.png" alt=""></button></a>
-
-        <a href="javascript:" onclick="shareOnTwitter(); return false;" target="_blank" title="Share On Twitter">
-          <button id="copyLink4" class="button">
-              <img src="img/icons8-twitterx-48.png" alt="Share on Twitter">
-          </button>
-      </a>
       <script>
         // Function to share on WhatsApp
         function shareOnTwitter() {
@@ -572,13 +612,16 @@
     // Open Twitter Share Dialog with the tweet text
     window.open(`https://twitter.com/intent/tweet?text=${message}`, 'twitter', 'width=800,height=600');
         }
-    </script>
-        
-          
+    </script>    
   </div>
   </div>
 
   <style>
+
+    #toggleButtonContainer {
+     margin-top: 50px;
+     margin-left: 85%;
+    }
     .quiz-box1 {
       background-color: #c9d2db;
       padding: 30px;
@@ -706,6 +749,7 @@
       background-color: #c82333;
   }
 
+  
   /* Responsive adjustments */
   @media (max-width: 600px) {
       .quiz-box {
@@ -768,6 +812,8 @@
     }
   
   </style>
+
+
   <script>
     totalPoints = 0;
   // Load points from session storage if available
@@ -815,6 +861,8 @@ window.addEventListener('beforeunload', () => {
 });
 
   </script>
+
+ 
 </section>
 
 <!--/Social media Section-->
