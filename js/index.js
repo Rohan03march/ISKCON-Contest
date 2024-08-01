@@ -52,7 +52,7 @@ document.getElementById('copyLink').addEventListener('click', async () => {
     }
 });
 
-document.getElementById('sbutton').addEventListener('click',async() => {
+document.getElementById('sbutton1').addEventListener('click',async() => {
     try {
         const userRef = doc(db,"users",userId);
         await updateDoc(userRef, {
@@ -122,6 +122,10 @@ const shareUrls = {
     twitter: "https://twitter.com/intent/tweet?text="
 };
 
+
+
+
+
 // Function to handle share button clicks
 async function handleShare(platform) {
     try {
@@ -152,16 +156,6 @@ async function handleShare(platform) {
 document.getElementById('copyLink1').addEventListener('click', () => handleShare('whatsapp'));
 document.getElementById('copyLink3').addEventListener('click', () => handleShare('facebook'));
 document.getElementById('copyLink4').addEventListener('click', () => handleShare('linkedin'));
-
-
-
-
-
-
-
-
-
-
 
 //------------------------------------------------------------------------------
 //Follow Data 

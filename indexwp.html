@@ -45,14 +45,6 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Arsha
-  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="index-page">
@@ -70,9 +62,10 @@
         <ul>
          <!--<li><a href="#home" class="active">Home</a></li>
           <li><a href="#win">How To Win</a></li>
-          <li><a href="#Q/A">Questions</a></li>
-          <li><a href="#Q/A">Contest</a></li>-->
-
+          <li><a href="#Q/A">Questions</a></li>-->
+          <li><a href="#">Your Score</a></li>
+          <li><a href="game.html">Play Game</a></li>
+        
           <!--<li><a href="#price">Winning Prize</a></li>-->
          <!-- <li>
             <a class="wel">
@@ -328,7 +321,7 @@
                 <div class="button-container">
                     <button class="button" onclick="tryAgain()" id="try-again-btn" style="display:none;">Try Again</button>
                     <button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display: none;">End Quiz</button>
-                    
+                    <button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display: block;">End</button>
                 </div>
                 <div class="score-container">
                     <div class="points" id="points">Points: 0</div>
@@ -398,78 +391,107 @@ function loadQuestions() {
 }
 
 function selectOption(element, selectedOption, correctAnswer) {
-    const allOptions = document.querySelectorAll('.options .option');
-    let allCorrect = true;
+  const allOptions = document.querySelectorAll('.options .option');
+  let allCorrect = true;
 
-    allOptions.forEach(opt => {
-        const optionValue = opt.textContent;
-        if (optionValue === correctAnswer) {
-            opt.classList.add('correct'); // Mark correct answer
-        } else if (optionValue === selectedOption) {
-            opt.classList.add('incorrect'); // Mark selected wrong answer
-            allCorrect = false; // If any wrong answer is selected
-        }
-    });
+  allOptions.forEach(opt => {
+      const optionValue = opt.textContent;
+      if (optionValue === correctAnswer) {
+          opt.classList.add('correct'); // Mark correct answer
+      } else if (optionValue === selectedOption) {
+          opt.classList.add('incorrect'); // Mark selected wrong answer
+          allCorrect = false; // If any wrong answer is selected
+      }
+  });
 
-    if (selectedOption === correctAnswer) {
-        points += 10;
-        document.getElementById('result').textContent = 'Correct!';
-        document.getElementById('result').style.color = 'green';
-    } else {
-        document.getElementById('result').textContent = 'Incorrect.';
-        document.getElementById('result').style.color = 'red';
-    }
+  if (selectedOption === correctAnswer) {
+      points += 10;
+      document.getElementById('result').textContent = 'Correct!';
+      document.getElementById('result').style.color = 'green';
+  } else {
+      document.getElementById('result').textContent = 'Incorrect.';
+      document.getElementById('result').style.color = 'red';
+  }
 
-    document.getElementById('points').textContent = 'Points: ' + points;
-    currentQuestionIndex++;
+  document.getElementById('points').textContent = 'Points: ' + points;
 
-    if (currentQuestionIndex >= questions.length) {
-        endRound(allCorrect);
-    }
+  // Check if points are 80 or 90 to show the buttons
+  if (points >= 80) {
+      document.getElementById('try-again-btn').style.display = 'inline';
+      document.getElementById('end-quiz-btn').style.display = 'inline';
+  }
+
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex >= questions.length) {
+      endRound(allCorrect);
+  }
 }
 
+    
 function endRound(allCorrect) {
-    userRoundsPoints.push(points); // Save points for the current round
+  userRoundsPoints.push(points); // Save points for the current round
 
-    roundAttempts++;
-    currentQuestionIndex = 0;
-    points = 0; // Reset points for the new round
+  roundAttempts++;
+  currentQuestionIndex = 0;
+  points = 0; // Reset points for the new round
 
-    if (allCorrect) {
-        document.getElementById('questions-container').style.display = 'none';
-        document.getElementById('result').textContent = `Congratulations! You answered all questions . You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
-        document.getElementById('try-again-btn').style.display = 'none';
-        document.getElementById('end-quiz-btn').style.display = 'inline'; // Show "End Quiz" button
-    } else {
-        document.getElementById('questions-container').style.display = 'none';
-        document.getElementById('result').textContent = `Round ${roundAttempts} completed! You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
-        document.getElementById('try-again-btn').style.display = 'inline';
-        document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
-    }
+  const resultElement = document.getElementById('result');
+  const tryAgainBtn = document.getElementById('try-again-btn');
+  const endQuizBtn = document.getElementById('end-quiz-btn');
+
+  if (allCorrect) {
+      document.getElementById('questions-container').style.display = 'none';
+      resultElement.textContent = `Congratulations! You answered all questions. You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
+  } else {
+      document.getElementById('questions-container').style.display = 'none';
+      resultElement.textContent = `Round ${roundAttempts} completed! You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
+  }
+
+  // Check if total points from all rounds is 80 or 90 to show the buttons
+  const totalPoints = userRoundsPoints.reduce((acc, points) => acc + points, 0);
+  
+  if (totalPoints >= 80) {
+      tryAgainBtn.style.display = 'inline';
+      endQuizBtn.style.display = 'inline';
+  } else {
+      tryAgainBtn.style.display = 'none';
+      endQuizBtn.style.display = 'none';
+  }
+
+  // Display the "Try Again" button if not at the max number of rounds
+  if (roundAttempts < maxRounds) {
+      tryAgainBtn.style.display = 'inline';
+  } else {
+      tryAgainBtn.style.display = 'none';
+  }
+  
+  endQuizBtn.style.display = 'inline'; // Show "End Quiz" button if at the end of all rounds
 }
 
 function endQuiz() {
-    document.getElementById('Q/A').style.display = 'none'; // Hide Q/A section
-    document.getElementById('sm').style.display = 'block'; // Show social section
+  document.getElementById('Q/A').style.display = 'none'; // Hide Q/A section
+  document.getElementById('sm').style.display = 'block'; // Show social section
 }
 
 function tryAgain() {
-    if (roundAttempts < maxRounds) {
-        currentQuestionIndex = 0;
-        points = 0; // Reset points to 0
-        document.getElementById('points').textContent = 'Points: ' + points; // Ensure points display is reset
-        document.getElementById('questions-container').style.display = 'block';
-        document.getElementById('try-again-btn').style.display = 'none';
-        document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
-        loadQuestions(); // Reload questions
-    } else {
-        // Hide Q/A section and show social section
-        document.getElementById('Q/A').style.display = 'none';
-        document.getElementById('sm').style.display = 'block';
-    }
+  if (roundAttempts < maxRounds) {
+      currentQuestionIndex = 0;
+      points = 0; // Reset points to 0
+      document.getElementById('points').textContent = 'Points: ' + points; // Ensure points display is reset
+      document.getElementById('questions-container').style.display = 'block';
+      document.getElementById('try-again-btn').style.display = 'none';
+      document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
+      loadQuestions(); // Reload questions
+  } else {
+      // Hide Q/A section and show social section
+      document.getElementById('Q/A').style.display = 'none';
+      document.getElementById('sm').style.display = 'block';
+  }
 }
 
 loadQuestions();
+
 
        </script>
     </section>
@@ -493,7 +515,7 @@ loadQuestions();
       <div>
         <img src="img/icons8-instagram-48.png" alt="Instagram Logo" style="width: 30px; height: 30px;">
         <label>Follow Us On Instagram</label>
-        <button onclick="handleButtonClick(this, 'https://www.instagram.com/ISKCONBangaloreTemple/', 10)" class="button" id="sbutton">+10</button>
+        <button onclick="handleButtonClick(this, 'https://www.instagram.com/ISKCONBangaloreTemple/', 10)" class="button" id="sbutton1">+10</button>
       </div>
       <div>
         <img src="img/icons8-facebook-48.png" alt="Instagram Logo" style="width: 30px; height: 30px;">
@@ -597,7 +619,7 @@ loadQuestions();
           `);
   
           // Open WhatsApp with the encoded message
-          window.open(`https://m.me/?text=${message}`, 'facebook', 'width=800,height=300');
+          window.open(`https://www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app`, 'facebook', 'width=800,height=300');
       }
 
       // Function to share on WhatsApp
