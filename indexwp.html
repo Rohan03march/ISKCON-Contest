@@ -611,7 +611,8 @@ loadQuestions();
           `);
   
           // Open WhatsApp with the encoded message
-          window.open(`https://www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app`, 'facebook', 'width=800,height=300');
+          const facebookUrl = (`https://www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app`, 'facebook', 'width=800,height=300');
+          window.open (facebookUrl, '_blank')
       }
 
       // Function to share on WhatsApp
