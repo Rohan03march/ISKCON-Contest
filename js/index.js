@@ -212,6 +212,12 @@ onAuthStateChanged(auth, (user) => {
 // Function to update the score display
 async function updateScoreDisplay() {
     try {
+        // Ensure that userId is properly set before attempting to fetch data
+        if (!userId) {
+            console.error("User ID is not set.");
+            return;
+        }
+
         const userRef = doc(db, "users", userId);
         const docSnapshot = await getDoc(userRef);
         
@@ -223,7 +229,7 @@ async function updateScoreDisplay() {
             // Update the score display
             document.getElementById('score').innerText = `Points ${points} | Shares ${shares}`;
         } else {
-            console.log("No such document!");
+            console.warn("No such document! Check if the document exists.");
         }
     } catch (error) {
         console.error("Error fetching document:", error);
@@ -232,3 +238,4 @@ async function updateScoreDisplay() {
 
 // Call the function to update the score display when the page loads
 document.addEventListener('DOMContentLoaded', updateScoreDisplay);
+
