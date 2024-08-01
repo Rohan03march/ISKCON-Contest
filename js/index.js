@@ -58,6 +58,7 @@ document.getElementById('sbutton1').addEventListener('click',async() => {
         await updateDoc(userRef, {
             points: increment(10)
         });
+        updateScoreDisplay();
     } catch (error) {
         console.error("Error",error);
     }
@@ -69,6 +70,7 @@ document.getElementById('sbutton2').addEventListener('click',async() => {
         await updateDoc(userRef, {
             points: increment(10)
         });
+        updateScoreDisplay();
     } catch (error) {
         console.error("Error",error);
     }
@@ -79,6 +81,7 @@ document.getElementById('sbutton3').addEventListener('click',async() => {
         await updateDoc(userRef, {
             points: increment(10)
         });
+        updateScoreDisplay();
     } catch (error) {
         console.error("Error",error);
     }
@@ -89,6 +92,7 @@ document.getElementById('sbutton4').addEventListener('click',async() => {
         await updateDoc(userRef, {
             points: increment(10)
         });
+        updateScoreDisplay();
     } catch (error) {
         console.error("Error",error);
     }
@@ -99,6 +103,7 @@ document.getElementById('sbutton5').addEventListener('click',async() => {
         await updateDoc(userRef, {
             points: increment(10)
         });
+        updateScoreDisplay();
     } catch (error) {
         console.error("Error",error);
     }
@@ -109,6 +114,7 @@ document.getElementById('sbutton6').addEventListener('click',async() => {
         await updateDoc(userRef, {
             points: increment(10)
         });
+        updateScoreDisplay();
     } catch (error) {
         console.error("Error",error);
     }
@@ -134,7 +140,7 @@ async function handleShare(platform) {
         await updateDoc(userRef, {
             shares: increment(5)
         });
-
+          updateScoreDisplay();
         // Define the message to be shared
         const url = "https://iskcon-contest.netlify.app/";
         const message = `Join me on ISKCON Contest to win some Exciting Prizes. Create your account by using this link here: ${url}`;
@@ -202,3 +208,27 @@ onAuthStateChanged(auth, (user) => {
 
 
 
+
+// Function to update the score display
+async function updateScoreDisplay() {
+    try {
+        const userRef = doc(db, "users", userId);
+        const docSnapshot = await getDoc(userRef);
+        
+        if (docSnapshot.exists()) {
+            const userData = docSnapshot.data();
+            const points = userData.points || 0;  // Default to 0 if points is not set
+            const shares = userData.shares || 0;  // Default to 0 if shares is not set
+
+            // Update the score display
+            document.getElementById('score').innerText = `Points ${points} | Shares ${shares}`;
+        } else {
+            console.log("No such document!");
+        }
+    } catch (error) {
+        console.error("Error fetching document:", error);
+    }
+}
+
+// Call the function to update the score display when the page loads
+document.addEventListener('DOMContentLoaded', updateScoreDisplay);
