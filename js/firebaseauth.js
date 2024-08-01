@@ -77,7 +77,7 @@ signIn.addEventListener('click', (event) => {
         .then((userCredential) => {
             showMessage('Login is Successful', 'signInMessage');
             const user = userCredential.user;
-            localStorage.setItem('loggedInUserId', user.uid.substring(0, 5));
+            localStorage.setItem('loggedInUserId', user.uid.substring(0,5));
             window.location.href = 'indexwp.html';
         })
         .catch((error) => {
