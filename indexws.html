@@ -86,7 +86,7 @@
       <!-- Add this to your index.html file -->
 <a id="participateButton" class="btn-getstarted" style="display: none;">Participate</a>
 <a id="logout" class="btn-getstarted" href="index.html"> logout</a>
-<a id="score" class="btn-getstarted" href="#"> Points 0 | Shares 0</a>
+<!--<a id="score" class="btn-getstarted" href="#"> Points 0 | Shares 0</a>-->
 
     </div>
   </header>
@@ -97,73 +97,102 @@
     <!-- Hero Section -->
     <section id="home" class="hero section dark-background">
       <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-            <div class="iframe-wrapper">
-              <iframe src="https://countingdownto.com/w4/O4RYuDIF" frameborder="0"></iframe>
-            </div>
-            <section id="win" class="about section dark-background">
-              <!-- Section Title -->
-                <h3><b>About the Janmashtami Online Contest</b>
+          <div class="row gy-4">
+              <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="zoom-out">
+                  <div class="section-title" data-aos="fade-up">
+                      <h2><a id="score">Points 0 | Shares 0</a></h2>
+                  </div><!-- End Section Title -->
+                  <div class="iframe-wrapper">
+                      <iframe src="https://countingdownto.com/w4/O4RYuDIF" frameborder="0"></iframe>
+                  </div>
+                  <section id="win" class="about section dark-background">
+                      <!-- Section Title -->
+                      <h3><b>About the Janmashtami Online Contest</b></h3>
+                      <div class="container">
+                          <div class="row gy-4">
+                              <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                                  <p>
+                                      Enhance your festival experience by engaging in a quiz featuring intriguing questions about
+                                      <b>Lord Krishna</b> and an enjoyable <b>Little Krishna Game.</b> Share the contest link on 
+                                      social media platforms and stand a chance of winning.
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
                   <style>
-                    h3{
+                    .hero {
+                      padding: 20px;
+                      color: white;
+                  }
+          
+                  .section-title h2 {
+                      font-size: 1.5rem;
+                      margin: 0;
+                      text-align: center;
+                  }
+          
+                  .section-title a {
+                      color: #ff0; /* Adjust color as needed */
+                      text-decoration: none;
+                      font-weight: bold;
+                  }
+          
+                  .iframe-wrapper {
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      width: 100%;
+                      height: 300px; /* Adjust height as needed */
+                      background-color: #FF00FF;
+                      background-image: linear-gradient(135deg, #FF00FF, #7F00FF);
+                      border-radius: 10px; /* Rounded corners */
+                      overflow: hidden;
+                      margin-top: 20px; /* Margin above the iframe */
+                  }
+                  
+                  .iframe-wrapper iframe {
+                      width: 100%;
+                      height: 100%;
+                      border: none;
+                  }
+          
+                  h3 {
                       text-align: center;
                       color: var(--heading-color);
                       font-family: var(--heading-font);
-                    }
+                      font-size: 1.2rem; /* Adjust font size as needed */
+                      margin: 20px 0;
+                  }
+          
+                  p {
+                      text-align: center;
+                      color: white;
+                      font-size: 1rem; /* Adjust font size as needed */
+                      margin: 10px 20px;
+                  }
+          
+                  /* Mobile Styles */
+@media (max-width: 767px) {
+  .section-title h2 {
+      font-size: 1.2rem; /* Smaller font size for mobile */
+      margin-top: 40px; /* Add top margin to move it lower */
+  }
+
+  .iframe-wrapper {
+      height: 200px; /* Adjust height for mobile */
+  }
+
+  p {
+      font-size: 0.9rem; /* Smaller font size for mobile */
+      margin: 10px; /* Reduced margin for mobile */
+  }
+}
                   </style>
-                </h3>
-                <div class="container">
-                  <div class="row gy-4">
-                    <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-                  <p>
-                     Enhance your festival experience by engaging in a quiz featuring intriguing questions about
-                     <b>Lord Krishna</b> and an enjoyable <b>Little Krishna Game.</b> Share the contest link on 
-                     social media platforms and stand a chance of winning.
-                    <style>
-                      p {
-                        text-align: center;
-                        color: white;
-                      }
-                    </style>
-                  </p>
-                </div>
-                </div>
-                </div>
-            </section>
+              </div>
           </div>
-          <style>
-            .iframe-wrapper {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 100%;
-              height: 100%; /* This makes the container take the full available height */
-              background-color: #FF00FF;
-              background-image: linear-gradient(135deg, #FF00FF, #7F00FF);
-              border-radius: 5px;
-              overflow: hidden;
-            }
-            
-            .iframe-wrapper iframe {
-              width: 100%;
-              height: 100%;
-              border: 0;
-            }
-            
-            @media (max-width: 767px) {
-              .iframe-wrapper {
-                height: 100vh; /* Full viewport height on mobile */
-                width: auto;   /* Ensure it covers available width */
-                max-width: 100%; /* Prevents overflow */
-              }
-            }
-            
-          </style>
-        </div>
       </div>
-    
-    </section><!-- /Hero Section -->
+  </section><!-- /Hero Section -->
 
 
     

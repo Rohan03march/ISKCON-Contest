@@ -77,7 +77,7 @@ document.getElementById('copyLink').addEventListener('click', async () => {
         if (!userId) return;
 
         const userRef = doc(db, "users", userId);
-        await updateDoc(userRef, { shares: increment(1) });
+        await updateDoc(userRef, { shares: increment(10) });
 
         const url = "https://iskcon-contest.netlify.app/";
         const message = `Hare Krishna! Welcome to the contest. Your friend has sent you this message to participate. ${url}`;
@@ -121,7 +121,7 @@ async function handleShare(platform) {
         if (!userId) return;
 
         const userRef = doc(db, "users", userId);
-        await updateDoc(userRef, { shares: increment(5) });
+        await updateDoc(userRef, { shares: increment(10) });
         updateScoreDisplay();
 
         const url = "https://iskcon-contest.netlify.app/";
@@ -141,3 +141,53 @@ document.getElementById('copyLink4').addEventListener('click', () => handleShare
 
 // Ensure updateScoreDisplay is called when the page is loaded
 document.addEventListener('DOMContentLoaded', updateScoreDisplay);
+
+
+
+  // Function to update points on Firestore
+  function updatePointsOnFirestore(userId, points) {
+    // Update points for the user in Firestore
+    db.collection('users').doc(userId).update({
+      correctAnswers: firebase.firestore.FieldValue.increment(points)
+    })
+    .then(() => {
+      console.log('Points updated successfully.');
+    })
+    .catch((error) => {
+      console.error('Error updating points: ', error);
+    });
+  }
+
+  function selectOption(element, selectedOption, correctAnswer, questionIndex) {
+    const optionsContainer = document.querySelector(`.options[data-question-index='${questionIndex}']`);
+    const allOptions = optionsContainer.querySelectorAll('.option');
+
+    // Remove existing correct/incorrect classes from all options
+    allOptions.forEach(opt => {
+      opt.classList.remove('correct', 'incorrect');
+      opt.removeEventListener('click', () => selectOption(opt, selectedOption, correctAnswer, questionIndex)); // Remove event listener
+    });
+
+    // Apply styles to the selected option
+    if (selectedOption === correctAnswer) {
+      element.classList.add('correct'); // Green for correct
+      points += 10;
+      document.getElementById('result').textContent = 'Correct!';
+      document.getElementById('result').style.color = 'green';
+
+      updatePointsOnFirestore(userId, 10);
+    } else {
+      element.classList.add('incorrect'); // Red for incorrect
+      document.getElementById('result').textContent = 'Incorrect.';
+      document.getElementById('result').style.color = 'red';
+    }
+
+    document.getElementById('points').textContent = 'Points: ' + points;
+    currentQuestionIndex++;
+
+    // Move to the next question or end the round if all questions are answered
+    if (currentQuestionIndex >= questions.length) {
+      endRound();
+    }
+  }
+

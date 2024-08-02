@@ -86,84 +86,113 @@
       <!-- Add this to your index.html file -->
 <a id="participateButton" class="btn-getstarted" style="display: none;">Participate</a>
 <a id="logout" class="btn-getstarted" href="index.html"> logout</a>
-<a id="score" class="btn-getstarted" href="#"> Points 0 | Shares 0</a>
+
 
     </div>
   </header>
 
 
   <main class="main">
-
+   
     <!-- Hero Section -->
     <section id="home" class="hero section dark-background">
       <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-            <div class="iframe-wrapper">
-              <iframe src="https://countingdownto.com/w4/O4RYuDIF" frameborder="0"></iframe>
-            </div>
-            <section id="win" class="about section dark-background">
-              <!-- Section Title -->
-                <h3><b>About the Janmashtami Online Contest</b>
+          <div class="row gy-4">
+              <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="zoom-out">
+                  <div class="section-title" data-aos="fade-up">
+                      <h2><a id="score">Points 0 | Shares 0</a></h2>
+                  </div><!-- End Section Title -->
+                  <div class="iframe-wrapper">
+                      <iframe src="https://countingdownto.com/w4/O4RYuDIF" frameborder="0"></iframe>
+                  </div>
+                  <section id="win" class="about section dark-background">
+                      <!-- Section Title -->
+                      <h3><b>About the Janmashtami Online Contest</b></h3>
+                      <div class="container">
+                          <div class="row gy-4">
+                              <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                                  <p>
+                                      Enhance your festival experience by engaging in a quiz featuring intriguing questions about
+                                      <b>Lord Krishna</b> and an enjoyable <b>Little Krishna Game.</b> Share the contest link on 
+                                      social media platforms and stand a chance of winning.
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
                   <style>
-                    h3{
+                    .hero {
+                      padding: 20px;
+                      color: white;
+                  }
+          
+                  .section-title h2 {
+                      font-size: 1.5rem;
+                      margin: 0;
+                      text-align: center;
+                  }
+          
+                  .section-title a {
+                      color: #ff0; /* Adjust color as needed */
+                      text-decoration: none;
+                      font-weight: bold;
+                  }
+          
+                  .iframe-wrapper {
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      width: 100%;
+                      height: 300px; /* Adjust height as needed */
+                      background-color: #FF00FF;
+                      background-image: linear-gradient(135deg, #FF00FF, #7F00FF);
+                      border-radius: 10px; /* Rounded corners */
+                      overflow: hidden;
+                      margin-top: 20px; /* Margin above the iframe */
+                  }
+                  
+                  .iframe-wrapper iframe {
+                      width: 100%;
+                      height: 100%;
+                      border: none;
+                  }
+          
+                  h3 {
                       text-align: center;
                       color: var(--heading-color);
                       font-family: var(--heading-font);
-                    }
+                      font-size: 1.2rem; /* Adjust font size as needed */
+                      margin: 20px 0;
+                  }
+          
+                  p {
+                      text-align: center;
+                      color: white;
+                      font-size: 1rem; /* Adjust font size as needed */
+                      margin: 10px 20px;
+                  }
+          
+                  /* Mobile Styles */
+@media (max-width: 767px) {
+  .section-title h2 {
+      font-size: 1.2rem; /* Smaller font size for mobile */
+      margin-top: 40px; /* Add top margin to move it lower */
+  }
+
+  .iframe-wrapper {
+      height: 200px; /* Adjust height for mobile */
+  }
+
+  p {
+      font-size: 0.9rem; /* Smaller font size for mobile */
+      margin: 10px; /* Reduced margin for mobile */
+  }
+}
                   </style>
-                </h3>
-                <div class="container">
-                  <div class="row gy-4">
-                    <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-                  <p>
-                     Enhance your festival experience by engaging in a quiz featuring intriguing questions about
-                     <b>Lord Krishna</b> and an enjoyable <b>Little Krishna Game.</b> Share the contest link on 
-                     social media platforms and stand a chance of winning.
-                    <style>
-                      p {
-                        text-align: center;
-                        color: white;
-                      }
-                    </style>
-                  </p>
-                </div>
-                </div>
-                </div>
-            </section>
+              </div>
           </div>
-          <style>
-            .iframe-wrapper {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: 100%;
-              height: 100%; /* This makes the container take the full available height */
-              background-color: #FF00FF;
-              background-image: linear-gradient(135deg, #FF00FF, #7F00FF);
-              border-radius: 5px;
-              overflow: hidden;
-            }
-            
-            .iframe-wrapper iframe {
-              width: 100%;
-              height: 100%;
-              border: 0;
-            }
-            
-            @media (max-width: 767px) {
-              .iframe-wrapper {
-                height: 100vh; /* Full viewport height on mobile */
-                width: auto;   /* Ensure it covers available width */
-                max-width: 100%; /* Prevents overflow */
-              }
-            }
-            
-          </style>
-        </div>
       </div>
-    
-    </section><!-- /Hero Section -->
+  </section><!-- /Hero Section -->
 
 
     
@@ -382,71 +411,77 @@
   </div>
  <script>
   const questions = [
-{ question: 'What is the birth day of Lord Krishna?', answer: 'Janmashtami', options: ['Diwali', 'Holi', 'Janmashtami', 'Navratri'] },
-{ question: 'What is the name of Lord Krishna\'s Mother?', answer: 'Devaki', options: ['Yashoda', 'Devaki', 'Radha', 'Parvati'] },
-{ question: 'What is the name of Lord Krishna\'s brother?', answer: 'Balarama', options: ['Karna', 'Arjuna', 'Balarama', 'Bhima'] },
-{ question: 'Which city was Lord Krishna born in?', answer: 'Mathura', options: ['Ayodhya', 'Mathura', 'Dwarka', 'Hastinapur'] },
-{ question: 'What is the name of Lord Krishna\'s father?', answer: 'Vasudeva', options: ['Dasharatha', 'Vasudeva', 'Nanda', 'Shantanu'] },
-{ question: 'Which demon did Lord Krishna defeat in his childhood?', answer: 'Putana', options: ['Kamsa', 'Putana', 'Ravana', 'Hiranyakashipu'] },
-{ question: 'What is the name of Lord Krishna\'s flute?', answer: 'Murli', options: ['Murli', 'Veena', 'Bansuri', 'Sitar'] },
-{ question: 'Which Goddess is Lord Krishna\'s consort?', answer: 'Radha', options: ['Sita', 'Parvati', 'Radha', 'Lakshmi'] },
-{ question: 'In which battle did Lord Krishna reveal the Bhagavad gita?', answer: 'Mahabharata', options: ['Kurukshetra', 'Mahabharata', 'Ramayana', 'Panipat'] },
-{ question: 'Which color is associated with Krishna?', answer: 'Blue', options: ['Blue', 'Yellow', 'Red', 'Green'] }
+  { question: 'What is the birth day of Lord Krishna?', answer: 'Janmashtami', options: ['Diwali', 'Holi', 'Janmashtami', 'Navratri'] },
+  { question: 'What is the name of Lord Krishna\'s Mother?', answer: 'Devaki', options: ['Yashoda', 'Devaki', 'Radha', 'Parvati'] },
+  { question: 'What is the name of Lord Krishna\'s brother?', answer: 'Balarama', options: ['Karna', 'Arjuna', 'Balarama', 'Bhima'] },
+  { question: 'Which city was Lord Krishna born in?', answer: 'Mathura', options: ['Ayodhya', 'Mathura', 'Dwarka', 'Hastinapur'] },
+  { question: 'What is the name of Lord Krishna\'s father?', answer: 'Vasudeva', options: ['Dasharatha', 'Vasudeva', 'Nanda', 'Shantanu'] },
+  { question: 'Which demon did Lord Krishna defeat in his childhood?', answer: 'Putana', options: ['Kamsa', 'Putana', 'Ravana', 'Hiranyakashipu'] },
+  { question: 'What is the name of Lord Krishna\'s flute?', answer: 'Murli', options: ['Murli', 'Veena', 'Bansuri', 'Sitar'] },
+  { question: 'Which Goddess is Lord Krishna\'s consort?', answer: 'Radha', options: ['Sita', 'Parvati', 'Radha', 'Lakshmi'] },
+  { question: 'In which battle did Lord Krishna reveal the Bhagavad gita?', answer: 'Mahabharata', options: ['Kurukshetra', 'Mahabharata', 'Ramayana', 'Panipat'] },
+  { question: 'Which color is associated with Krishna?', answer: 'Blue', options: ['Blue', 'Yellow', 'Red', 'Green'] }
 ];
 
 let points = 0;
 let currentQuestionIndex = 0;
-let roundAttempts = 0; // Track the number of rounds completed
+let roundAttempts = 0;
 const maxRounds = 5;
-let userRoundsPoints = []; // Track points for each round
+let userRoundsPoints = [];
 
 function loadQuestions() {
-if (roundAttempts >= maxRounds) {
-  // Hide Q/A section and show social section
-  document.getElementById('Q/A').style.display = 'none';
-  document.getElementById('sm').style.display = 'block';
-  return;
-}
+  if (roundAttempts >= maxRounds) {
+    // Hide Q/A section and show social section
+    document.getElementById('Q/A').style.display = 'none';
+    document.getElementById('sm').style.display = 'block';
+    return;
+  }
 
-const container = document.getElementById('questions-container');
-container.innerHTML = ''; // Clear previous questions
+  const container = document.getElementById('questions-container');
+  container.innerHTML = ''; // Clear previous questions
 
-questions.forEach((q, index) => {
-  const questionContainer = document.createElement('div');
-  questionContainer.classList.add('question-container');
-  
-  const questionElement = document.createElement('div');
-  questionElement.textContent = `${index + 1}. ${q.question}`;
-  questionElement.classList.add('question');
-  questionContainer.appendChild(questionElement);
+  questions.forEach((q, index) => {
+    const questionContainer = document.createElement('div');
+    questionContainer.classList.add('question-container');
+    
+    const questionElement = document.createElement('div');
+    questionElement.textContent = `${index + 1}. ${q.question}`;
+    questionElement.classList.add('question');
+    questionContainer.appendChild(questionElement);
 
-  const optionsContainer = document.createElement('div');
-  optionsContainer.classList.add('options');
+    const optionsContainer = document.createElement('div');
+    optionsContainer.classList.add('options');
+    optionsContainer.setAttribute('data-question-index', index); // Set index for tracking
 
-  q.options.forEach(option => {
-      const optionElement = document.createElement('div');
-      optionElement.textContent = option;
-      optionElement.classList.add('option');
-      optionElement.addEventListener('click', () => selectOption(optionElement, option, q.answer));
-      optionsContainer.appendChild(optionElement);
+    q.options.forEach(option => {
+        const optionElement = document.createElement('div');
+        optionElement.textContent = option;
+        optionElement.classList.add('option');
+        optionElement.addEventListener('click', () => selectOption(optionElement, option, q.answer, index));
+        optionsContainer.appendChild(optionElement);
+    });
+
+    questionContainer.appendChild(optionsContainer);
+    container.appendChild(questionContainer);
   });
 
-  questionContainer.appendChild(optionsContainer);
-  container.appendChild(questionContainer);
-});
-
-document.getElementById('result').textContent = '';
-document.getElementById('try-again-btn').style.display = 'none';
-document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
-document.getElementById('points').textContent = 'Points: ' + points; // Ensure points are displayed
+  document.getElementById('result').textContent = '';
+  document.getElementById('try-again-btn').style.display = 'none';
+  document.getElementById('end-quiz-btn').style.display = 'none';
+  document.getElementById('points').textContent = 'Points: ' + points;
 }
 
-function selectOption(element, selectedOption, correctAnswer) {
-  const allOptions = document.querySelectorAll('.options .option');
+
+
+
+function selectOption(element, selectedOption, correctAnswer, questionIndex) {
+  const optionsContainer = document.querySelector(`.options[data-question-index='${questionIndex}']`);
+  const allOptions = optionsContainer.querySelectorAll('.option');
 
   // Remove existing correct/incorrect classes from all options
   allOptions.forEach(opt => {
     opt.classList.remove('correct', 'incorrect');
+    opt.removeEventListener('click', () => selectOption(opt, selectedOption, correctAnswer, questionIndex)); // Remove event listener
   });
 
   // Apply styles to the selected option
@@ -470,46 +505,48 @@ function selectOption(element, selectedOption, correctAnswer) {
   }
 }
 
+function endRound() {
+  userRoundsPoints.push(points);
 
-function endRound(allCorrect) {
-userRoundsPoints.push(points); // Save points for the current round
+  roundAttempts++;
+  currentQuestionIndex = 0;
+  points = 0;
 
-roundAttempts++;
-currentQuestionIndex = 0;
-points = 0; // Reset points for the new round
+  const isFinalRound = roundAttempts >= maxRounds;
+  const totalPoints = userRoundsPoints.reduce((total, roundPoints) => total + roundPoints, 0);
+  const hasReached100Points = totalPoints >= 100;
 
-if (allCorrect) {
-  document.getElementById('questions-container').style.display = 'none';
-  document.getElementById('result').textContent = `Congratulations! You answered all questions . You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
-  document.getElementById('try-again-btn').style.display = 'none';
-  document.getElementById('end-quiz-btn').style.display = 'inline'; // Show "End Quiz" button
-} else {
   document.getElementById('questions-container').style.display = 'none';
   document.getElementById('result').textContent = `Round ${roundAttempts} completed! You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
-  document.getElementById('try-again-btn').style.display = 'inline';
-  document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
-}
+  document.getElementById('try-again-btn').style.display = isFinalRound ? 'none' : 'inline';
+
+  if (isFinalRound) {
+    if (hasReached100Points) {
+      document.getElementById('end-quiz-btn').style.display = 'inline'; // Show "End Quiz" button
+    } else {
+      document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
+    }
+  }
 }
 
 function endQuiz() {
-document.getElementById('Q/A').style.display = 'none'; // Hide Q/A section
-document.getElementById('sm').style.display = 'block'; // Show social section
-}
-
-function tryAgain() {
-if (roundAttempts < maxRounds) {
-  currentQuestionIndex = 0;
-  points = 0; // Reset points to 0
-  document.getElementById('points').textContent = 'Points: ' + points; // Ensure points display is reset
-  document.getElementById('questions-container').style.display = 'block';
-  document.getElementById('try-again-btn').style.display = 'none';
-  document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
-  loadQuestions(); // Reload questions
-} else {
-  // Hide Q/A section and show social section
   document.getElementById('Q/A').style.display = 'none';
   document.getElementById('sm').style.display = 'block';
 }
+
+function tryAgain() {
+  if (roundAttempts < maxRounds) {
+    currentQuestionIndex = 0;
+    points = 0;
+    document.getElementById('points').textContent = 'Points: ' + points;
+    document.getElementById('questions-container').style.display = 'block';
+    document.getElementById('try-again-btn').style.display = 'none';
+    document.getElementById('end-quiz-btn').style.display = 'none';
+    loadQuestions();
+  } else {
+    document.getElementById('Q/A').style.display = 'none';
+    document.getElementById('sm').style.display = 'block';
+  }
 }
 
 loadQuestions();
