@@ -102,6 +102,35 @@
             <div class="iframe-wrapper">
               <iframe src="https://countingdownto.com/w4/O4RYuDIF" frameborder="0"></iframe>
             </div>
+            <section id="win" class="about section dark-background">
+              <!-- Section Title -->
+                <h3><b>About the Janmashtami Online Contest</b>
+                  <style>
+                    h3{
+                      text-align: center;
+                      color: var(--heading-color);
+                      font-family: var(--heading-font);
+                    }
+                  </style>
+                </h3>
+                <div class="container">
+                  <div class="row gy-4">
+                    <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+                  <p>
+                     Enhance your festival experience by engaging in a quiz featuring intriguing questions about
+                     <b>Lord Krishna</b> and an enjoyable <b>Little Krishna Game.</b> Share the contest link on 
+                     social media platforms and stand a chance of winning.
+                    <style>
+                      p {
+                        text-align: center;
+                        color: white;
+                      }
+                    </style>
+                  </p>
+                </div>
+                </div>
+                </div>
+            </section>
           </div>
           <style>
             .iframe-wrapper {
@@ -164,8 +193,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>How To Win</h2>
-        <p><b>More The Share More The points, Higest Share will Win The Contest.</b></p>
+        <h2>How To Participate!</h2>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -176,12 +204,11 @@
             <p>
             </p>
             <ul>
-              <li><i class="bi bi-check2-circle"></i> <span><b>SignUp</b> And Take The Quiz. </span></li>
-              <li><i class="bi bi-check2-circle"></i> <span>Share The Contest Link On Social Media Platforms.</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span><b>Note:The Contestants With The Most Shares , Win Exiting Contest.</b></span></li>
+              <li><i class="bi bi-check2-circle"></i> <span><b>SignUp:</b> Complete the registration form by clicking the <b>SignUp.</b></span></li>
+              <li><i class="bi bi-check2-circle"></i> <span><b>Take The Quiz:</b> Test your knowledge of Lord Krishna through an engaging quiz.</span></li>
+              <li><i class="bi bi-check2-circle"></i> <span><b>Share The Contest:</b> Spread the word by sharing the contest link on social media platforms.</span></li>
             </ul>
           </div>
-          <p><b>Login → Answer Questions → Follow Us on Social Media →Share To Your friends → Earn Points → Win</b></p>
         </div>
 
       </div>
@@ -415,35 +442,34 @@ document.getElementById('points').textContent = 'Points: ' + points; // Ensure p
 }
 
 function selectOption(element, selectedOption, correctAnswer) {
-const allOptions = document.querySelectorAll('.options .option');
-let allCorrect = true;
+  const allOptions = document.querySelectorAll('.options .option');
 
-allOptions.forEach(opt => {
-  const optionValue = opt.textContent;
-  if (optionValue === correctAnswer) {
-      opt.classList.add('correct'); // Mark correct answer
-  } else if (optionValue === selectedOption) {
-      opt.classList.add('incorrect'); // Mark selected wrong answer
-      allCorrect = false; // If any wrong answer is selected
+  // Remove existing correct/incorrect classes from all options
+  allOptions.forEach(opt => {
+    opt.classList.remove('correct', 'incorrect');
+  });
+
+  // Apply styles to the selected option
+  if (selectedOption === correctAnswer) {
+    element.classList.add('correct'); // Green for correct
+    points += 10;
+    document.getElementById('result').textContent = 'Correct!';
+    document.getElementById('result').style.color = 'green';
+  } else {
+    element.classList.add('incorrect'); // Red for incorrect
+    document.getElementById('result').textContent = 'Incorrect.';
+    document.getElementById('result').style.color = 'red';
   }
-});
 
-if (selectedOption === correctAnswer) {
-  points += 10;
-  document.getElementById('result').textContent = 'Correct!';
-  document.getElementById('result').style.color = 'green';
-} else {
-  document.getElementById('result').textContent = 'Incorrect.';
-  document.getElementById('result').style.color = 'red';
+  document.getElementById('points').textContent = 'Points: ' + points;
+  currentQuestionIndex++;
+
+  // Move to the next question or end the round if all questions are answered
+  if (currentQuestionIndex >= questions.length) {
+    endRound();
+  }
 }
 
-document.getElementById('points').textContent = 'Points: ' + points;
-currentQuestionIndex++;
-
-if (currentQuestionIndex >= questions.length) {
-  endRound(allCorrect);
-}
-}
 
 function endRound(allCorrect) {
 userRoundsPoints.push(points); // Save points for the current round
