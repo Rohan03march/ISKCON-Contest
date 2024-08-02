@@ -102,24 +102,152 @@
                   <div class="section-title" data-aos="fade-up">
                       <h2><a id="score">Points 0 | Shares 0</a></h2>
                   </div><!-- End Section Title -->
-                  <div class="iframe-wrapper">
-                      <iframe src="https://countingdownto.com/w4/O4RYuDIF" frameborder="0"></iframe>
+                  <style>
+                    .countdown-container {
+                        text-align: center;
+                        background-color: #fff;
+                        padding: 20px;
+                        border-radius: 12px;
+                        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+                        background: linear-gradient(to right, #ff8cbb, #8caeff);
+                        max-width: 800px; /* Maximum width for larger screens */
+                        margin: 0 auto; /* Center the container */
+                    }
+                    
+                    .countdown-title {
+                        font-size: 2rem;
+                        color: white;
+                        margin-bottom: 20px;
+                    }
+                    
+                    .countdown {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-wrap: nowrap; /* Prevent wrapping */
+                        overflow-x: auto; /* Enable horizontal scrolling if needed */
+                        gap: 10px; /* Space between items */
+                    }
+                    
+                    .countdown-item {
+                        text-align: center;
+                        background-color: black;
+                        padding:10px;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                        flex: 1 0 80px; /* Flexible basis */
+                        min-width: 60px; /* Minimum width */
+                        max-width: 100px; /* Maximum width */
+                    }
+                    
+                    .countdown-number {
+                        font-size: 4rem;
+                        font-weight: bold;
+                        color: white;
+                        margin-bottom: 5px;
+                    }
+                    
+                    .countdown-label {
+                        font-size: 1.2rem;
+                        color: white;
+                    }
+                    
+                    h1 {
+                        font-size: 2rem; /* Size for separators */
+                        color: white;
+                        margin: 0 10px; /* Margin around separators */
+                    }
+                    
+                    @media (max-width: 600px) {
+                        .countdown-container {
+                            padding: 20px;
+                            margin: 0 10px; /* Margin adjustment for small screens */
+                        }
+                        
+                        .countdown-title {
+                            font-size: 1.5rem;
+                            margin-bottom: 15px;
+                        }
+                        
+                        .countdown {
+                            flex-wrap: nowrap; /* Prevent wrapping */
+                            overflow-x: auto; /* Enable horizontal scrolling */
+                            gap: 5px; /* Reduced gap on mobile */
+                        }
+                        
+                        .countdown-item {
+                            padding: 10px;
+                            flex: 1 0 60px; /* Adjust flexible basis for mobile */
+                            min-width: 50px; /* Smaller minimum width */
+                            max-width: 80px; /* Smaller maximum width */
+                        }
+                        
+                        .countdown-number {
+                            font-size: 2.5rem; /* Smaller number font size on mobile */
+                        }
+                        
+                        .countdown-label {
+                            font-size: 1rem; /* Smaller label font size */
+                        }
+                        
+                        h1 {
+                            font-size: 1.5rem; /* Smaller font size for separators */
+                            margin: 0 5px; /* Smaller margin */
+                        }
+                    }
+                </style>    
+              <div class="countdown-container">
+                  <div class="countdown-title">The 🎁 Contest Ends In</div>
+                  <div class="countdown">
+                    <div class="countdown-item">
+                      <div class="countdown-number" id="days">00</div>
+                      <div class="countdown-label">Days</div>
                   </div>
-                  <section id="win" class="about section dark-background">
-                      <!-- Section Title -->
-                      <h3><b>About the Janmashtami Online Contest</b></h3>
-                      <div class="container">
-                          <div class="row gy-4">
-                              <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-                                  <p>
-                                      Enhance your festival experience by engaging in a quiz featuring intriguing questions about
-                                      <b>Lord Krishna</b> and an enjoyable <b>Little Krishna Game.</b> Share the contest link on 
-                                      social media platforms and stand a chance of winning.
-                                  </p>
-                              </div>
-                          </div>
+                  <h1>:</h1>
+                      <div class="countdown-item">
+                          <div class="countdown-number" id="hours">00</div>
+                          <div class="countdown-label">Hours</div>
                       </div>
-                  </section>
+                      <h1>:</h1>
+                      <div class="countdown-item">
+                          <div class="countdown-number" id="minutes">00</div>
+                          <div class="countdown-label">Minutes</div>
+                      </div>
+                      <h1>:</h1>
+                      <div class="countdown-item">
+                          <div class="countdown-number" id="seconds">00</div>
+                          <div class="countdown-label">Seconds</div>
+                      </div>
+                  </div>
+              </div>
+              <script>
+                  const countdownDate = new Date('August 26, 2024 00:00:00').getTime();
+          
+                  const updateCountdown = () => {
+                      const now = new Date().getTime();
+                      const distance = countdownDate - now;
+          
+                      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+                      document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+                      document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                      document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                      document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+          
+                      if (distance < 0) {
+                          clearInterval(interval);
+                          document.querySelector('.countdown').innerHTML = 'EXPIRED';
+                      }
+                  };
+          
+                  const interval = setInterval(updateCountdown, 1000);
+          
+                  updateCountdown(); // Initial call
+              </script>
+                
                   <style>
                     .hero {
                       padding: 20px;
@@ -216,34 +344,110 @@
     
 
 <!--__________________________________________________________________________________-->
+<div class="box-container">
 
-    <!-- How to win Section -->
-    <section id="win" class="about section dark-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>How To Participate!</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-            <p>
-            </p>
-            <ul>
-              <li><i class="bi bi-check2-circle"></i> <span><b>SignUp:</b> Complete the registration form by clicking <b>Participate.</b></span></li>
-              <li><i class="bi bi-check2-circle"></i> <span><b>Take The Quiz:</b> Test your knowledge of Lord Krishna through an engaging quiz.</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span><b>Share The Contest:</b> Spread the word by sharing the contest link on social media platforms.</span></li>
-            </ul>
-          </div>
+  <!-- About Section -->
+  <section id="about" class="section">
+    <!-- Section Title -->
+    <h3><b>About the Janmashtami Online Contest</b></h3>
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-12 content" data-aos="fade-up" data-aos-delay="100">
+          <p>
+            Enhance your festival experience by engaging in a quiz featuring intriguing questions about
+            <b>Lord Krishna</b> and an enjoyable <b>Little Krishna Game.</b> Share the contest link on 
+            social media platforms and stand a chance of winning.
+          </p>
         </div>
-
       </div>
+    </div>
+  </section>
 
-    </section>
-    <!-- /How to win Section -->
+  <!-- How to win Section -->
+  <section id="win" class="section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>How To Participate!</h2>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-12 content" data-aos="fade-up" data-aos-delay="100">
+          <ul>
+            <li><i class="bi bi-check2-circle"></i> <span><b>SignUp:</b> Complete the registration form by clicking <b>Participate.</b></span></li>
+            <li><i class="bi bi-check2-circle"></i> <span><b>Take The Quiz:</b> Test your knowledge of Lord Krishna through an engaging quiz.</span></li>
+            <li><i class="bi bi-check2-circle"></i> <span><b>Share The Contest:</b> Spread the word by sharing the contest link on social media platforms.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <style>
+    .box-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin: 20px auto;
+      max-width: 1200px;
+      overflow: hidden;
+      flex-wrap: wrap; /* Allows wrapping of content */
+    }
+  
+    .section {
+      flex: 1;
+      margin: 10px;
+      background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background for each section */
+      border-radius: 8px;
+      padding: 15px;
+      color: white;
+      min-width: 300px; /* Ensures sections don't get too narrow */
+    }
+  
+    h3 {
+      text-align: center;
+      color: var(--heading-color);
+      font-family: var(--heading-font);
+    }
+  
+    p {
+      text-align: left;
+      color: white;
+    }
+  
+    .section-title h2 {
+      text-align: center;
+      color: var(--heading-color);
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+  
+    ul li {
+      margin: 10px 0;
+    }
+  
+    i {
+      color: #4CAF50; /* Example color for check icon */
+    }
+  
+    @media (max-width: 768px) {
+      .box-container {
+        flex-direction: column; /* Stacks sections vertically on smaller screens */
+      }
+      
+      .section {
+        margin: 10px 0; /* Adjusts margin for stacked sections */
+      }
+    }
+  </style>
+</div>
+  
 
  
 
@@ -253,7 +457,7 @@
    <!-- Section Title -->
    <div class="container section-title" data-aos="fade-up">
     <h2>Social Media</h2>
-    <p><b>Follow Us On All The Social And Increase The Change Of Winning.</b></p>
+    <p style="text-align: center;"><b>Follow Us On All The Social And Increase The Change Of Winning.</b></p>
   </div><!-- End Section Title -->
   
   <div class="quiz-box1 ">
@@ -764,7 +968,7 @@ display: none;
     
   </div>
   <div class="container copyright text-center mt-5">
-    <p>© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
+    <p style="text-align: center;">© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
   </div>
   </footer>
 <!--footer-->
