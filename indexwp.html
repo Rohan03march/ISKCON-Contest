@@ -63,7 +63,7 @@
          <!--<li><a href="#home" class="active">Home</a></li>
           <li><a href="#win">How To Win</a></li>
           <li><a href="#Q/A">Questions</a></li>-->
-          
+          <li><a href="game.html">Play Game</a></li>
           <!--<li><a href="#price">Winning Prize</a></li>-->
          <!-- <li>
             <a class="wel">
@@ -345,7 +345,7 @@
           <div class="button-container">
               <button class="button" onclick="tryAgain()" id="try-again-btn" style="display:none;">Try Again</button>
               <button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display: none;">End Quiz</button>
-              <!--<button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display:block;">End Quiz</button>->
+              <!--<button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display:block;">End Quiz</button>-->
           </div>
           <div class="score-container">
               <div class="points" id="points">Points: 0</div>
@@ -973,10 +973,10 @@ display: none;
               <a href="https://open.spotify.com/artist/0bbrfmzNUJe9L7i3c7bNU4"><i class="bi bi-spotify"></i></a>
           </div>
       </div>-->
-      <button class="play-btn">
-        <a href="game.html">Play Game</a></button>
+      <button class="play">
+        <a href="game.html">Play Game</a>
         <style>
-          .play-btn {
+          .play {
             display: inline-block;
             background-color: #28e; /* Bright blue background */
             border: none;
@@ -988,24 +988,26 @@ display: none;
             transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
         }
         
-        .play-btn a {
+        .play a {
             color: #fff; /* White text */
             text-decoration: none; /* Remove underline from link */
             font-size: 1.2em; /* Larger text */
             font-weight: bold;
         }
         
-        .play-btn:hover {
+        .play:hover {
             background-color: #1a7; /* Darker shade on hover */
             transform: scale(1.05); /* Slightly enlarge button on hover */
         }
         
-        .play-btn:active {
+        .play:active {
             background-color: #17a; /* Even darker shade when clicked */
             transform: scale(0.95); /* Slightly shrink button on click */
         }
         
         </style>
+    </button>
+    
   </div>
   <div class="container copyright text-center mt-5">
     <p>© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
