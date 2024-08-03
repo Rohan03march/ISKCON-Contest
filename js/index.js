@@ -92,6 +92,19 @@ document.getElementById('copyLink').addEventListener('click', async () => {
     }
 });
 
+
+//for Message copy button
+document.getElementById('copy-button').addEventListener('click',async() => {
+    try {
+        if (!userId) return;
+
+        const userRef = doc(db,"users", userId);
+        await updateDoc(userRef, {shares: increment(30)});
+    }catch (error) {
+        console.error("Error updating document:",error);
+    }
+});
+
 // Example for adding event listeners to buttons to increase points
 const pointButtons = ['sbutton1', 'sbutton2', 'sbutton3', 'sbutton4', 'sbutton5', 'sbutton6'];
 pointButtons.forEach(buttonId => {

@@ -95,30 +95,143 @@
 
   <main class="main">
 
-  <!-- Hero Section -->
-  <section id="home" class="hero section dark-background">
-    <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="zoom-out">
-      <div class="wel">
-        <div><h3>Welcome! <span id="loggedUserFName"></span> <span id="loggedUserLName"></span></h3></div>
-        <div><span id="loggedUserEmail" style="display: none;"></span></div>
-        <style>
-          .wel {
-            display: block;
-            text-align: center;
-            color: white;
-            text-decoration: none; /* Remove underline for links */
-          }
-          .wel div {
-            font-size: 100%; /* Adjust the font size for the title */
-            font-weight: bold; /* Optionally make the text bold */
-          }
-        </style>
+    <section id="home" class="hero section dark-background">
+      <div class="container">
+        <div class="transparent-box">
+          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="zoom-out">
+            <div class="wel">
+              <div><h3>Welcome! <span id="loggedUserFName"></span> <span id="loggedUserLName"></span></h3></div>
+              <div><span id="loggedUserEmail" style="display: none;"></span></div>
+            </div>
+            <div class="section-title" data-aos="fade-up">
+                <h2><a id="score">Points 0 | Shares 0</a></h2>
+            </div><!-- End Section Title -->
+            <div class="countdown">
+              <h2>The 🎁 Contest Ends In</h2>
+              <div id="timer">
+                <span id="days">00</span> days 
+                <span id="hours">00</span> hours 
+                <span id="minutes">00</span> minutes 
+                <span id="seconds">00</span> seconds
+              </div>
+            </div>
+            <style>
+              /* General Styles */
+              .hero {
+                padding: 40px 0; /* Add some padding */
+              }
+            
+              .transparent-box {
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+              }
+            
+              .wel {
+                text-align: center;
+                color: white;
+                text-decoration: none;
+              }
+            
+              .wel div {
+                font-size: 1.2em; /* Adjust font size */
+                font-weight: bold;
+              }
+            
+              .section-title h2 {
+                text-align: center;
+                color: white;
+                font-size: 1.5em; /* Adjust font size */
+                margin: 20px 0;
+              }
+            
+              .countdown {
+                text-align: center;
+                color: white;
+                margin-top: 20px;
+              }
+            
+              #timer {
+                font-size: 2em;
+                font-weight: bold;
+              }
+            
+              #timer span {
+                display: inline-block;
+                padding: 0 5px;
+              }
+            
+              /* Responsive Styles */
+              @media (max-width: 768px) {
+                .wel div {
+                  font-size: 1em; /* Smaller font size on tablets and phones */
+                }
+            
+                .section-title h2 {
+                  font-size: 1.2em; /* Smaller font size on tablets and phones */
+                }
+            
+                #timer {
+                  font-size: 1.5em; /* Adjust timer size on smaller screens */
+                }
+              }
+            
+              @media (max-width: 480px) {
+                .wel div {
+                  font-size: 0.9em; /* Even smaller font size on very small screens */
+                }
+            
+                .section-title h2 {
+                  font-size: 1em; /* Adjust for small phones */
+                }
+            
+                #timer {
+                  font-size: 1.2em; /* Adjust timer size for very small screens */
+                }
+            
+                #timer span {
+                  padding: 0 2px; /* Less padding on small screens */
+                }
+              }
+            </style>
+            
+            <script>
+              function updateCountdown() {
+                const targetDate = new Date('August 26, 2024 00:00:00').getTime();
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+            
+                if (distance < 0) {
+                  document.getElementById('timer').innerHTML = 'EXPIRED';
+                  return;
+                }
+            
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+              }
+            
+              setInterval(updateCountdown, 1000); // Update every second
+            </script>
+          </div>
+        </div>
       </div>
-      <div class="section-title" data-aos="fade-up">
-          <h2><a id="score">Points 0 | Shares 0</a></h2>
-      </div><!-- End Section Title --></div>
+    </section><!-- /Hero Section -->
+    
+    
+      
     </div>
+  </div>
 </section><!-- /Hero Section -->
+
+
     
 
 <!--__________________________________________________________________________________-->
@@ -170,6 +283,96 @@
       <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
       <!--<button id="copyLink" style="background-color: transparent;"></button>-->
       <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends And Increase The Chance Of Winning!</h3>
+      <div class="container">
+        <textarea id="text-box" rows="10" readonly></textarea>
+        <button id="copy-button">Share </button>
+        <script>
+            // Replace this with the actual method to get the user ID
+            var userId = localStorage.getItem('loggedInUserId' ); // Example user ID
+
+            // Text to display with the dynamic user ID
+            var message = `
+🎉 Welcome to the Krishna Janmashtami Contest! 🎉
+
+Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
+
+1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
+2. Join the Fun: Follow the instructions and get involved.
+3. Spread the Joy: Share the excitement with friends and family!
+
+🕉️ Hare Krishna!
+            `;
+
+            // Set the text area content
+            document.getElementById('text-box').value = message;
+
+            // Copy button functionality
+            document.getElementById('copy-button').addEventListener('click', function() {
+                // Get the textarea element
+                var textBox = document.getElementById('text-box');
+                
+                // Select the text in the textarea
+                textBox.select();
+                textBox.setSelectionRange(0, 99999); // For mobile devices
+
+                // Copy the text to the clipboard
+                document.execCommand('copy');
+
+                // Alert the user
+                alert('Text copied to clipboard!');
+            });
+        </script>
+        <style>
+          textarea {
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 16px;
+            line-height: 1.5;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            background-color: #ffffff;
+            color: #333;
+            resize: none;
+            margin-bottom: 20px;
+            overflow: auto;
+        }
+
+        #copy-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 20%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        @media (max-width: 600px) {
+            textarea {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+    </style>
+        
+    </div>
+    
       <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp">
         <button id="copyLink1" class="button">
             <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">
@@ -190,32 +393,32 @@
     <script> 
       // Function to share on WhatsApp
       function shareOnWhatsApp() {
-          // Retrieve the user ID from localStorage
-          const userId = localStorage.getItem('loggedInUserId');
-  
-          if (!userId) {
-              // Handle the case where the user ID is not available
-              console.error('User ID not found in localStorage');
-              return;
-          }
-  
-          // Encode the message with the user ID as a query parameter
-          const message = encodeURIComponent(`
-              🎉 Welcome to the Krishna Janmashtami Contest! 🎉
-  
-              Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
-  
-              1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
-              2. Join the Fun: Follow the instructions and get involved.
-              3. Spread the Joy: Share the excitement with friends and family!
-  
-              🕉️ Hare Krishna!
-          `);
-  
-          // Open WhatsApp with the encoded message
-          window.open(`https://api.whatsapp.com/send?text=${message}`, 'whatsApp', 'width=800,height=300');
-      }
-
+        // Retrieve the user ID from localStorage
+        const userId = localStorage.getItem('loggedInUserId');
+    
+        if (!userId) {
+            // Handle the case where the user ID is not available
+            console.error('User ID not found in localStorage');
+            return;
+        }
+    
+        // Encode the message with the user ID as a query parameter
+        const message = encodeURIComponent(`
+            🎉 Welcome to the Krishna Janmashtami Contest! 🎉
+    
+            Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
+    
+            1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
+            2. Join the Fun: Follow the instructions and get involved.
+            3. Spread the Joy: Share the excitement with friends and family!
+    
+            🕉️ Hare Krishna!
+        `);
+    
+        // Open WhatsApp with the encoded message
+        window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank', 'width=800,height=600');
+    }
+    
       function shareOnFacebook() {
           // Retrieve the user ID from localStorage
           const userId = localStorage.getItem('loggedInUserId');

@@ -76,9 +76,128 @@
 
 
   <main class="main">
-    <!-- Hero Section -->
-    <section id="home" class="hero section1 dark-background">
-    
+     
+    <section id="home" class="hero section dark-background">
+      <div class="container">
+        <div class="transparent-box">
+          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="zoom-out">
+            <div class="countdown">
+              <h2>The 🎁 Contest Ends In</h2>
+              <div id="timer">
+                <span id="days">00</span> days 
+                <span id="hours">00</span> hours 
+                <span id="minutes">00</span> minutes 
+                <span id="seconds">00</span> seconds
+              </div>
+            </div>
+            <style>
+              /* General Styles */
+              .hero {
+                padding: 40px 0; /* Add some padding */
+              }
+            
+              .transparent-box {
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+              }
+            
+              .wel {
+                text-align: center;
+                color: white;
+                text-decoration: none;
+              }
+            
+              .wel div {
+                font-size: 1.2em; /* Adjust font size */
+                font-weight: bold;
+              }
+            
+              .section-title h2 {
+                text-align: center;
+                color: white;
+                font-size: 1.5em; /* Adjust font size */
+                margin: 20px 0;
+              }
+            
+              .countdown {
+                text-align: center;
+                color: white;
+                margin-top: 20px;
+              }
+            
+              #timer {
+                font-size: 2em;
+                font-weight: bold;
+              }
+            
+              #timer span {
+                display: inline-block;
+                padding: 0 5px;
+              }
+            
+              /* Responsive Styles */
+              @media (max-width: 768px) {
+                .wel div {
+                  font-size: 1em; /* Smaller font size on tablets and phones */
+                }
+            
+                .section-title h2 {
+                  font-size: 1.2em; /* Smaller font size on tablets and phones */
+                }
+            
+                #timer {
+                  font-size: 1.5em; /* Adjust timer size on smaller screens */
+                }
+              }
+            
+              @media (max-width: 480px) {
+                .wel div {
+                  font-size: 0.9em; /* Even smaller font size on very small screens */
+                }
+            
+                .section-title h2 {
+                  font-size: 1em; /* Adjust for small phones */
+                }
+            
+                #timer {
+                  font-size: 1.2em; /* Adjust timer size for very small screens */
+                }
+            
+                #timer span {
+                  padding: 0 2px; /* Less padding on small screens */
+                }
+              }
+            </style>
+            
+            <script>
+              function updateCountdown() {
+                const targetDate = new Date('August 26, 2024 00:00:00').getTime();
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+            
+                if (distance < 0) {
+                  document.getElementById('timer').innerHTML = 'EXPIRED';
+                  return;
+                }
+            
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+              }
+            
+              setInterval(updateCountdown, 1000); // Update every second
+            </script>
+          </div>
+        </div>
+      </div>
     </section><!-- /Hero Section -->
     <!--______________________________________________________________________-->
     
