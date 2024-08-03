@@ -40,6 +40,25 @@ onAuthStateChanged(auth, async (user) => {
         } catch (error) {
             console.log("Error getting document:", error);
         }
+
+            // Handle referral link
+            const urlParams = new URLSearchParams(window.location.search);
+            const referrerId = urlParams.get('ref');
+    
+            if (referrerId) {
+                try {
+                    const referrerDocRef = doc(db, "users", referrerId);
+    
+                    // Add the new user ID to the referrer's referredUsers array
+                    await updateDoc(referrerDocRef, {
+                        referredUsers: arrayUnion(userId)
+                    });
+    
+                    console.log('Referrer document updated with new user!');
+                } catch (error) {
+                    console.error("Error updating referrer document:", error);
+                }
+            }
     } else {
         // Redirect to login page if user is not authenticated
         window.location.href = 'login.html';
@@ -93,18 +112,6 @@ document.getElementById('copyLink').addEventListener('click', async () => {
 });
 
 
-//for Message copy button
-document.getElementById('copy-button').addEventListener('click',async() => {
-    try {
-        if (!userId) return;
-
-        const userRef = doc(db,"users", userId);
-        await updateDoc(userRef, {shares: increment(30)});
-    }catch (error) {
-        console.error("Error updating document:",error);
-    }
-});
-
 // Example for adding event listeners to buttons to increase points
 const pointButtons = ['sbutton1', 'sbutton2', 'sbutton3', 'sbutton4', 'sbutton5', 'sbutton6'];
 pointButtons.forEach(buttonId => {
@@ -154,4 +161,7 @@ document.getElementById('copyLink4').addEventListener('click', () => handleShare
 
 // Ensure updateScoreDisplay is called when the page is loaded
 document.addEventListener('DOMContentLoaded', updateScoreDisplay);
+
+
+
 
