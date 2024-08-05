@@ -279,16 +279,17 @@
         <textarea id="text-box" readonly></textarea>
         <button id="copy-button">Share</button>
         <script>
-            // Get the user ID from localStorage
-            var userId = localStorage.getItem('loggedInUserId'); // Example user ID
+            // Get the user ID and referral code from localStorage
+            var userId = localStorage.getItem('loggedInUserId');
+            var referralCode = localStorage.getItem('referralCode');
             
-            // If user ID is not available, handle it here
-            if (!userId) {
-                console.error('User ID not found in localStorage');
-                document.getElementById('text-box').value = 'User ID not found';
+            // If user ID or referral code is not available, handle it here
+            if (!userId || !referralCode) {
+                console.error('User ID or Referral Code not found in localStorage');
+                document.getElementById('text-box').value = 'User ID or Referral Code not found';
             } else {
-                // Generate the URL with the user ID
-                var message = `https://iskcon-contest.netlify.app/?ref=${userId}`;
+                // Generate the URL with the user ID and referral code
+                var message = `Visit ISKCON Contest https://iskcon-contest.netlify.app and use the referral code: ${referralCode} while Signing Up`;
                 
                 // Set the text area content
                 document.getElementById('text-box').value = message;
@@ -310,69 +311,65 @@
                 alert('Text copied to clipboard!');
             });
         </script>
-        <style>
-          .container {
-              max-width: 600px;
-              margin: 0 auto;
-              padding: 20px;
-              box-sizing: border-box;
-          }
-    
+    <style>
+      .container {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+          box-sizing: border-box;
+      }
+
+      textarea {
+          width: 100%; /* Subtract padding from width */
+          padding: 10px;
+          box-sizing: border-box;
+          font-size: 16px;
+          border-radius: 8px;
+          background-color: #ffffff;
+          color: #333;
+          resize: none;
+          overflow: hidden;
+          height: 67px; /* Adjust height based on content */
+      }
+
+      #copy-button {
+          padding: 10px;
+          font-size: 16px;
+          color: #fff;
+          background-color: #007bff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          width: 20%; /* Full-width on smaller screens */
+          box-sizing: border-box;
+          margin-top: 10px; /* Add space between textarea and button */
+      }
+
+      #copy-button:hover {
+          background-color: #0056b3;
+      }
+
+      #copy-button:focus {
+          outline: none;
+      }
+
+      @media (max-width: 600px) {
           textarea {
-              width: 100%; /* Subtract padding from width */
-              padding: 10px;
-              box-sizing: border-box;
-              font-size: 16px;
-              border-radius: 8px;
-              background-color: #ffffff;
-              color: #333;
-              resize: none;
-              overflow: hidden;
-              height: 45px; /* Adjust height based on content */
+              font-size: 14px;
+              padding: 8px;
+              min-height: 40px; /* Adjust based on content */
           }
-    
+
           #copy-button {
-              padding: 10px;
-              font-size: 16px;
-              color: #fff;
-              background-color: #007bff;
-              border: none;
-              border-radius: 8px;
-              cursor: pointer;
-              transition: background-color 0.3s ease;
-              width: 20%; /* Full-width on smaller screens */
-              box-sizing: border-box;
-              margin-top: 10px; /* Add space between textarea and button */
+              font-size: 14px;
+              padding: 8px;
+              margin-top: 10px;
           }
+      }
+    </style>
     
-          #copy-button:hover {
-              background-color: #0056b3;
-          }
-    
-          #copy-button:focus {
-              outline: none;
-          }
-    
-          @media (max-width: 600px) {
-              textarea {
-                  font-size: 14px;
-                  padding: 8px;
-                  min-height: 40px; /* Adjust based on content */
-              }
-    
-              #copy-button {
-                  font-size: 14px;
-                  padding: 8px;
-                  margin-top: 10px;
-              }
-          }
-        </style>
-    </div>
-    
-    
-    
-    
-    
+  
       <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp">
         <button id="copyLink1" class="button">
             <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">

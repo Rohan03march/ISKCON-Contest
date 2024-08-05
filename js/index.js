@@ -40,25 +40,6 @@ onAuthStateChanged(auth, async (user) => {
         } catch (error) {
             console.log("Error getting document:", error);
         }
-
-            // Handle referral link
-            const urlParams = new URLSearchParams(window.location.search);
-            const referrerId = urlParams.get('ref');
-    
-            if (referrerId) {
-                try {
-                    const referrerDocRef = doc(db, "users", referrerId);
-    
-                    // Add the new user ID to the referrer's referredUsers array
-                    await updateDoc(referrerDocRef, {
-                        referredUsers: arrayUnion(userId)
-                    });
-    
-                    console.log('Referrer document updated with new user!');
-                } catch (error) {
-                    console.error("Error updating referrer document:", error);
-                }
-            }
     } else {
         // Redirect to login page if user is not authenticated
         window.location.href = 'login.html';
@@ -164,4 +145,27 @@ document.addEventListener('DOMContentLoaded', updateScoreDisplay);
 
 
 
+
+// Add event listeners for buttons
+document.getElementById('copy-button').addEventListener('click', async () => {
+    try {
+        if (!userId) return;
+
+        // Notify the user that the message is copied
+        alert("Message copied!");
+
+        // Delay the update of shares by 50 seconds (50,000 milliseconds)
+        setTimeout(async () => {
+            try {
+                const userRef = doc(db, "users", userId);
+                await updateDoc(userRef, { shares: increment(10) });
+                console.log("Shares updated after 50 seconds.");
+            } catch (error) {
+                console.error("Error updating document after delay:", error);
+            }
+        }, 58000); // 50 seconds delay
+    } catch (error) {
+        console.error("Error processing click event:", error);
+    }
+});
 

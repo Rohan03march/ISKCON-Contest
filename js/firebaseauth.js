@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged ,sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import { getFirestore, setDoc, doc,getDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDno8QgblBD8lgW-UON2Au2EgCaWv8yFek",
@@ -26,68 +26,104 @@ function showMessage(message, divId) {
     }, 5000);
 }
 
+// Function to generate a referral code
+const generateReferralCode = () => {
+    return 'REF' + Math.random().toString(36).substring(2, 8).toUpperCase();
+}
+
 // Sign Up Event Listener
 const signUp = document.getElementById('submitSignUp');
-signUp.addEventListener('click', (event) => {
+signUp.addEventListener('click', async (event) => {
     event.preventDefault();
     const email = document.getElementById('rEmail').value;
     const password = document.getElementById('rPassword').value;
     const firstName = document.getElementById('fName').value;
     const lastName = document.getElementById('lName').value;
     const phoneNo = document.getElementById('phoneNo').value;
+    const referralCode = document.getElementById('referralCode').value; // Referral code input
 
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            const userData = {
-                email: email,
-                firstName: firstName,
-                lastName: lastName,
-                phoneNo: phoneNo,
-                isLoggedIn: true
-            };
-            showMessage('Account Created Successfully', 'signUpMessage');
-            const docRef = doc(db, "users", user.uid);
-            setDoc(docRef, userData)
-                .then(() => {
-                    window.location.href = 'login.html';
-                })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
+    try {
+        // Create user
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        const newReferralCode = generateReferralCode(); // Generate new referral code
+
+        // Set user data
+        const userData = {
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            phoneNo: phoneNo,
+            isLoggedIn: true,
+            referralCode: newReferralCode,
+            points: 0,
+            referredBy: referralCode // Store the referral code here
+        };
+        const docRef = doc(db, "users", user.uid);
+        await setDoc(docRef, userData);
+
+        // Check if referral code exists
+        if (referralCode) {
+            const referrerDoc = doc(db, "users", referralCode);
+            const referrerSnapshot = await getDoc(referrerDoc);
+            if (referrerSnapshot.exists()) {
+                // Update points for both referrer and new user
+                await updateDoc(referrerDoc, {
+                    points: referrerSnapshot.data().points + 10
                 });
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            if (errorCode === 'auth/email-already-in-use') {
-                showMessage('Email Address Already Exists !!!', 'signUpMessage');
-            } else {
-                showMessage('Unable to Create User', 'signUpMessage');
+                await updateDoc(docRef, {
+                    points: userData.points + 10
+                });
             }
-        });
+        }
+
+        showMessage('Account Created Successfully', 'signUpMessage');
+        window.location.href = 'login.html';
+    } catch (error) {
+        console.error("Error signing up: ", error);
+        showMessage('Unable to Create User', 'signUpMessage');
+    }
 });
+
+
 
 // Sign In Event Listener
 const signIn = document.getElementById('submitSignIn');
-signIn.addEventListener('click', (event) => {
+signIn.addEventListener('click', async (event) => {
     event.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            showMessage('Login is Successful', 'signInMessage');
-            const user = userCredential.user;
-            localStorage.setItem('loggedInUserId', user.uid.substring(0,5));
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        showMessage('Login is Successful', 'signInMessage');
+        const user = userCredential.user;
+
+        // Retrieve user data
+        const userDoc = doc(db, "users", user.uid);
+        const userSnapshot = await getDoc(userDoc);
+
+        if (userSnapshot.exists()) {
+            const referralCode = userSnapshot.data().referralCode;
+
+            // Store the user ID and referral code in localStorage
+            localStorage.setItem('loggedInUserId', user.uid);
+            localStorage.setItem('referralCode', referralCode);
+
             window.location.href = 'indexwp.html';
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            if (errorCode === 'auth/invalid-credential') {
-                showMessage('Incorrect Email or Password', 'signInMessage');
-            } else {
-                showMessage('Account Does Not Exist', 'signInMessage');
-            }
-        });
+        } else {
+            console.error('No such document!');
+            showMessage('User document does not exist in Firestore', 'signInMessage');
+        }
+    } catch (error) {
+        console.error('Sign-in error:', error.message);
+        const errorCode = error.code;
+        if (errorCode === 'auth/invalid-credential' || errorCode === 'auth/user-not-found') {
+            showMessage('Incorrect Email or Password', 'signInMessage');
+        } else {
+            showMessage('An error occurred during sign-in', 'signInMessage');
+        }
+    }
 });
 
  /*Sign Out Event Listener
@@ -122,3 +158,12 @@ ForgotPassLabel.addEventListener('click', ForgotPassowrd );
 
 
 
+/*
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read,write: if true;
+    }
+  }
+}
+*/ 
