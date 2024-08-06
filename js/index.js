@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', updateScoreDisplay);
 
 
 
-// Add event listeners for buttons
+
 document.getElementById('copy-button').addEventListener('click', async () => {
     try {
         if (!userId) return;
@@ -154,18 +154,41 @@ document.getElementById('copy-button').addEventListener('click', async () => {
         // Notify the user that the message is copied
         alert("Message copied!");
 
-        // Delay the update of shares by 50 seconds (50,000 milliseconds)
+        // Immediately update shares in the database
+        const userRef = doc(db, "users", userId);
+        await updateDoc(userRef, { shares: increment(10) });
+        console.log("Shares updated in the database.");
+
+        // Show loading message
+        const loadingMessage = document.getElementById('loading-message');
+        loadingMessage.style.display = 'block';
+
+        // Delay the display update by 50 seconds (50,000 milliseconds)
         setTimeout(async () => {
             try {
-                const userRef = doc(db, "users", userId);
-                await updateDoc(userRef, { shares: increment(10) });
-                console.log("Shares updated after 50 seconds.");
+                // Fetch the updated user data after delay
+                const userSnapshot = await getDoc(userRef);
+                if (userSnapshot.exists()) {
+                    const userData = userSnapshot.data();
+                    // Update the HTML to show the new share count and points
+                    const points = userData.points || 0;
+                    const shares = userData.shares || 0;
+                    document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
+                } else {
+                    console.error("No such document!");
+                }
             } catch (error) {
-                console.error("Error updating document after delay:", error);
+                console.error("Error fetching updated data:", error);
+            } finally {
+                // Hide loading message
+                loadingMessage.style.display = 'none';
             }
-        }, 58000); // 50 seconds delay
+        }, 50000); // Delay of 50 seconds
     } catch (error) {
         console.error("Error processing click event:", error);
     }
 });
+
+
+
 

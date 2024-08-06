@@ -97,133 +97,124 @@
     <!-- Hero Section -->
     <section id="home" class="hero section dark-background">
       <div class="container">
-        <div class="transparent-box">
-          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="zoom-out">
-            <div class="wel">
-              <div><h3>Welcome! <span id="loggedUserFName"></span> <span id="loggedUserLName"></span></h3></div>
-              <div><span id="loggedUserEmail" style="display: none;"></span></div>
-            </div>
-            <div class="section-title" data-aos="fade-up">
-                <h2><a id="score">Points 0 | Shares 0</a></h2>
-            </div><!-- End Section Title -->
-            <div class="countdown">
-              <h2>The 🎁 Contest Ends In</h2>
-              <div id="timer">
-                <span id="days">00</span> days 
-                <span id="hours">00</span> hours 
-                <span id="minutes">00</span> minutes 
-                <span id="seconds">00</span> seconds
+          <div class="score-card">
+              <div class="wel">
+                  <h3>
+                      <span id="loggedUserFName"></span>
+                      <span id="loggedUserLName"></span>
+                  </h3>
+                  <span id="loggedUserEmail" style="display: none;"></span>
               </div>
-            </div>
-            <style>
-              /* General Styles */
-              .hero {
-                padding: 40px 0; /* Add some padding */
-              }
-            
-              .transparent-box {
-                background-color: rgba(0, 0, 0, 0.5);
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-              }
-            
-              .wel {
-                text-align: center;
-                color: white;
-                text-decoration: none;
-              }
-            
-              .wel div {
-                font-size: 1.2em; /* Adjust font size */
-                font-weight: bold;
-              }
-            
-              .section-title h2 {
-                text-align: center;
-                color: white;
-                font-size: 1.5em; /* Adjust font size */
-                margin: 20px 0;
-              }
-            
-              .countdown {
-                text-align: center;
-                color: white;
-                margin-top: 20px;
-              }
-            
-              #timer {
-                font-size: 2em;
-                font-weight: bold;
-              }
-            
-              #timer span {
-                display: inline-block;
-                padding: 0 5px;
-              }
-            
-              /* Responsive Styles */
-              @media (max-width: 768px) {
-                .wel div {
-                  font-size: 1em; /* Smaller font size on tablets and phones */
-                }
-            
-                .section-title h2 {
-                  font-size: 1.2em; /* Smaller font size on tablets and phones */
-                }
-            
-                #timer {
-                  font-size: 1.5em; /* Adjust timer size on smaller screens */
-                }
-              }
-            
-              @media (max-width: 480px) {
-                .wel div {
-                  font-size: 0.9em; /* Even smaller font size on very small screens */
-                }
-            
-                .section-title h2 {
-                  font-size: 1em; /* Adjust for small phones */
-                }
-            
-                #timer {
-                  font-size: 1.2em; /* Adjust timer size for very small screens */
-                }
-            
-                #timer span {
-                  padding: 0 2px; /* Less padding on small screens */
-                }
-              }
-            </style>
-            
-            <script>
-              function updateCountdown() {
-                const targetDate = new Date('August 26, 2024 00:00:00').getTime();
-                const now = new Date().getTime();
-                const distance = targetDate - now;
-            
-                if (distance < 0) {
-                  document.getElementById('timer').innerHTML = 'EXPIRED';
-                  return;
-                }
-            
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-                document.getElementById('days').innerText = String(days).padStart(2, '0');
-                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-              }
-            
-              setInterval(updateCountdown, 1000); // Update every second
-            </script>
+              <div class="section-title">
+                  <div class="score-box">
+                      <div class="score-item">
+                          <p id="score">Points: 0 | Shares: 0</p>
+                      </div>
+                  </div>
+              </div>
+              <div id="loading-message"></div>
           </div>
-        </div>
       </div>
-    </section>
+  
+     <style>
+      .hero {
+        padding: 60px 0;
+    }
+    
+    .dark-background {
+        background-color: #333;
+        color: transparent;
+    }
+    
+    .score-card {
+        background: transparent;
+        border-radius: 12px;
+
+        width: 100%;
+        max-width: 400px;
+        padding: 30px;
+        position: absolute; /* Position it absolutely relative to the .hero section */
+        left: 0; /* Align it to the extreme left */
+        margin: 0; /* Remove any default margin */
+        animation: fadeIn 1s ease-out;
+        height: 200px;
+    }
+    
+    .wel h3 {
+        margin: 0;
+        font-size: 1.75rem;
+        color: white;
+        line-height: 1.4;
+        animation: slideIn 1s ease-out;
+    }
+    
+    .wel span {
+        display: inline;
+        color: white;
+        margin: 0 8px;
+    }
+    
+    .section-title {
+        margin: 25px 0;
+    }
+    
+    .score-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .score-item {
+        background: #f4f4f4;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        flex: 1;
+        animation: pulse 1.5s infinite;
+    }
+    
+    .score-item p {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+    }
+    
+    #loading-message {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #666;
+        font-size: 0.9rem;
+        display: none;
+        animation: fadeInOut 1s ease-in-out infinite;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideIn {
+        from { transform: translateY(-20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes fadeInOut {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+    
+     </style>
+  </section>
+  
     <!-- /Hero Section -->
     
 
@@ -234,7 +225,7 @@
    <!-- Section Title -->
    <div class="container section-title" data-aos="fade-up">
     <h2>Social Media</h2>
-    <p style="text-align: center;"><b>Follow Us On All The Social And Increase The Change Of Winning.</b></p>
+    <p style="text-align: center; color:white"><b>Follow Us On All The Social And Increase The Change Of Winning.</b></p>
   </div><!-- End Section Title -->
   
   <div class="quiz-box1 ">
@@ -477,7 +468,7 @@ window.open(`https://twitter.com/intent/tweet?text=${message}`, 'twitter', 'widt
      margin-left: 85%;
     }
     .quiz-box1 {
-      background-color: #c9d2db;
+      background-color: #e9c4ee;
       padding: 30px;
       border: 1px solid #ddd;
       border-radius: 10px;
