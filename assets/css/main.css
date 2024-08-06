@@ -61,8 +61,8 @@
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
 body {
-  color: var(--default-color);
-  background-color: var(--background-color);
+  color: white;
+  background-color:white;
   font-family: var(--default-font);
 }
 
