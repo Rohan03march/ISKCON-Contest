@@ -100,7 +100,7 @@
         <div class="container-home">
           <div class="score-card">
             <div class="wel">
-                <h3>
+                <h3 style="text-align: center;">
                     <span id="loggedUserFName"></span>
                     <span id="loggedUserLName"></span>
                 </h3>
@@ -465,49 +465,61 @@
       document.getElementById('points').textContent = 'Points: ' + points;
     }
   
-    function selectOption(element, selectedOption, correctAnswer, questionIndex) {
+    async function selectOption(element, selectedOption, correctAnswer, questionIndex) {
       const optionsContainer = document.querySelector(`.options[data-question-index='${questionIndex}']`);
       const allOptions = optionsContainer.querySelectorAll('.option');
   
       // Remove existing correct/incorrect classes from all options
       allOptions.forEach(opt => {
-        opt.classList.remove('correct', 'incorrect');
-        opt.removeEventListener('click', () => selectOption(opt, selectedOption, correctAnswer, questionIndex)); // Remove event listener
+          opt.classList.remove('correct', 'incorrect');
+          opt.removeEventListener('click', () => selectOption(opt, selectedOption, correctAnswer, questionIndex)); // Remove event listener
       });
   
       // Apply styles to the selected option
       if (selectedOption === correctAnswer) {
-        element.classList.add('correct'); // Green for correct
-        points += 10;
-        document.getElementById('result').textContent = 'Correct!';
-        document.getElementById('result').style.color = 'green';
+          element.classList.add('correct'); // Green for correct
+          points += 10;
+          document.getElementById('result').textContent = 'Correct!';
+          document.getElementById('result').style.color = 'green';
       } else {
-        element.classList.add('incorrect'); // Red for incorrect
-        document.getElementById('result').textContent = 'Incorrect.';
-        document.getElementById('result').style.color = 'red';
+          element.classList.add('incorrect'); // Red for incorrect
+          document.getElementById('result').textContent = 'Incorrect.';
+          document.getElementById('result').style.color = 'red';
       }
   
       document.getElementById('points').textContent = 'Points: ' + points;
   
       // Check if points have reached 100
       if (points >= 100) {
-        const notification = document.getElementById('notification');
-        notification.style.display = 'block';
-        setTimeout(() => {
-          notification.style.display = 'none';
-          // Redirect to indexws.html after the notification
-          window.location.href = 'indexws.html';
-        }, 2000); // Show the notification for 2 seconds
-        return;
+          const notification = document.getElementById('notification');
+          notification.style.display = 'block';
+          
+          // Update points in the Firestore database
+          try {
+              if (!userId) return;
+              const userRef = doc(db, "users", userId);
+              await updateDoc(userRef, { points: 100 });
+              console.log("Points updated in the database.");
+          } catch (error) {
+              console.error("Error updating points in the database:", error);
+          }
+  
+          setTimeout(() => {
+              notification.style.display = 'none';
+              // Redirect to indexws.html after the notification
+              window.location.href = 'indexws.html';
+          }, 2000); // Show the notification for 2 seconds
+          return;
       }
   
       currentQuestionIndex++;
   
       // Move to the next question or end the round if all questions are answered
       if (currentQuestionIndex >= questions.length) {
-        endRound();
+          endRound();
       }
-    }
+  }
+  
   
     function endRound() {
       userRoundsPoints.push(points);
@@ -1034,7 +1046,7 @@ display: none;
               <a href="https://open.spotify.com/artist/0bbrfmzNUJe9L7i3c7bNU4"><i class="bi bi-spotify"></i></a>
           </div>
       </div>-->
-      <button class="play">
+      <button class="play" style="display: none;">
         <a href="game.html">Play Game</a>
         <style>
           .play {
