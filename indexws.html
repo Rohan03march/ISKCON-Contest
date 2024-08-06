@@ -97,127 +97,122 @@
     <!-- Hero Section -->
     <section id="home" class="hero section dark-background">
       <div class="container">
+        <div class="container-home">
           <div class="score-card">
-              <div class="wel">
-                  <h3>
-                      <span id="loggedUserFName"></span>
-                      <span id="loggedUserLName"></span>
-                  </h3>
-                  <span id="loggedUserEmail" style="display: none;"></span>
-              </div>
-              <div class="section-title">
-                  <div class="score-box">
-                      <div class="score-item">
-                          <p id="score">Points: 0 | Shares: 0</p>
-                      </div>
-                  </div>
-              </div>
-              <div id="loading-message"></div>
-          </div>
+            <div class="wel">
+                <h3>
+                    <span id="loggedUserFName"></span>
+                    <span id="loggedUserLName"></span>
+                </h3>
+                <span id="loggedUserEmail" style="display: none;"></span>
+            </div>
+            <div class="section-title">
+                <div class="score-box">
+                    <div class="score-item">
+                        <p id="score">Points: 0 | Shares: 0</p>
+                    </div>
+                </div>
+            </div>
+            <div id="loading-message"></div>
+        </div>
+       <style>
+        .container-home {
+          position: relative;
+          width: 100%;
+          height: 100%;
+      }
+      .score-card {
+          background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+          border-radius: 12px;
+          width: 100%;
+          max-width: 400px;
+          padding: 30px;
+          position: absolute; /* Position it absolutely relative to the container */
+          left: 50%; /* Center it horizontally */
+          top: 50%; /* Center it vertically */
+          transform: translate(-50%, -50%); /* Center it using transform */
+          animation: fadeIn 1s ease-out;
+          height: auto; /* Adjust height to fit content */
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+      }
+      
+      .wel h3 {
+          margin: 0;
+          font-size: 1.75rem;
+          color: gold;
+          line-height: 1.4;
+          animation: slideIn 1s ease-out;
+      }
+      
+      .wel span {
+          display: inline;
+          color: gold;
+          margin: 0 8px;
+      }
+      
+      .score-box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 20px; /* Space between sections */
+      }
+      
+      .score-item {
+          background: rgba(0, 0, 0, 0.7); /* Slightly darker semi-transparent background */
+          border-radius: 10px;
+          padding: 20px;
+          flex: 1;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+      }
+      
+      .score-item p {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: gold;
+          margin: 0;
+      }
+      
+      #loading-message {
+          position: absolute;
+          bottom: 15px;
+          left: 50%;
+          transform: translateX(-50%);
+          color: #666;
+          font-size: 0.9rem;
+          display: none;
+          animation: fadeInOut 1s ease-in-out infinite;
+      }
+      
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      
+      @keyframes slideIn {
+          from { transform: translateY(-20px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+      }
+      
+      @keyframes fadeInOut {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 1; }
+      }
+      .dark-background {
+        color: transparent;
+        background-image: url(assets/img/indexback.png);
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+      
+       </style>
+        </div>
       </div>
-  
-     <style>
-      .hero {
-        padding: 60px 0;
-    }
-    
-    .dark-background {
-      color: transparent;
-      background-image: url(assets/img/indexback.png);
-      background-attachment: fixed; /* Keeps the image fixed in place */
-      background-position: center; /* Centers the image */
-      background-size: cover; /* Ensures the image covers the entire element */
-      background-repeat: no-repeat; /* Prevents the image from repeating */
-  }
-  
-    
-    .score-card {
-        background: transparent;
-        border-radius: 12px;
-
-        width: 100%;
-        max-width: 400px;
-        padding: 30px;
-        position: absolute; /* Position it absolutely relative to the .hero section */
-        left: 0; /* Align it to the extreme left */
-        margin: 0; /* Remove any default margin */
-        animation: fadeIn 1s ease-out;
-        height: 200px;
-    }
-    
-    .wel h3 {
-        margin: 0;
-        font-size: 1.75rem;
-        color: gold;
-        line-height: 1.4;
-        animation: slideIn 1s ease-out;
-    }
-    
-    .wel span {
-        display: inline;
-        color: gold;
-        margin: 0 8px;
-    }
-    
-    .section-title {
-        margin: 25px 0;
-    }
-    
-    .score-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .score-item {
-        background: transparent;
-        border-radius: 10px;
-        padding: 20px;
-        flex: 1;
-    }
-    
-    .score-item p {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: gold;
-        margin: 0;
-    }
-    
-    #loading-message {
-        position: absolute;
-        bottom: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: #666;
-        font-size: 0.9rem;
-        display: none;
-        animation: fadeInOut 1s ease-in-out infinite;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    
-    @keyframes slideIn {
-        from { transform: translateY(-20px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
-    
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-    
-    @keyframes fadeInOut {
-        0%, 100% { opacity: 0; }
-        50% { opacity: 1; }
-    }
-    
-     </style>
+      <div class="right-image">
+          <img src="assets/img/SRI_KRISHNA__2_-removebg-preview.png" alt="Right Image">
+      </div>
   </section>
-  
     <!-- /Hero Section -->
     
 
@@ -365,7 +360,7 @@
     </style>
     
   
-      <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp">
+    <!--  <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp">
         <button id="copyLink1" class="button">
             <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">
         </button>
@@ -380,7 +375,7 @@
         <button id="copyLink4" class="button">
             <img src="img/icons8-twitterx-48.png" alt="Share on Twitter">
         </button>
-    </a>
+    </a>-->
 
     <script> 
       // Function to share on WhatsApp
@@ -827,7 +822,7 @@ display: none;
     </button>
     
   </div>
-  <div class="container copyright text-center mt-5">
+  <div class="container copyright text-center mt-5" style="display: none;">
     <p style="text-align: center; color:gold">© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
   </div>
   </footer>
