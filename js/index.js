@@ -42,7 +42,7 @@ onAuthStateChanged(auth, async (user) => {
         }
     } else {
         // Redirect to login page if user is not authenticated
-        window.location.href = 'login.html';
+        window.location.href = 'Login.html';
     }
 });
 
