@@ -78,7 +78,7 @@ signUp.addEventListener('click', async (event) => {
         }
 
         showMessage('Account Created Successfully', 'signUpMessage');
-        window.location.href = 'Login.html';
+        window.location.href = 'login.html';
     } catch (error) {
         console.error("Error signing up: ", error);
         showMessage('The User already exists', 'signUpMessage');
@@ -133,7 +133,8 @@ logoutButton.addEventListener('click', () => {
         .then(() => {
             localStorage.removeItem('loggedInUserId');
             showMessage('Successfully Logged Out', 'signInMessage');
-            window.location.href = 'login.html'; // Redirect to login page or desired location
+            window.location.href = 'login.html'; // Redirect to 
+             page or desired location
         })
         .catch((error) => {
             console.error('Error Signing Out: ', error);
