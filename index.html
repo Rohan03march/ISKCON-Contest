@@ -4,29 +4,28 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Contest | ISKCON Banglore</title>
+  <title>Contest | ISKCON Bangalore</title>
   <meta content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes." name="description">
   <meta content="" name="keywords">
   <!-- HTML Meta Tags -->
-<title>Hare Krishna, welcome to the contest.</title>
-<meta name="description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
+  <meta name="description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
 
-<!-- Facebook Meta Tags -->
-<meta property="og:url" content="https://iskcon-contest.netlify.app/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hare Krishna, welcome to the contest.">
-<meta property="og:description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
-<meta property="og:image" content="https://iskcon-contest.netlify.app/assets/img/iskcon.jpg">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://iskcon-contest.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hare Krishna, welcome to the contest.">
+  <meta property="og:description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
+  <meta property="og:image" content="https://iskcon-contest.netlify.app/assets/img/iskcon.jpg">
 
-<!-- Twitter Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta property="twitter:domain" content="iskcon-contest.netlify.app">
-<meta property="twitter:url" content="https://iskcon-contest.netlify.app/">
-<meta name="twitter:title" content="Hare Krishna, welcome to the contest.">
-<meta name="twitter:description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
-<meta name="twitter:image" content="https://iskcon-contest.netlify.app/assets/img/iskcon.jpg">
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="iskcon-contest.netlify.app">
+  <meta property="twitter:url" content="https://iskcon-contest.netlify.app/">
+  <meta name="twitter:title" content="Hare Krishna, welcome to the contest.">
+  <meta name="twitter:description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
+  <meta name="twitter:image" content="https://iskcon-contest.netlify.app/assets/img/iskcon.jpg">
 
-<!-- Meta Tags Generated via https://www.opengraph.xyz -->
+  <!-- Meta Tags Generated via https://www.opengraph.xyz -->
   <!-- Favicons -->
   <link href="assets/img/iskcon-fevicon.png" rel="icon">
 
@@ -48,10 +47,8 @@
 </head>
 
 <body class="index-page">
-
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
@@ -68,137 +65,160 @@
       </nav>
 
       <!-- Add this to your index.html file -->
-<a id="participateButton" class="btn-getstarted" href="login.html">Participate</a>
-<a id="logout" class="btn-getstarted" style="display: none;"> logout</a>
-
+      <!--<a id="participateButton" class="btn-getstarted" href="login.html">Participate</a>-->
+      <a id="logout" class="btn-getstarted" style="display: none;"> logout</a>
     </div>
   </header>
 
-
-  <main class="main">
-     
-    <section id="home" class="hero section dark-background">
-
-    </section>
-    <!--______________________________________________________________________-->
+  <main class="main dark-background">
+    <section id="home" class="hero section">
+      <div class="center-box">
+        <img src="assets/img/oa8v_t6jw_230503-removebg-preview.png" alt="Gift" class="gift-image">
+        <p style="text-align: center;">Participate in the <br/> <span class="highlight"><b>Janmashtami Online Contest</b></span><br/> and win exciting prizes!</p>
+        <a class="participate-button" href="login.html">Participate!</a>
+        <style>
+          .highlight {
+            font-family: 'Arial', sans-serif; /* Change to desired font family */
+            font-size: 2em; /* Adjust size if needed */
+            color: gold; /* Change to desired color */
+            font-weight: bolder; /* Optional: make it bolder */
+            animation: bounce 2s infinite; /* Optional: apply animation to highlight text */
+          }
     
-
-    <!-- Container for both sections in a box -->
-<!-- Container for both sections in a transparent box -->
-<div class="box-container">
-
-  <!-- About Section -->
-  <section id="about" class="section">
-   
-  </section>
-
-
- 
-  
-  
-  </main>
-
-<!--___________________________________________________________________________________-->
-
-<!--Footer-->
-<footer id="footer" class="footer">
-  <div class="footer-content dark-background">
-      <!-- Logo -->
-      <div class="footer-logo">
-          <img src="assets/img/iskcon-bangalore-logo-n.png" alt="ISKCON Bangalore Logo">
+          @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+              transform: translateY(0);
+            }
+            40% {
+              transform: translateY(-30px);
+            }
+            60% {
+              transform: translateY(-15px);
+            }
+          }
+        
+          /* Ensure full height for body and html */
+          html, body {
+            height: 100%;
+            margin: 0;
+          }
+      
+          body.index-page {
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+          }
+      
+          .dark-background {
+            color: transparent;
+            background-image: url(assets/img/indexback.png);
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+          }
+      
+          .hero.section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 0 10px; /* Adjusted padding for mobile */
+          }
+      
+          .center-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* Stack items vertically */
+            background: linear-gradient(to right, rgba(255, 105, 180, 0.3), rgba(138, 43, 226, 0.3)); /* Semi-transparent pink to purple gradient */
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 90%; /* Adjust max width for mobile */
+            box-sizing: border-box;
+            text-align: center; /* Center text */
+            margin-top: -5%;
+          }
+      
+          .gift-image {
+            width: 150px; /* Adjust size for mobile */
+            height: auto;
+            margin-right: 10px; /* Adjust spacing for mobile */
+          }
+      
+          .center-box p {
+            color: gold;
+            font-size: 1.2rem; /* Adjust font size for mobile */
+            margin: 0;
+            flex: 1;
+          }
+      
+          .participate-button {
+            background-color: gold; /* Gold background */
+            color: black; /* Black text */
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 10px; /* Space above the button */
+            transition: background-color 0.3s ease, color 0.3s ease;
+          }
+      
+          .participate-button:hover {
+            background-color: black; /* Black background on hover */
+            color: gold; /* Gold text on hover */
+          }
+      
+          /* Responsive design */
+          @media (max-width: 768px) {
+            .highlight {
+              font-size: 1.5em; /* Adjust font size for mobile */
+            }
+      
+            .gift-image {
+              width: 120px; /* Further adjust size for smaller screens */
+              margin-right: 8px; /* Adjust spacing */
+            }
+      
+            .center-box p {
+              font-size: 1rem; /* Further adjust font size */
+            }
+      
+            .participate-button {
+              font-size: 1em; /* Adjust font size for mobile */
+              padding: 8px 16px;
+            }
+          }
+      
+          @media (max-width: 480px) {
+            .highlight {
+              font-size: 1.2em; /* Further adjust font size */
+            }
+      
+            .gift-image {
+              width: 100px; /* Further adjust size for very small screens */
+              margin-right: 5px; /* Adjust spacing */
+            }
+      
+            .center-box p {
+              font-size: 0.9rem; /* Further adjust font size */
+            }
+      
+            .participate-button {
+              font-size: 0.9em; /* Adjust font size for very small screens */
+              padding: 6px 12px;
+            }
+          }
+        </style>
       </div>
-      <!-- Copyrights -->
-      <div class="copyright">
-          <p>© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
-      </div>
-      <!-- Social Media -->
-      <div class="social-links d-flex">
-          <a href="https://x.com/iskconbangalore"><i class="bi bi-twitter-x" style="color: black;"></i></a>
-          <a href="https://www.facebook.com/ISKCONBangaloreTemple"><i class="bi bi-facebook" style="color: rgb(54, 54, 221);"></i></a>
-          <a href="https://www.instagram.com/ISKCONBangaloreTemple/"><i class="bi bi-instagram" style="color: #d0548a;"></i></a>
-          <a href="https://in.linkedin.com/company/iskcon-bangalore"><i class="bi bi-linkedin" style="color:rgb(54, 54, 221) ;"></i></a>
-          <a href="https://www.whatsapp.com/channel/0029VaADajtIiRozhnfEuo06"><i class="bi bi-whatsapp"></i></a>
-          <a href="https://open.spotify.com/artist/0bbrfmzNUJe9L7i3c7bNU4"><i class="bi bi-spotify" style="color: green;"></i></a>
-      </div>
-  </div>
-  <style>
-  /* General Styles */
-  .footer {
-      background-color: #5b1b6c ; /* Dark background for footer */
-      color: white; /* White text color */
-      padding: 20px 0;
-      position: relative;
-  }
-
-  .footer img {
-      max-width: 100px; /* Adjust based on your logo size */
-      height: auto;
-  }
-
-  /* Container for the footer content */
-  .footer-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between; /* Distribute space between items */
-      padding: 0 20px; /* Padding to avoid content sticking to edges */
-  }
-
-  .footer-content .social-links {
-      margin: 0;
-  }
-
-  .social-links a {
-      font-size: 20px; /* Adjust icon size */
-      color: white; /* Default icon color */
-      margin: 2 5px; /* Space between icons */
-      transition: color 0.3s; /* Smooth color transition */
-  }
-
-  .social-links a:hover {
-      color: black; /* Change icon color on hover */
-  }
-
-  .copyright {
-      text-align: center;
-      margin-left: 12.5%;
-  }
-
-  
-
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-      .footer-content {
-          flex-direction: column; /* Stack items vertically */
-          align-items: center; /* Center items horizontally */
-          text-align: center; /* Center text */
-      }
-
-      .footer-logo {
-          margin-bottom: 10px; /* Space between logo and copyright */
-          margin-left: -2%;
-      }
-
-      .social-links {
-          margin-top: 10px; /* Space above social links */
-      }
-
-      .social-links a {
-          font-size: 20px; /* Smaller icon size for mobile */
-          margin: 0 5px; /* Reduced space between icons */
-          margin-left: 0%;
-      }
-
-      .copyright {
-          margin-top: 10px; /* Space above copyright text */
-          margin-left: -2%;
-      }
-  }
-</style>
-</footer>
-<!--footer-->
-
-<!--___________________________________________________________________________________-->
-
+    </section>
+    
+</main>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -220,7 +240,6 @@
   <script src="assets/js/main.js"></script>
   <script src="js/firebaseauth.js" defer></script>
   <script type="module" src="js/index.js"></script>
-
-
 </body>
+
 </html>

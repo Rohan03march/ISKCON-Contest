@@ -96,7 +96,6 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero section dark-background">
-      <img src="img/background.jpg" alt="">
       <div class="container">
           <div class="score-card">
               <div class="wel">
@@ -123,8 +122,14 @@
     }
     
     .dark-background {
-        color: transparent;
-    }
+      color: transparent;
+      background-image: url(assets/img/indexback.png);
+      background-attachment: fixed; /* Keeps the image fixed in place */
+      background-position: center; /* Centers the image */
+      background-size: cover; /* Ensures the image covers the entire element */
+      background-repeat: no-repeat; /* Prevents the image from repeating */
+  }
+  
     
     .score-card {
         background: transparent;
@@ -143,14 +148,14 @@
     .wel h3 {
         margin: 0;
         font-size: 1.75rem;
-        color: white;
+        color: gold;
         line-height: 1.4;
         animation: slideIn 1s ease-out;
     }
     
     .wel span {
         display: inline;
-        color: white;
+        color: gold;
         margin: 0 8px;
     }
     
@@ -165,18 +170,16 @@
     }
     
     .score-item {
-        background: #f4f4f4;
+        background: transparent;
         border-radius: 10px;
         padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         flex: 1;
-        animation: pulse 1.5s infinite;
     }
     
     .score-item p {
         font-size: 1.5rem;
         font-weight: 600;
-        color: #333;
+        color: gold;
         margin: 0;
     }
     
@@ -825,7 +828,7 @@ display: none;
     
   </div>
   <div class="container copyright text-center mt-5">
-    <p style="text-align: center;">© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
+    <p style="text-align: center; color:gold">© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
   </div>
   </footer>
 <!--footer-->
