@@ -4,18 +4,15 @@
     box-sizing:border-box;
     font-family:"Roboto",sans-serif;
 }
-body{
-    background-color: #c9d6ff;
-    background:linear-gradient(to right,#e2e2e2,#c9d6ff);
+.container {
+    background: white; /* White with 80% opacity */
+    width: 450px;
+    padding: 1.5rem;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2); /* Light shadow for a subtle effect */
 }
-.container{
-    background:#fff;
-    width:450px;
-    padding:1.5rem;
-    margin:50px auto;
-    border-radius:10px;
-    box-shadow:0 20px 35px rgba(0,0,1,0.9);
-}
+
 .AHA {
     text-align: center;
 }
@@ -124,3 +121,31 @@ button:hover{
     animation: fadeOut 7s forwards;
 }
 
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h1.form-title {
+        font-size: 20px;
+    }
+
+    .input-group input {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+
+    .links button {
+        font-size: 14px;
+    }
+
+    .recover a {
+        font-size: 14px;
+    }
+}

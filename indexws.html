@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Contest | ISKCON Banglore</title>
+  
   <meta content="" name="description">
   <meta content="" name="keywords">
  <!-- HTML Meta Tags -->
@@ -60,8 +61,8 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-         <!--<li><a href="#home" class="active">Home</a></li>
-          <li><a href="#win">How To Win</a></li>
+         
+          <!--<li><a href="#win">How To Win</a></li>
           <li><a href="#Q/A">Questions</a></li>-->
           <!--<li><a href="#price">Winning Prize</a></li>-->
          <!-- <li>
@@ -85,17 +86,16 @@
 
       <!-- Add this to your index.html file -->
 <a id="participateButton" class="btn-getstarted" style="display: none;">Participate</a>
-<a id="logout" class="btn-getstarted" href="Index.html"> logout</a>
-
+<a id="logout" class="btn-getstarted" href="index.html"> logout</a>
+<!--<a id="score" class="btn-getstarted" href="#"> Points 0 | Shares 0</a>-->
 
     </div>
   </header>
 
- 
+  <main class="main">
 
-  <main class="main"></main>
-     <!-- Hero Section -->
-     <section id="home" class="hero section dark-background">
+    <!-- Hero Section -->
+    <section id="home" class="hero section dark-background">
       <div class="container">
         <div class="container-home">
           <div class="score-card">
@@ -113,7 +113,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="loading-message"></div>
         </div>
        <style>
@@ -206,9 +205,6 @@
         background-size: cover;
         background-repeat: no-repeat;
     }
-
-
-    
       
        </style>
         </div>
@@ -219,355 +215,15 @@
   </section>
     <!-- /Hero Section -->
     
- <!--________________________________________________________________________________-->
- <!--Q/A Section-->
- <section id="Q/A" class="about section dark-background">
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2 style="text-align: center; color:white">Answer Some Exciting Questions On Krishna</h2>
-    <p><b style="color: white;">Earn Points On Correct Answers.</b></p>
-  </div><!-- End Section Title -->
 
-  <!-- Style -->
-  <style>
-    p {
-      text-align: center;
-    }
-    /* Your existing CSS here */
-    .quiz-box {
-      background-color: #e9c4ee;
-      padding: 30px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-      font-family: 'Arial', sans-serif; /* Use a common font for readability */
-    }
-
-    .question-container {
-      margin-bottom: 20px;
-    }
-
-    .question {
-      font-size: 1.5rem; /* Increased font size for questions */
-      font-weight: 600; /* Bolder font weight for emphasis */
-      margin-bottom: 10px;
-      color: #333; /* Darker color for better contrast */
-    }
-
-    .options {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch; /* Stretch items to full width */
-      margin-bottom: 20px;
-      color: black;
-    }
-
-    .option {
-      background-color: #fbf4f4; /* Default background color */
-      color: #333; /* Default text color */
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
-      border: 2px solid transparent; /* Border for selection indication */
-      margin-bottom: 10px;
-    }
-
-    .option.correct {
-      background-color: #28a745; /* Green background for correct answers */
-      color: white; /* White text color */
-    }
-
-    .option.incorrect {
-      background-color: #dc3545; /* Red background for incorrect answers */
-      color: white; /* White text color */
-    }
-
-    .score-container {
-      display: flex; /* Use flexbox for horizontal alignment */
-      justify-content: center; /* Distribute space between items */
-      align-items: center; /* Vertically align items */
-      margin-top: 20px; /* Adjust margin as needed */
-    }
-
-    .points {
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: #007bff;
-      transition: color 0.3s ease;
-    }
-
-    .result {
-      font-weight: bold;
-      color: #28a745;
-      margin-left: 10px; /* Optional: Add space between points and result */
-    }
-
-    .navigation-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .button-container {
-      display: flex;
-      justify-content: space-between; /* Distribute buttons with space between them */
-      align-items: center; /* Center items vertically */
-      margin-top: 20px; /* Adjust margin as needed */
-      max-width: 800px; /* Optional: limit the width of the container */
-      margin: 0 auto; /* Center the container horizontally */
-    }
-
-    .button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    .button:hover {
-      background-color: #0056b3;
-      transform: translateY(-2px);
-    }
-
-    .button:disabled {
-      background-color: #6c757d;
-      cursor: not-allowed;
-    }
-
-    #try-again-btn {
-      background-color: #dc3545;
-    }
-
-    #try-again-btn:hover {
-      background-color: #c82333;
-    }
-
-    /* New style for the notification message */
-    .notification {
-      display: none;
-      background-color: #28a745;
-      color: white;
-      padding: 15px;
-      border-radius: 5px;
-      font-size: 1.2rem;
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      .quiz-box {
-        padding: 20px;
-      }
-
-      .question {
-        font-size: 1.3rem;
-      }
-
-      .option {
-        margin-bottom: 8px;
-      }
-
-      .points {
-        font-size: 1rem;
-      }
-    }
-  </style>
-
-  <div class="container">
-    <div class="quiz-box">
-      <div id="questions-container"></div>
-      <div class="button-container">
-        <button class="button" onclick="tryAgain()" id="try-again-btn" style="display:none;">Try Again</button>
-        <button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display: none;">End Quiz</button>
-      </div>
-      <div class="score-container">
-        <div class="points" id="points">Points: 0</div>
-        <div class="result" id="result"></div>
-      </div>
-    </div>
-    <!-- Notification message -->
-    <div id="notification" class="notification">Congratulations! You reached 100 points!</div>
-  </div>
-
-  <script>
-    const questions = [
-      { question: 'Krishna was born in prison and taken by Vasudeva to which place?', answer: 'Gokul', options: ['Mathura', 'Gokul', 'Vrindavan', 'Nandagav'] },
-      { question: 'Lord Krishna had how many wives?', answer: '16,008', options: ['16,000', '16,008', '16,800', '16,108'] },
-      { question: 'Who witnessed galaxies inside the mouth of infant Krishna?', answer: 'Yashoda', options: ['Devaki', 'Rohini', 'Yashoda', 'Radha'] },
-      { question: 'Who sent devastating rainfall to Vrindavan?', answer: 'Indra', options: ['Indra', 'Shiva', 'Brahma', 'Varuna'] },
-      { question: 'Which hill did Lord Krishna lift?', answer: 'Govardhana', options: ['Sanjeevini', 'Vindhya', 'Pravarshana', 'Govardhana'] },
-      { question: 'What is the name of Krishna\'s sister?', answer: 'Subhadra', options: ['Subhadra', 'Uttara', 'Satyabhama', 'Rohini'] },
-      { question: 'Which river is connected to Lord Krishna\'s pastimes?', answer: 'Yamuna', options: ['Ganga', 'Yamuna', 'Saraswati', 'Kaveri'] },
-      { question: 'Who wrote the famous book "Krishna:The Supreme Personality of Godhead"?', answer: 'Srila Prabhupada', options: ['Bhaktivinod Thakur', 'Srila Prabhupada', 'George Harrison', 'Allen Ginsberg'] },
-      { question: 'When Krishna accepts food, what is it called?', answer: 'Prasadam', options: ['Prasadam', 'Teertha', 'Bhoga', 'Naivedya'] },
-      { question: 'What is the name of Krishna\'s flute?', answer: 'All the above', options: ['Venu', 'Murli', 'Vamsi', 'All the above'] }
-    ];
-  
-    let points = 0;
-    let currentQuestionIndex = 0;
-    let roundAttempts = 0;
-    const maxRounds = 5;
-    let userRoundsPoints = [];
-  
-    function loadQuestions() {
-      if (roundAttempts >= maxRounds) {
-        // Hide Q/A section and redirect to indexws.html
-        document.getElementById('Q/A').style.display = 'none';
-        window.location.href = 'indexws.html';
-        return;
-      }
-  
-      const container = document.getElementById('questions-container');
-      container.innerHTML = ''; // Clear previous questions
-  
-      questions.forEach((q, index) => {
-        const questionContainer = document.createElement('div');
-        questionContainer.classList.add('question-container');
-        
-        const questionElement = document.createElement('div');
-        questionElement.textContent = `${index + 1}. ${q.question}`;
-        questionElement.classList.add('question');
-        questionContainer.appendChild(questionElement);
-  
-        const optionsContainer = document.createElement('div');
-        optionsContainer.classList.add('options');
-        optionsContainer.setAttribute('data-question-index', index); // Set index for tracking
-  
-        q.options.forEach(option => {
-          const optionElement = document.createElement('div');
-          optionElement.textContent = option;
-          optionElement.classList.add('option');
-          optionElement.addEventListener('click', () => selectOption(optionElement, option, q.answer, index));
-          optionsContainer.appendChild(optionElement);
-        });
-  
-        questionContainer.appendChild(optionsContainer);
-        container.appendChild(questionContainer);
-      });
-  
-      document.getElementById('result').textContent = '';
-      document.getElementById('try-again-btn').style.display = 'none';
-      document.getElementById('end-quiz-btn').style.display = 'none';
-      document.getElementById('points').textContent = 'Points: ' + points;
-    }
-  
-    function selectOption(element, selectedOption, correctAnswer, questionIndex) {
-      const optionsContainer = document.querySelector(`.options[data-question-index='${questionIndex}']`);
-      const allOptions = optionsContainer.querySelectorAll('.option');
-  
-      // Remove existing correct/incorrect classes from all options
-      allOptions.forEach(opt => {
-        opt.classList.remove('correct', 'incorrect');
-        opt.removeEventListener('click', () => selectOption(opt, selectedOption, correctAnswer, questionIndex)); // Remove event listener
-      });
-  
-      // Apply styles to the selected option
-      if (selectedOption === correctAnswer) {
-        element.classList.add('correct'); // Green for correct
-        points += 10;
-        document.getElementById('result').textContent = 'Correct!';
-        document.getElementById('result').style.color = 'green';
-      } else {
-        element.classList.add('incorrect'); // Red for incorrect
-        document.getElementById('result').textContent = 'Incorrect.';
-        document.getElementById('result').style.color = 'red';
-      }
-  
-      document.getElementById('points').textContent = 'Points: ' + points;
-  
-      // Check if points have reached 100
-      if (points >= 100) {
-        const notification = document.getElementById('notification');
-        notification.style.display = 'block';
-        setTimeout(() => {
-          notification.style.display = 'none';
-          // Redirect to indexws.html after the notification
-          window.location.href = 'indexws.html';
-        }, 2000); // Show the notification for 2 seconds
-        return;
-      }
-  
-      currentQuestionIndex++;
-  
-      // Move to the next question or end the round if all questions are answered
-      if (currentQuestionIndex >= questions.length) {
-        endRound();
-      }
-    }
-  
-    function endRound() {
-      userRoundsPoints.push(points);
-  
-      roundAttempts++;
-      currentQuestionIndex = 0;
-      points = 0;
-  
-      const isFinalRound = roundAttempts >= maxRounds;
-      const totalPoints = userRoundsPoints.reduce((total, roundPoints) => total + roundPoints, 0);
-      const hasReached100Points = totalPoints >= 100;
-  
-      document.getElementById('questions-container').style.display = 'none';
-      document.getElementById('result').textContent = `Round ${roundAttempts} completed! You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
-      document.getElementById('try-again-btn').style.display = isFinalRound ? 'none' : 'inline';
-  
-      if (isFinalRound) {
-        if (hasReached100Points) {
-          document.getElementById('end-quiz-btn').style.display = 'inline'; // Show "End Quiz" button
-        } else {
-          document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
-        }
-      }
-    }
-  
-    function endQuiz() {
-      document.getElementById('Q/A').style.display = 'none';
-      window.location.href = 'indexws.html';
-    }
-  
-    function tryAgain() {
-      if (roundAttempts < maxRounds) {
-        currentQuestionIndex = 0;
-        points = 0;
-        document.getElementById('points').textContent = 'Points: ' + points;
-        document.getElementById('questions-container').style.display = 'block';
-        document.getElementById('try-again-btn').style.display = 'none';
-        document.getElementById('end-quiz-btn').style.display = 'none';
-        loadQuestions();
-      } else {
-        document.getElementById('Q/A').style.display = 'none';
-        window.location.href = 'indexws.html';
-      }
-    }
-  
-    loadQuestions();
-  </script>
-  
-  
-</section>
-<!--/Q/A Section-->
-<!--__________________________________________________________________________________-->
 
 <!--Social media Section-->
-<section id="sm" class="social section  dark-background" style="display: none;">
+<section id="sm" class="social section  dark-background" style="display: block;">
 
    <!-- Section Title -->
    <div class="container section-title" data-aos="fade-up">
     <h2>Social Media</h2>
-    <p><b>Follow Us On All The Social And Increase The Change Of Winning.</b></p>
+    <p style="text-align: center; color:white"><b>Follow Us On All The Social And Increase The Change Of Winning.</b></p>
   </div><!-- End Section Title -->
   
   <div class="quiz-box1 ">
@@ -609,18 +265,113 @@
       <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
       <!--<button id="copyLink" style="background-color: transparent;"></button>-->
       <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends And Increase The Chance Of Winning!</h3>
-      <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp">
+      <div class="container">
+        <textarea id="text-box" readonly></textarea>
+        <button id="copy-button">Share</button>
+        <script>
+            // Get the user ID and referral code from localStorage
+            var userId = localStorage.getItem('loggedInUserId');
+            var referralCode = localStorage.getItem('referralCode');
+            
+            // If user ID or referral code is not available, handle it here
+            if (!userId || !referralCode) {
+                console.error('User ID or Referral Code not found in localStorage');
+                document.getElementById('text-box').value = 'User ID or Referral Code not found';
+            } else {
+                // Generate the URL with the user ID and referral code
+                var message = `Visit ISKCON Contest https://iskconcontest.netlify.app and use the referral code: ${referralCode} while Signing Up`;
+                
+                // Set the text area content
+                document.getElementById('text-box').value = message;
+            }
+        
+            // Copy button functionality
+            document.getElementById('copy-button').addEventListener('click', function() {
+                // Get the textarea element
+                var textBox = document.getElementById('text-box');
+                
+                // Select the text in the textarea
+                textBox.select();
+                textBox.setSelectionRange(0, 99999); // For mobile devices
+        
+                // Copy the text to the clipboard
+                document.execCommand('copy');
+        
+                // Alert the user
+                alert('Text copied to clipboard!');
+            });
+        </script>
+    <style>
+      .container {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+          box-sizing: border-box;
+      }
+
+      textarea {
+          width: 100%; /* Subtract padding from width */
+          padding: 10px;
+          box-sizing: border-box;
+          font-size: 16px;
+          border-radius: 8px;
+          background-color: #ffffff;
+          color: #333;
+          resize: none;
+          overflow: hidden;
+          height: 67px; /* Adjust height based on content */
+      }
+
+      #copy-button {
+          padding: 10px;
+          font-size: 16px;
+          color: #fff;
+          background-color: #007bff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          width: 20%; /* Full-width on smaller screens */
+          box-sizing: border-box;
+          margin-top: 10px; /* Add space between textarea and button */
+      }
+
+      #copy-button:hover {
+          background-color: #0056b3;
+      }
+
+      #copy-button:focus {
+          outline: none;
+      }
+
+      @media (max-width: 600px) {
+          textarea {
+              font-size: 14px;
+              padding: 8px;
+              min-height: 40px; /* Adjust based on content */
+          }
+
+          #copy-button {
+              font-size: 14px;
+              padding: 8px;
+              margin-top: 10px;
+          }
+      }
+    </style>
+    
+  
+      <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp" style="display: none;">
         <button id="copyLink1" class="button">
             <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">
         </button>
     </a>
 
-    <a href="javascript:" onclick="shareOnFacebook(); return false;" target="_blank" title="Share On Facebook">
+    <a href="javascript:" onclick="shareOnFacebook(); return false;" target="_blank" title="Share On Facebook" style="display: none;">
       <button id="copyLink3" class="button">
           <img src="img/icons8-facebook-48.png" alt="Share on Facebook">
       </button> </a>
 
-      <a href="javascript:" onclick="shareOnTwitter(); return false;" target="_blank" title="Share On Twitter">
+      <a href="javascript:" onclick="shareOnTwitter(); return false;" target="_blank" title="Share On Twitter" style="display: none;">
         <button id="copyLink4" class="button">
             <img src="img/icons8-twitterx-48.png" alt="Share on Twitter">
         </button>
@@ -629,32 +380,32 @@
     <script> 
       // Function to share on WhatsApp
       function shareOnWhatsApp() {
-          // Retrieve the user ID from localStorage
-          const userId = localStorage.getItem('loggedInUserId');
-  
-          if (!userId) {
-              // Handle the case where the user ID is not available
-              console.error('User ID not found in localStorage');
-              return;
-          }
-  
-          // Encode the message with the user ID as a query parameter
-          const message = encodeURIComponent(`
-              🎉 Welcome to the Krishna Janmashtami Contest! 🎉
-  
-              Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
-  
-              1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
-              2. Join the Fun: Follow the instructions and get involved.
-              3. Spread the Joy: Share the excitement with friends and family!
-  
-              🕉️ Hare Krishna!
-          `);
-  
-          // Open WhatsApp with the encoded message
-          window.open(`https://api.whatsapp.com/send?text=${message}`, 'whatsApp', 'width=800,height=300');
-      }
-
+        // Retrieve the user ID from localStorage
+        const userId = localStorage.getItem('loggedInUserId');
+    
+        if (!userId) {
+            // Handle the case where the user ID is not available
+            console.error('User ID not found in localStorage');
+            return;
+        }
+    
+        // Encode the message with the user ID as a query parameter
+        const message = encodeURIComponent(`
+            🎉 Welcome to the Krishna Janmashtami Contest! 🎉
+    
+            Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
+    
+            1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
+            2. Join the Fun: Follow the instructions and get involved.
+            3. Spread the Joy: Share the excitement with friends and family!
+    
+            🕉️ Hare Krishna!
+        `);
+    
+        // Open WhatsApp with the encoded message
+        window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank', 'width=800,height=600');
+    }
+    
       function shareOnFacebook() {
           // Retrieve the user ID from localStorage
           const userId = localStorage.getItem('loggedInUserId');
@@ -715,7 +466,7 @@ window.open(`https://twitter.com/intent/tweet?text=${message}`, 'twitter', 'widt
      margin-left: 85%;
     }
     .quiz-box1 {
-      background-color: #c9d2db;
+      background-color: #e9c4ee;
       padding: 30px;
       border: 1px solid #ddd;
       border-radius: 10px;
@@ -956,7 +707,8 @@ window.addEventListener('beforeunload', () => {
 
  
 </section>
-<!--/Social media Section-->   
+<!--/Social media Section-->
+
   </main>
 
 <!--Footer-->
@@ -1070,8 +822,8 @@ display: none;
     </button>
     
   </div>
-  <div class="container copyright text-center mt-5">
-    <p>© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
+  <div class="container copyright text-center mt-5" style="display: none;">
+    <p style="text-align: center; color:gold">© <span>2024</span> <strong class="px-1 sitename">ISKCON Bangalore</strong> <span>All Rights Reserved</span></p>
   </div>
   </footer>
 <!--footer-->
@@ -1102,4 +854,6 @@ display: none;
 
 
 </body>
+
+
 </html>

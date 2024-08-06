@@ -4,13 +4,30 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Contest | ISKCON Banglore</title>
-  <meta content="" name="description">
+  <title>Contest | ISKCON Bangalore</title>
+  <meta content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes." name="description">
   <meta content="" name="keywords">
+  <!-- HTML Meta Tags -->
+  <meta name="description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
 
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://iskcon-contest.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hare Krishna, welcome to the contest.">
+  <meta property="og:description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
+  <meta property="og:image" content="https://iskcon-contest.netlify.app/assets/img/iskcon.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="iskcon-contest.netlify.app">
+  <meta property="twitter:url" content="https://iskcon-contest.netlify.app/">
+  <meta name="twitter:title" content="Hare Krishna, welcome to the contest.">
+  <meta name="twitter:description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
+  <meta name="twitter:image" content="https://iskcon-contest.netlify.app/assets/img/iskcon.jpg">
+
+  <!-- Meta Tags Generated via https://www.opengraph.xyz -->
   <!-- Favicons -->
   <link href="assets/img/iskcon-fevicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -27,21 +44,11 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Arsha
-  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="index-page">
-
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
@@ -50,300 +57,263 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#home" class="active">Home</a></li>
-          <li><a href="#win">How To Win</a></li>
-          <li><a href="#price">Winning Prize</a></li>
+          <!--<li><a href="#home" class="active">Home</a></li>
+          <li><a href="#win">How To Win</a></li>-->
+          <!--<li><a href="#price">Winning Prize</a></li>-->
         </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list " style="display: none;"></i>
       </nav>
 
       <!-- Add this to your index.html file -->
-<a id="participateButton" class="btn-getstarted" href="login.html">Participate</a>
-<a id="logout" class="btn-getstarted" style="display: none;"> logout</a>
-
+      <!--<a id="participateButton" class="btn-getstarted" href="login.html">Participate</a>-->
+      <a id="logout" class="btn-getstarted" style="display: none;"> logout</a>
     </div>
+    <style>
+      .highlight {
+        font-family: 'Arial', sans-serif; /* Change to desired font family */
+        font-size: 2em; /* Adjust size if needed */
+        color: gold; /* Change to desired color */
+        font-weight: bolder; /* Optional: make it bolder */
+        animation: bounce 2s infinite; /* Optional: apply animation to highlight text */
+      }
+
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-30px);
+        }
+        60% {
+          transform: translateY(-15px);
+        }
+      }
+    
+      /* Ensure full height for body and html */
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+  
+      body.index-page {
+        position: relative;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+  
+      .dark-background {
+        color: transparent;
+        background-image: url(assets/img/indexback.png);
+        background-attachment: fixed;
+        background-position: center center; /* Center the background image */
+        background-size: cover; /* Make sure the image covers the entire element */
+        background-repeat: no-repeat; /* Prevent repeating the background image */
+        width: 100%;
+        height: 100vh; /* Full viewport height */
+        position: relative;
+        overflow: hidden; /* Ensure no overflow */
+      }
+      main {
+        position: relative; /* Ensures that the content is positioned relative to the parent */
+        z-index: 1; /* Ensure that the content appears above the background */
+      }
+  
+      .hero.section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 0 10px; /* Adjusted padding for mobile */
+      }
+  
+      .center-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; /* Stack items vertically */
+        background: linear-gradient(to right, rgba(255, 105, 180, 0.3), rgba(138, 43, 226, 0.3)); /* Semi-transparent pink to purple gradient */
+        border-radius: 12px;
+        padding: 20px;
+        width: 100%;
+        max-width: 90%; /* Adjust max width for mobile */
+        box-sizing: border-box;
+        text-align: center; /* Center text */
+        margin-top: -1%;
+      }
+  
+      .gift-image {
+        width: 150px; /* Adjust size for mobile */
+        height: auto;
+        margin-right: 10px; /* Adjust spacing for mobile */
+      }
+  
+      .center-box p {
+        color: gold;
+        font-size: 1.2rem; /* Adjust font size for mobile */
+        margin: 0;
+        flex: 1;
+      }
+  
+      .participate-button {
+        background-color: gold; /* Gold background */
+        color: black; /* Black text */
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        cursor: pointer;
+        margin-top: 10px; /* Space above the button */
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+  
+      .participate-button:hover {
+        background-color: black; /* Black background on hover */
+        color: gold; /* Gold text on hover */
+      }
+  
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .highlight {
+          font-size: 1.5em; /* Adjust font size for mobile */
+        }
+  
+        .gift-image {
+          width: 120px; /* Further adjust size for smaller screens */
+          margin-right: 8px; /* Adjust spacing */
+        }
+  
+        .center-box p {
+          font-size: 1rem; /* Further adjust font size */
+        }
+  
+        .participate-button {
+          font-size: 1em; /* Adjust font size for mobile */
+          padding: 8px 16px;
+        }
+      }
+  
+      @media (max-width: 480px) {
+        .highlight {
+          font-size: 1.2em; /* Further adjust font size */
+        }
+  
+        .gift-image {
+          width: 100px; /* Further adjust size for very small screens */
+          margin-right: 5px; /* Adjust spacing */
+        }
+  
+        .center-box p {
+          font-size: 0.9rem; /* Further adjust font size */
+        }
+  
+        .participate-button {
+          font-size: 0.9em; /* Adjust font size for very small screens */
+          padding: 6px 12px;
+        }
+      }
+    </style>
   </header>
 
-
-  <main class="main">
-
-    <!-- Hero Section -->
-    <section id="home" class="hero section dark-background">
-
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-            <img src="assets/img/Banner.jpg" class="img-fluid animated" alt="banner">
-          </div>
-        </div>
+  <main class="main dark-background">
+    <section id="home" class="hero section">
+      <div class="center-box">
+        <img src="assets/img/oa8v_t6jw_230503-removebg-preview.png" alt="Gift" class="gift-image">
+        <p style="text-align: center;">Participate in the <br/> <span class="highlight"><b>Janmashtami Online Contest</b></span><br/> and win exciting prizes!</p>
+        <a class="participate-button" href="#how-to-win" id="howToWinButton">How To Win</a>
+        <a class="participate-button" href="login.html">Participate Now!</a>
       </div>
-    
-    </section><!-- /Hero Section -->
-
-<!--__________________________________________________________________________________-->
-
-    <!-- How to win Section -->
-    <section id="win" class="about section dark-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>How To Win</h2>
-        <p><b>More The Share More The points, Higest Share will Win The Contest.</b></p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-            <p>
-            </p>
-            <ul>
-              <li><i class="bi bi-check2-circle"></i> <span><b>Login</b> To Participate, So That We Can Know Who Is Winning .</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span>Answers Some Exiting Questions About Krishna.</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span><b>Note:</b> After you Answer All The Question you Will Be Eligible For The Contest.</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span>Share with as many people as possible to earn more points.</span></li>
-              <li><i class="bi bi-check2-circle"></i> <span>More The Share More The Points.</span></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <p>Join the Krishna Janmashtami contest and win exciting prizes! Share with as many people as you can to earn more points and increase your chances of winning.</p><br/>
-               <p><b>Login → Answer Questions → Follow Us on Social Media → Copy The Message →Share To Your friends → Earn Points → Win</b></p> 
-            <a href="#Q/A" class="read-more"><span>Win</span><i class="bi bi-arrow-right"></i></a>
-          </div>
-
-        </div>
-
-      </div>
-
     </section>
-    <!-- /How to win Section -->
-
-<!--__________________________________________________________________________________-->
-
-    <!-- Gift Section -->
-    <section id="price" class="portfolio section dark-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Winning Prize</h2>
-        <p>Welocome to the contest !</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets/img/masonry-portfolio/frame.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Frame</h4>
-                <p></p>
-                <a href="assets/img/masonry-portfolio/frame.webp" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="assets/img/masonry-portfolio/frame.webp" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets/img/masonry-portfolio/gold.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Krishna</h4>
-                <p></p>
-                <a href="assets/img/masonry-portfolio/gold.webp" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="assets/img/masonry-portfolio/gold.webp" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/masonry-portfolio/plate.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Krishna</h4>
-                <p></p>
-                <a href="assets/img/masonry-portfolio/plate.webp" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="assets/img/masonry-portfolio/plate.webp" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets/img/masonry-portfolio/radium.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Krishna</h4>
-                <p></p>
-                <a href="assets/img/masonry-portfolio/radium.webp" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="assets/img/masonry-portfolio/radium.webp" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets/img/masonry-portfolio/stand.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Krishna</h4>
-                <p></p>
-                <a href="assets/img/masonry-portfolio/stand.webp" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/masonry-portfolio/frame.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Krishna</h4>
-                <p></p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="assets/img/masonry-portfolio/gold.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Krishna</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="assets/img/masonry-portfolio/radium.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Krishna</h4>
-                <p></p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="assets/img/masonry-portfolio/stand.webp" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Krishna</h4>
-                <p></p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-          </div><!-- End Portfolio Container -->
-
-        </div>
-
-      </div>
-
-    </section>
-    <!-- /Gift Section -->
-
-<!--___________________________________________________________________________________-->    
+<!-- Modal for instructions -->
+<div id="instructionsModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Here are the instructions for participating in the contest:</p>
+    <ul>
+      <span class="checkmark">&#10003;</span> Sign Up and Take The Quiz on life of Lord Krishna.<br/>
+      <span class="checkmark">&#10003;</span> Share the Contest Link on the Social Media Platforms.<br/>
+      <span class="checkmark">&#10003;</span> The Contestants with the most Shares will Win Exciting Prizes.
+    </ul>
+  </div>
+</div>
+<style>
   
-  </main>
+/* Modal background */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
-<!--___________________________________________________________________________________-->
+.checkmark {
+  color: green; 
+  font-size: 20px; 
+  margin-right: 10px;
+}
 
-<!--Footer-->
-  <footer id="footer" class="footer dark-background">
+/* Modal content */
+.modal-content {
+  background-color: white;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  color: black;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px; /* Adjust as needed */
+  border-radius: 8px;
+}
 
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <div id="shareMessage">
-                <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
-                <button id="copyLink">Share!</button>
-            </div>
-        </div>
-          <style>
-            /* Container for the button and messages */
-
-/* Style for the Share button */
-#shareButton {
-  background-color: #007bff; /* Bright blue for attention */
-  color: white; /* White text for contrast */
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
   font-weight: bold;
-  border-radius: 4px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#shareButton:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: scale(1.05); /* Slight scale effect on hover */
-}
-
-/* Style for the click count */
-#clickCount {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #555; /* Slightly lighter text color */
-  text-align: center;
-}
-/* Style for the Copy to Clipboard button */
-#copyLink {
-  background-color: #28a745; /* Fresh green color */
-  color: white; /* White text for contrast */
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-#copyLink:hover {
-  background-color: #218838; /* Darker green on hover */
-  transform: scale(1.05); /* Slight scale effect on hover */
-}
-
-#copyLink:focus {
-  outline: none; /* Remove default focus outline */
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5); /* Green focus ring */
-}
-
-.footer-newsletter {
-display: none;
 }
 
 </style>
-        </div>
-      </div>
-    </div>
 
-    <!--Copyrights-->
-    <div class="container copyright text-center mt-4">
-      <p>© <span>2024</span> <strong class="px-1 sitename">Iskcon Banglore</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <a href="https://www.iskconbangalore.org/">Iskconbanglore.org</a>
-      </div>
-    </div>
-    <!--/Copyrights-->
+<script>
+  // Get the modal
+var modal = document.getElementById("instructionsModal");
 
-    <!--Socialmedia-->
-    <div class="container-fluid d-flex justify-content-center align-items-center">
-      <div class="col-lg-4 col-md-12 text-center">
-          <h4>Follow Us On</h4>
-          <div class="social-links d-flex justify-content-center">
-              <a href="https://x.com/iskconbangalore"><i class="bi bi-twitter-x"></i></a>
-              <a href="https://www.facebook.com/ISKCONBangaloreTemple"><i class="bi bi-facebook"></i></a>
-              <a href="https://www.instagram.com/ISKCONBangaloreTemple/"><i class="bi bi-instagram"></i></a>
-              <a href="https://in.linkedin.com/company/iskcon-bangalore"><i class="bi bi-linkedin"></i></a>
-              <a href="https://www.whatsapp.com/channel/0029VaADajtIiRozhnfEuo06"><i class="bi bi-whatsapp"></i></a>
-              <a href="https://open.spotify.com/artist/0bbrfmzNUJe9L7i3c7bNU4"><i class="bi bi-spotify"></i></a>
-          </div>
-      </div>
-  </div>
-  <!--Socialmedia-->
+// Get the button that opens the modal
+var btn = document.querySelector(".participate-button[href='#how-to-win']");
 
-  </footer>
-<!--footer-->
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-<!--___________________________________________________________________________________-->
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
 
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
+</main>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -365,7 +335,6 @@ display: none;
   <script src="assets/js/main.js"></script>
   <script src="js/firebaseauth.js" defer></script>
   <script type="module" src="js/index.js"></script>
-
-
 </body>
+
 </html>
