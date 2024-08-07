@@ -41,7 +41,6 @@ signUp.addEventListener('click', async (event) => {
     const lastName = document.getElementById('lName').value;
     const phoneNo = document.getElementById('phoneNo').value;
     const referralCode = document.getElementById('referralCode').value; // Referral code input
-
     try {
         // Create user
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -57,7 +56,7 @@ signUp.addEventListener('click', async (event) => {
             isLoggedIn: true,
             referralCode: newReferralCode,
             points: 0,
-            referredBy: referralCode // Store the referral code here
+            referredBy: referralCode, // Store the referral code here
         };
         const docRef = doc(db, "users", user.uid);
         await setDoc(docRef, userData);
