@@ -183,7 +183,7 @@ document.getElementById('copy-button').addEventListener('click', async () => {
                 // Hide loading message
                 loadingMessage.style.display = 'none';
             }
-        }, 60000); // Delay of 50 seconds
+        }, 70000); // Delay of 1/10 seconds
     } catch (error) {
         console.error("Error processing click event:", error);
     }
