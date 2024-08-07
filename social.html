@@ -264,41 +264,40 @@
       <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends And Increase The Chance Of Winning!</h3>
       <div class="container">
         <textarea id="text-box" readonly></textarea>
-        <button id="copy-button">Share</button>
+        <button id="copy-Button">Share</button>
         <script>
-            // Get the user ID and referral code from localStorage
-            var userId = localStorage.getItem('loggedInUserId');
-            var referralCode = localStorage.getItem('referralCode');
-            
-            // If user ID or referral code is not available, handle it here
-            if (!userId || !referralCode) {
-                console.error('User ID or Referral Code not found in localStorage');
-                document.getElementById('text-box').value = 'User ID or Referral Code not found';
-            } else {
-                // Generate the URL with the user ID and referral code
-                var message = ` https://iskcon-contest.netlify.app/login?referrer_uid=${userId}
-                Referal Code: ${referralCode}`;
-                
-                // Set the text area content
-                document.getElementById('text-box').value = message;
-            }
-        
-            // Copy button functionality
-            document.getElementById('copy-button').addEventListener('click', function() {
-                // Get the textarea element
-                var textBox = document.getElementById('text-box');
-                
-                // Select the text in the textarea
-                textBox.select();
-                textBox.setSelectionRange(0, 99999); // For mobile devices
-        
-                // Copy the text to the clipboard
-                document.execCommand('copy');
-        
-                // Alert the user
-                alert('Text copied to clipboard!');
-            });
-        </script>
+          // Get the user ID and referral code from localStorage
+          var userId = localStorage.getItem('loggedInUserId');
+          
+          // If user ID is not available, handle it here
+          if (!userId) {
+              console.error('User ID not found in localStorage');
+              document.getElementById('text-box').value = 'User ID not found';
+          } else {
+              // Generate the URL with the user ID
+              let referrer_uid = userId;
+              var message = `https://iskcon-contest.netlify.app/login?referrer_uid=${referrer_uid}`;
+              
+              // Set the text area content
+              document.getElementById('text-box').value = message;
+          }
+      
+          // Copy button functionality
+          document.getElementById('copy-Button').addEventListener('click', function() {
+              // Get the textarea element
+              var textBox = document.getElementById('text-box');
+              
+              // Select the text in the textarea
+              textBox.select();
+              textBox.setSelectionRange(0, 99999); // For mobile devices
+      
+              // Copy the text to the clipboard
+              document.execCommand('copy');
+      
+              // Alert the user
+              alert('Text copied to clipboard!');
+          });
+      </script>
     <style>
       .container {
           max-width: 600px;
@@ -320,41 +319,41 @@
           height: 67px; /* Adjust height based on content */
       }
 
-      #copy-button {
-          padding: 10px;
-          font-size: 16px;
-          color: #fff;
-          background-color: #007bff;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-          width: 20%; /* Full-width on smaller screens */
-          box-sizing: border-box;
-          margin-top: 10px; /* Add space between textarea and button */
-      }
+      #copy-Button {
+        padding: 10px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 20%; /* Full-width on smaller screens */
+        box-sizing: border-box;
+        margin-top: 10px; /* Add space between textarea and button */
+    }
 
-      #copy-button:hover {
-          background-color: #0056b3;
-      }
+    #copy-Button:hover {
+        background-color: #0056b3;
+    }
 
-      #copy-button:focus {
-          outline: none;
-      }
+    #copy-Button:focus {
+        outline: none;
+    }
 
-      @media (max-width: 600px) {
-          textarea {
-              font-size: 14px;
-              padding: 8px;
-              min-height: 40px; /* Adjust based on content */
-          }
+    @media (max-width: 600px) {
+        textarea {
+            font-size: 14px;
+            padding: 8px;
+            min-height: 40px; /* Adjust based on content */
+        }
 
-          #copy-button {
-              font-size: 14px;
-              padding: 8px;
-              margin-top: 10px;
-          }
-      }
+        #copy-Button {
+            font-size: 14px;
+            padding: 8px;
+            margin-top: 10px;
+        }
+    }
     </style>
     
   

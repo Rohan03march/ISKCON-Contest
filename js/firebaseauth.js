@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged ,sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-import { getFirestore, setDoc, doc,getDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+import { getFirestore, setDoc, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDno8QgblBD8lgW-UON2Au2EgCaWv8yFek",
@@ -31,6 +31,12 @@ const generateReferralCode = () => {
     return 'REF' + Math.random().toString(36).substring(2, 8).toUpperCase();
 }
 
+// Function to get URL parameters
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
 // Sign Up Event Listener
 const signUp = document.getElementById('submitSignUp');
 signUp.addEventListener('click', async (event) => {
@@ -40,7 +46,11 @@ signUp.addEventListener('click', async (event) => {
     const firstName = document.getElementById('fName').value;
     const lastName = document.getElementById('lName').value;
     const phoneNo = document.getElementById('phoneNo').value;
-    const referralCode = document.getElementById('referralCode').value; // Referral code input
+
+    // Get referrer_uid from URL
+    const referrerUid = getQueryParam('referrer_uid');
+    
+
     try {
         // Create user
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -54,16 +64,16 @@ signUp.addEventListener('click', async (event) => {
             lastName: lastName,
             phoneNo: phoneNo,
             isLoggedIn: true,
-            referralCode: newReferralCode,
+            referralCode: newReferralCode, // Store the new referral code for the user
             points: 0,
-            referredBy: referralCode, // Store the referral code here
+            referredBy: referrerUid || null, // Store the referrerUid or null if not available
         };
         const docRef = doc(db, "users", user.uid);
         await setDoc(docRef, userData);
 
-        // Check if referral code exists
-        if (referralCode) {
-            const referrerDoc = doc(db, "users", referralCode);
+        // Check if referrerUid is valid
+        if (referrerUid) {
+            const referrerDoc = doc(db, "users", referrerUid);
             const referrerSnapshot = await getDoc(referrerDoc);
             if (referrerSnapshot.exists()) {
                 // Update points for both referrer and new user
@@ -83,8 +93,6 @@ signUp.addEventListener('click', async (event) => {
         showMessage('The User already exists', 'signUpMessage');
     }
 });
-
-
 
 // Sign In Event Listener
 const signIn = document.getElementById('submitSignIn');
@@ -125,20 +133,7 @@ signIn.addEventListener('click', async (event) => {
     }
 });
 
- /*Sign Out Event Listener
-const logoutButton = document.getElementById('logout');
-logoutButton.addEventListener('click', () => {
-    signOut(auth)
-        .then(() => {
-            localStorage.removeItem('loggedInUserId');
-            showMessage('Successfully Logged Out', 'signInMessage');
-            window.location.href = 'login.html'; // Redirect to 
-             page or desired location
-        })
-        .catch((error) => {
-            console.error('Error Signing Out: ', error);
-        });
-});*/
+
 
 
 const ForgotPassLabel = document.getElementById('forgotpasslabel');
@@ -167,3 +162,19 @@ service cloud.firestore {
   }
 }
 */ 
+
+
+ /*Sign Out Event Listener
+const logoutButton = document.getElementById('logout');
+logoutButton.addEventListener('click', () => {
+    signOut(auth)
+        .then(() => {
+            localStorage.removeItem('loggedInUserId');
+            showMessage('Successfully Logged Out', 'signInMessage');
+            window.location.href = 'login.html'; // Redirect to 
+             page or desired location
+        })
+        .catch((error) => {
+            console.error('Error Signing Out: ', error);
+        });
+});*/
