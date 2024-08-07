@@ -377,6 +377,13 @@
         font-size: 1rem;
       }
     }
+
+    .option.disabled {
+      pointer-events: none; /* Disable clicks */
+      opacity: 0.5; /* Visual indication that the option is disabled */
+      cursor: not-allowed; /* Change cursor to indicate the option is disabled */
+    }
+    
   </style>
 
   <div class="container">
@@ -460,58 +467,58 @@
     async function selectOption(element, selectedOption, correctAnswer, questionIndex) {
       const optionsContainer = document.querySelector(`.options[data-question-index='${questionIndex}']`);
       const allOptions = optionsContainer.querySelectorAll('.option');
-  
-      // Remove existing correct/incorrect classes from all options
+    
+      // Disable all options to prevent multiple clicks
       allOptions.forEach(opt => {
-          opt.classList.remove('correct', 'incorrect');
-          opt.removeEventListener('click', () => selectOption(opt, selectedOption, correctAnswer, questionIndex)); // Remove event listener
+        opt.classList.add('disabled'); // Add a class to visually indicate that the option is disabled
+        opt.removeEventListener('click', () => selectOption(opt, selectedOption, correctAnswer, questionIndex)); // Remove event listener
       });
-  
+    
       // Apply styles to the selected option
       if (selectedOption === correctAnswer) {
-          element.classList.add('correct'); // Green for correct
-          points += 10;
-          document.getElementById('result').textContent = 'Correct!';
-          document.getElementById('result').style.color = 'green';
+        element.classList.add('correct'); // Green for correct
+        points += 10;
+        document.getElementById('result').textContent = 'Correct!';
+        document.getElementById('result').style.color = 'green';
       } else {
-          element.classList.add('incorrect'); // Red for incorrect
-          document.getElementById('result').textContent = 'Incorrect.';
-          document.getElementById('result').style.color = 'red';
+        element.classList.add('incorrect'); // Red for incorrect
+        document.getElementById('result').textContent = 'Incorrect.';
+        document.getElementById('result').style.color = 'red';
       }
-  
+    
       document.getElementById('points').textContent = 'Points: ' + points;
-  
+    
       // Check if points have reached 100
       if (points >= 100) {
-          const notification = document.getElementById('notification');
-          notification.style.display = 'block';
-          
-          // Update points in the Firestore database
-          try {
-              if (!userId) return;
-              const userRef = doc(db, "users", userId);
-              await updateDoc(userRef, { points: 100 });
-              console.log("Points updated in the database.");
-          } catch (error) {
-              console.error("Error updating points in the database:", error);
-          }
-  
-          setTimeout(() => {
-              notification.style.display = 'none';
-              // Redirect to indexws.html after the notification
-              window.location.href = 'social.html';
-          }, 2000); // Show the notification for 2 seconds
-          return;
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        
+        // Update points in the Firestore database
+        try {
+          if (!userId) return;
+          const userRef = doc(db, "users", userId);
+          await updateDoc(userRef, { points: 100 });
+          console.log("Points updated in the database.");
+        } catch (error) {
+          console.error("Error updating points in the database:", error);
+        }
+    
+        setTimeout(() => {
+          notification.style.display = 'none';
+          // Redirect to indexws.html after the notification
+          window.location.href = 'social.html';
+        }, 2000); // Show the notification for 2 seconds
+        return;
       }
-  
+    
       currentQuestionIndex++;
-  
+    
       // Move to the next question or end the round if all questions are answered
       if (currentQuestionIndex >= questions.length) {
-          endRound();
+        endRound();
       }
-  }
-  
+    }
+    
   
     function endRound() {
       userRoundsPoints.push(points);
