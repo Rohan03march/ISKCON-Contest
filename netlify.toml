@@ -1,0 +1,10 @@
+[build]
+  # The directory where your static files are located.
+  publish = "/"
+
+[[redirects]]
+  # Optionally, if you have other redirects or rewrites, you can specify them here.
+  # For example, to redirect the root to index.html:
+  from = "/"
+  to = "/index.html"
+  status = 200

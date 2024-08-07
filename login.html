@@ -1,350 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>ISKCON Bangalore | Index</title>
-  <meta content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes." name="description">
-  <meta content="" name="keywords">
-  <!-- HTML Meta Tags -->
-  <meta name="description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
-
-  <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://iskcon-contest.netlify.app/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Hare Krishna, welcome to the contest.">
-  <meta property="og:description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
-  <meta property="og:image" content="https://iskcon-contest.netlify.app/assets/img/iskcon.jpg">
-
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="iskcon-contest.netlify.app">
-  <meta property="twitter:url" content="https://iskcon-contest.netlify.app/">
-  <meta name="twitter:title" content="Hare Krishna, welcome to the contest.">
-  <meta name="twitter:description" content="Your friend has invited you to participate in the contest offered by ISKCON Bangalore and win some exciting prizes.">
-  <meta name="twitter:image" content="https://iskcon-contest.netlify.app/assets/img/iskcon.jpg">
-
-  <!-- Meta Tags Generated via https://www.opengraph.xyz -->
-  <!-- Favicons -->
-  <link href="assets/img/iskcon-fevicon.png" rel="icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+    <link href="img/iskcon-fevicon.png" rel="icon">
+    <title>Iskcon banglore | Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/firebaseauth.js"></script>
 </head>
-<body class="index-page">
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
-      <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <img src="assets/img/iskcon-bangalore-logo-n.png" alt="">
-      </a>
-
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <!--<li><a href="#home" class="active">Home</a></li>
-          <li><a href="#win">How To Win</a></li>-->
-          <!--<li><a href="#price">Winning Prize</a></li>-->
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list " style="display: none;"></i>
-      </nav>
-
-      <!-- Add this to your index.html file -->
-      <!--<a id="participateButton" class="btn-getstarted" href="login.html">Participate</a>-->
-      <a id="logout" class="btn-getstarted" style="display: none;"> logout</a>
-    </div>
+<body>
     <style>
-      .highlight {
-        font-family: 'Arial', sans-serif; /* Change to desired font family */
-        font-size: 2em; /* Adjust size if needed */
-        color: gold; /* Change to desired color */
-        font-weight: bolder; /* Optional: make it bolder */
-        animation: bounce 2s infinite; /* Optional: apply animation to highlight text */
-      }
-
-      @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-          transform: translateY(0);
+        body { 
+            background-image: url('assets/img/indexback.png');
+            background-size: cover; /* Ensure the image covers the entire viewport */
+            background-position: center center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-attachment: fixed; /* Optional: Fix the background image in place */
+            margin: 0; /* Ensure there is no margin around the body */
+            padding: 0; /* Ensure there is no padding around the body */
+            height: 100vh; /* Ensure the body takes the full viewport height */
+            width: 100vw; /* Ensure the body takes the full viewport width */
         }
-        40% {
-          transform: translateY(-30px);
-        }
-        60% {
-          transform: translateY(-15px);
-        }
-      }
-    
-      /* Ensure full height for body and html */
-      html, body {
-        height: 100%;
-        margin: 0;
-      }
-  
-      body.index-page {
-        position: relative;
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
-  
-      .dark-background {
-        color: transparent;
-        background-image: url(assets/img/indexback.png);
-        background-attachment: fixed;
-        background-position: center center; /* Center the background image */
-        background-size: cover; /* Make sure the image covers the entire element */
-        background-repeat: no-repeat; /* Prevent repeating the background image */
-        width: 100%;
-        height: 100vh; /* Full viewport height */
-        position: relative;
-        overflow: hidden; /* Ensure no overflow */
-      }
-      main {
-        position: relative; /* Ensures that the content is positioned relative to the parent */
-        z-index: 1; /* Ensure that the content appears above the background */
-      }
-  
-      .hero.section {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        padding: 0 10px; /* Adjusted padding for mobile */
-      }
-  
-      .center-box {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column; /* Stack items vertically */
-        background: linear-gradient(to right, rgba(255, 105, 180, 0.3), rgba(138, 43, 226, 0.3)); /* Semi-transparent pink to purple gradient */
-        border-radius: 12px;
-        padding: 20px;
-        width: 100%;
-        max-width: 90%; /* Adjust max width for mobile */
-        box-sizing: border-box;
-        text-align: center; /* Center text */
-        margin-top: 1%;
-      }
-  
-      .gift-image {
-        width: 150px; /* Adjust size for mobile */
-        height: auto;
-        margin-right: 10px; /* Adjust spacing for mobile */
-      }
-  
-      .center-box p {
-        color: gold;
-        font-size: 1.2rem; /* Adjust font size for mobile */
-        margin: 0;
-        flex: 1;
-      }
-  
-      .participate-button {
-        background-color: gold; /* Gold background */
-        color: black; /* Black text */
-        border: none;
-        border-radius: 8px;
-        padding: 10px 20px;
-        font-size: 1.2em;
-        cursor: pointer;
-        margin-top: 10px; /* Space above the button */
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-  
-      .participate-button:hover {
-        background-color: black; /* Black background on hover */
-        color: gold; /* Gold text on hover */
-      }
-  
-      /* Responsive design */
-      @media (max-width: 768px) {
-        .highlight {
-          font-size: 1.5em; /* Adjust font size for mobile */
-        }
-  
-        .gift-image {
-          width: 120px; /* Further adjust size for smaller screens */
-          margin-right: 8px; /* Adjust spacing */
-        }
-  
-        .center-box p {
-          font-size: 1rem; /* Further adjust font size */
-        }
-  
-        .participate-button {
-          font-size: 1em; /* Adjust font size for mobile */
-          padding: 8px 16px;
-        }
-      }
-  
-      @media (max-width: 480px) {
-        .highlight {
-          font-size: 1.2em; /* Further adjust font size */
-        }
-  
-        .gift-image {
-          width: 100px; /* Further adjust size for very small screens */
-          margin-right: 5px; /* Adjust spacing */
-        }
-  
-        .center-box p {
-          font-size: 0.9rem; /* Further adjust font size */
-        }
-  
-        .participate-button {
-          font-size: 0.9em; /* Adjust font size for very small screens */
-          padding: 6px 12px;
-        }
-      }
     </style>
-  </header>
-
-  <main class="main dark-background">
-    <section id="home" class="hero section">
-      <div class="center-box">
-        <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script><dotlottie-player src="https://lottie.host/351ed94f-6e9d-40dd-8312-ae349caf3ed8/Km5iKg3B3w.json" background="transparent" speed="1" style="width: 400px; height: 250px" direction="1" playMode="bounce" loop autoplay></dotlottie-player>
-        <p style="text-align: center;">
-          Participate in the <br/>
-          <span class="highlight" style="
-            background: linear-gradient(to right, #b30a8e, #e1965c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
-          ">
-            Janmashtami Online Contest
-          </span><br/>
-          and win exciting prizes!
-        </p>
-        
-        <a class="participate-button" href="#how-to-win" id="howToWinButton">How To Win</a>
-        <a class="participate-button" href="login.html">Participate Now!</a>
-      </div>
-    </section>
-<!-- Modal for instructions -->
-<div id="instructionsModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Here are the instructions for participating in the contest:</p>
-    <ul>
-      <span class="checkmark">&#10003;</span> Sign Up and Take The Quiz on life of Lord Krishna.<br/>
-      <span class="checkmark">&#10003;</span> Share the Contest Link on the Social Media Platforms.<br/>
-      <span class="checkmark">&#10003;</span> The Contestants with the most Shares will Win Exciting Prizes.
-    </ul>
-  </div>
+  <div class="container" id="signup" style="display:none;">
+    <h1 class="form-title">Register</h1>
+    <form method="post" action="">
+        <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="fName" placeholder="First Name" required>
+            <label for="fName">First Name</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="lName" placeholder="Last Name" required>
+            <label for="lName">Last Name</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-phone"></i>
+            <input type="text" id="phoneNo" placeholder="Phone No" required>
+            <label for="phoneNo">Phone No</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="rEmail" placeholder="Email" required>
+            <label for="rEmail">Email</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="rPassword" placeholder="Password" required>
+            <label for="rPassword">Password</label>
+        </div>
+        <!-- Added Referral Code Field -->
+        <div class="input-group">
+            <i class="fas fa-gift"></i>
+            <input type="text" id="referralCode" placeholder="Referral Code (Optional)">
+            <label for="referralCode">Referral Code (Optional)</label>
+        </div>
+        <button class="btn" id="submitSignUp">Sign Up</button>
+    </form>
+    <div class="links">
+        <div class="AHA">Already Have an Account?</div>
+        <button id="signInButton">Sign In</button>
+    </div>
 </div>
-<style>
-  
-/* Modal background */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-.checkmark {
-  color: green; 
-  font-size: 20px; 
-  margin-right: 10px;
-}
 
-/* Modal content */
-.modal-content {
-  background-color: white;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  color: black;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-  max-width: 600px; /* Adjust as needed */
-  border-radius: 8px;
-}
+  <div class="container" id="signIn">
+        <h1 class="form-title">Sign In</h1>
+        <form method="post" action="">
+          <div id="signInMessage" class="messageDiv" style="display:none;"></div>
 
-/* Close button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-</style>
-
-<script>
-  // Get the modal
-var modal = document.getElementById("instructionsModal");
-
-// Get the button that opens the modal
-var btn = document.querySelector(".participate-button[href='#how-to-win']");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-</script>
-</main>
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-  <script src="js/firebaseauth.js" defer></script>
-  <script type="module" src="js/index.js"></script>
+          <div class="input-group">
+              <i class="fas fa-envelope"></i>
+              <input type="email"  id="email" placeholder="Email" required>
+              <label for="email">Email</label>
+          </div>
+          <div class="input-group">
+              <i class="fas fa-lock"></i>
+            <input type="password" id="password"  placeholder="Password" required>
+              <label for="password">Password</label>
+          </div>
+          <p class="recover">
+            <a id="forgotpasslabel" style="color:blue;cursor:pointer">Forgot Password</a>
+        </p>        
+         <button  class="btn"  id="submitSignIn">Sign In</button>
+        </form>
+        <div class="links">
+          <div class="DHA">Don't have account yet?</div>
+          <button id="signUpButton">Sign Up</button>
+        </div>
+      </div>
+      
+      <script src="js/script.js"></script>
 </body>
-
 </html>
