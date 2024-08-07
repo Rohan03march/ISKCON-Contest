@@ -5,6 +5,6 @@
 [[redirects]]
   # Optionally, if you have other redirects or rewrites, you can specify them here.
   # For example, to redirect the root to index.html:
-  from = "/"
+  from = "/login.html"
   to = "/index.html"
   status = 200
