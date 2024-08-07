@@ -78,7 +78,7 @@ signUp.addEventListener('click', async (event) => {
         }
 
         showMessage('Account Created Successfully', 'signUpMessage');
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
     } catch (error) {
         console.error("Error signing up: ", error);
         showMessage('The User already exists', 'signUpMessage');
