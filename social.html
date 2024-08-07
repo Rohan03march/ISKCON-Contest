@@ -276,7 +276,7 @@
                 document.getElementById('text-box').value = 'User ID or Referral Code not found';
             } else {
                 // Generate the URL with the user ID and referral code
-                var message = `Visit ISKCON Contest https://iskcon-contest.netlify.app and use the referral code: ${referralCode} while Signing Up.`;
+                var message = ` https://iskcon-contest.netlify.app/login?referrer_uid=${userId}`;
                 
                 // Set the text area content
                 document.getElementById('text-box').value = message;
