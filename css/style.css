@@ -5,7 +5,7 @@
     font-family:"Roboto",sans-serif;
 }
 .container {
-    background: white; /* White with 80% opacity */
+    background: transparent; /* White with 80% opacity */
     width: 450px;
     padding: 1.5rem;
     margin: 50px auto;
@@ -55,7 +55,7 @@ input::placeholder{
     color:transparent;
 }
 label{
-    color:#757575;
+    color:white;
     position:relative;
     left:1.2em;
     top:-1.3em;
@@ -88,7 +88,7 @@ button{
     outline:none;
     border:none;
     width:100%;
-    background:rgb(125,125,235);
+    background:rgb(14, 14, 116);
     color:white;
     cursor:pointer;
     transition:0.9s;
@@ -97,7 +97,7 @@ button:hover{
     background:#07001f;
 }
  #signUpButton, #signInButton{
-    color:rgb(125,125,235);
+    color:rgb(16, 16, 131);
     border:none;
     background-color:transparent;
     font-size:1rem;

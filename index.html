@@ -196,6 +196,9 @@
 </head>
 
 <body>
+    <div class="navbar">
+        <img src="assets/img/iskcon-bangalore-logo-n.png" alt="Logo" class="logo">
+    </div>
     <div>
         <div class="wave"></div>
         <div class="wave"></div>
@@ -211,11 +214,27 @@
             <button><a href="login.html">Participate</a></button>
         </div>
         <div class="svg-image">
-            <!-- Replace 'your-image.svg' with the path to your SVG file -->
             <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
             <dotlottie-player src="https://lottie.host/1a516ad7-c2bd-4886-a84f-801092f35439/JnLTkDV4xA.json" background="transparent" speed="1" style="width: 100%; max-width: 500px; height: auto;" direction="1" playMode="normal" loop autoplay></dotlottie-player>
         </div>
     </div>
- 
+    <style>
+        .navbar {
+            width: 100%;
+            background-color: transparent; /* Dark background color for the navbar */
+            padding: 10px 20px; /* Vertical padding and horizontal padding */
+            display: flex;
+            align-items: center; /* Vertically center the logo */
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Ensure navbar is on top of other content */
+        }
+        
+        .logo {
+            max-height: 50px; /* Adjust based on your logo size */
+        }
+    </style>
 </body>
+
 </html>

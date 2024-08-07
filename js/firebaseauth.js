@@ -57,6 +57,7 @@ signUp.addEventListener('click', async (event) => {
             referralCode: newReferralCode,
             points: 0,
             referredBy: referralCode, // Store the referral code here
+            answered:100
         };
         const docRef = doc(db, "users", user.uid);
         await setDoc(docRef, userData);
