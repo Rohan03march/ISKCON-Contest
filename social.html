@@ -255,7 +255,6 @@
     <div class="points" id="Points">Total Points: 0</div>
     <div id="shareMessage">
       <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
-      <!--<button id="copyLink" style="background-color: transparent;"></button>-->
       <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends And Increase The Chance Of Winning!</h3>
       <div class="container">
         <textarea id="text-box" readonly></textarea>
@@ -275,23 +274,27 @@
               // Set the text area content
               document.getElementById('text-box').value = message;
           }
-      
+    
           document.getElementById('copy-button').addEventListener('click', async () => {
               try {
                   if (!userId) return;
-      
+    
+                  // Copy the text from the textarea to the clipboard
+                  const textToCopy = document.getElementById('text-box').value;
+                  await navigator.clipboard.writeText(textToCopy);
+    
                   // Notify the user that the message is copied
                   alert("Message copied!");
-      
+    
                   // Immediately update shares in the database
                   const userRef = doc(db, "users", userId);
                   await updateDoc(userRef, { shares: increment(10) });
                   console.log("Shares updated in the database.");
-      
+    
                   // Show loading message
                   const loadingMessage = document.getElementById('loading-message');
                   loadingMessage.style.display = 'block';
-      
+    
                   // Delay the display update by 3 minutes (180,000 milliseconds)
                   setTimeout(async () => {
                       try {
@@ -312,170 +315,155 @@
                           // Hide loading message
                           loadingMessage.style.display = 'none';
                       }
-                  }, 150000); // 180,000 milliseconds = 3 minutes
+                  }, 2400000); // 180,000 milliseconds = 3 minutes
               } catch (error) {
                   console.error("Error processing click event:", error);
               }
           });
-      </script>
-      
-    <style>
-      .container {
-          max-width: 600px;
-          margin: 0 auto;
-          padding: 20px;
-          box-sizing: border-box;
-      }
-
-      textarea {
-          width: 100%; /* Subtract padding from width */
-          padding: 10px;
-          box-sizing: border-box;
-          font-size: 16px;
-          border-radius: 8px;
-          background-color: #ffffff;
-          color: #333;
-          resize: none;
-          overflow: hidden;
-          height: 67px; /* Adjust height based on content */
-      }
-
-      #copy-button {
-          padding: 10px;
-          font-size: 16px;
-          color: #fff;
-          background-color: #007bff;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-          width: 20%; /* Full-width on smaller screens */
-          box-sizing: border-box;
-          margin-top: 10px; /* Add space between textarea and button */
-      }
-
-      #copy-button:hover {
-          background-color: #0056b3;
-      }
-
-      #copy-button:focus {
-          outline: none;
-      }
-
-      @media (max-width: 600px) {
-          textarea {
-              font-size: 14px;
-              padding: 8px;
-              min-height: 40px; /* Adjust based on content */
+        </script>
+        
+        <style>
+          .container {
+              max-width: 600px;
+              margin: 0 auto;
+              padding: 20px;
+              box-sizing: border-box;
           }
-
+    
+          textarea {
+              width: 100%;
+              padding: 10px;
+              box-sizing: border-box;
+              font-size: 16px;
+              border-radius: 8px;
+              background-color: #ffffff;
+              color: #333;
+              resize: none;
+              overflow: hidden;
+              height: 67px;
+          }
+    
           #copy-button {
-              font-size: 14px;
-              padding: 8px;
+              padding: 10px;
+              font-size: 16px;
+              color: #fff;
+              background-color: #007bff;
+              border: none;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+              width: 20%;
+              box-sizing: border-box;
               margin-top: 10px;
           }
-      }
-    </style>
     
-  
-      <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp" style="display: none;">
-        <button id="copyLink1" class="button">
-            <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">
-        </button>
-    </a>
-
-    <a href="javascript:" onclick="shareOnFacebook(); return false;" target="_blank" title="Share On Facebook" style="display: none;">
-      <button id="copyLink3" class="button">
-          <img src="img/icons8-facebook-48.png" alt="Share on Facebook">
-      </button> </a>
-
-      <a href="javascript:" onclick="shareOnTwitter(); return false;" target="_blank" title="Share On Twitter" style="display: none;">
-        <button id="copyLink4" class="button">
-            <img src="img/icons8-twitterx-48.png" alt="Share on Twitter">
-        </button>
-    </a>
-
-    <script> 
-      // Function to share on WhatsApp
-      function shareOnWhatsApp() {
-        // Retrieve the user ID from localStorage
-        const userId = localStorage.getItem('loggedInUserId');
-    
-        if (!userId) {
-            // Handle the case where the user ID is not available
-            console.error('User ID not found in localStorage');
-            return;
-        }
-    
-        // Encode the message with the user ID as a query parameter
-        const message = encodeURIComponent(`
-            🎉 Welcome to the Krishna Janmashtami Contest! 🎉
-    
-            Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
-    
-            1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
-            2. Join the Fun: Follow the instructions and get involved.
-            3. Spread the Joy: Share the excitement with friends and family!
-    
-            🕉️ Hare Krishna!
-        `);
-    
-        // Open WhatsApp with the encoded message
-        window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank', 'width=800,height=600');
-    }
-    
-      function shareOnFacebook() {
-          // Retrieve the user ID from localStorage
-          const userId = localStorage.getItem('loggedInUserId');
-  
-          if (!userId) {
-              // Handle the case where the user ID is not available
-              console.error('User ID not found in localStorage');
-              return;
+          #copy-button:hover {
+              background-color: #0056b3;
           }
-  
-          // Encode the message with the user ID as a query parameter
-          const message = encodeURIComponent(`
-              🎉 Welcome to the Krishna Janmashtami Contest! 🎉
-  
-              Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
-  
-              1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
-              2. Join the Fun: Follow the instructions and get involved.
-              3. Spread the Joy: Share the excitement with friends and family!
-  
-              🕉️ Hare Krishna!
-          `);
-  
-          // Open WhatsApp with the encoded message
-          window.open(`https://www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app`, 'facebook', 'width=800,height=300');
-      }
-
-      // Function to share on WhatsApp
-      function shareOnTwitter() {
-        // Retrieve the user ID from localStorage
-        const userId= localStorage.getItem('loggedInUserId');
-
-        if (!userId) {
-            // Handle the case where the user ID is not available
-            console.error('User ID not found in localStorage');
-            return;
-        }
-
-        // Encode the message with the user ID as a query parameter
-        const message = encodeURIComponent(`
-            🎉 Welcome to the Krishna Janmashtami Contest! 🎉
-            Join us in celebrating Krishna Janmashtami by participating in our exciting contest.
-            Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
-            🕉️ Hare Krishna!
-        `);
-// Open Twitter Share Dialog with the tweet text
-window.open(`https://twitter.com/intent/tweet?text=${message}`, 'twitter', 'width=800,height=600');
-    }
     
-  </script>   
-  </div>
-  </div>
+          #copy-button:focus {
+              outline: none;
+          }
+    
+          @media (max-width: 600px) {
+              textarea {
+                  font-size: 14px;
+                  padding: 8px;
+                  min-height: 40px;
+              }
+    
+              #copy-button {
+                  font-size: 14px;
+                  padding: 8px;
+                  margin-top: 10px;
+              }
+          }
+        </style>
+        
+        <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp" style="display: none;">
+          <button id="copyLink1" class="button">
+              <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">
+          </button>
+        </a>
+    
+        <a href="javascript:" onclick="shareOnFacebook(); return false;" target="_blank" title="Share On Facebook" style="display: none;">
+          <button id="copyLink3" class="button">
+              <img src="img/icons8-facebook-48.png" alt="Share on Facebook">
+          </button>
+        </a>
+    
+        <a href="javascript:" onclick="shareOnTwitter(); return false;" target="_blank" title="Share On Twitter" style="display: none;">
+          <button id="copyLink4" class="button">
+              <img src="img/icons8-twitterx-48.png" alt="Share on Twitter">
+          </button>
+        </a>
+    
+        <script>
+          // Function to share on WhatsApp
+          function shareOnWhatsApp() {
+            const userId = localStorage.getItem('loggedInUserId');
+            if (!userId) {
+                console.error('User ID not found in localStorage');
+                return;
+            }
+    
+            const message = encodeURIComponent(`
+                🎉 Welcome to the Krishna Janmashtami Contest! 🎉
+    
+                Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
+    
+                1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
+                2. Join the Fun: Follow the instructions and get involved.
+                3. Spread the Joy: Share the excitement with friends and family!
+    
+                🕉️ Hare Krishna!
+            `);
+    
+            window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank', 'width=800,height=600');
+          }
+        
+          function shareOnFacebook() {
+              const userId = localStorage.getItem('loggedInUserId');
+              if (!userId) {
+                  console.error('User ID not found in localStorage');
+                  return;
+              }
+    
+              const message = encodeURIComponent(`
+                  🎉 Welcome to the Krishna Janmashtami Contest! 🎉
+    
+                  Join us in celebrating Krishna Janmashtami by participating in our exciting contest. It’s a wonderful opportunity to engage with the vibrant festivities and win fantastic prizes!
+    
+                  1. Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
+                  2. Join the Fun: Follow the instructions and get involved.
+                  3. Spread the Joy: Share the excitement with friends and family!
+    
+                  🕉️ Hare Krishna!
+              `);
+    
+              window.open(`https://www.facebook.com/sharer/sharer.php?u=https://iskcon-contest.netlify.app`, 'facebook', 'width=800,height=300');
+          }
+    
+          function shareOnTwitter() {
+            const userId = localStorage.getItem('loggedInUserId');
+            if (!userId) {
+                console.error('User ID not found in localStorage');
+                return;
+            }
+    
+            const message = encodeURIComponent(`
+                🎉 Welcome to the Krishna Janmashtami Contest! 🎉
+                Join us in celebrating Krishna Janmashtami by participating in our exciting contest.
+                Visit Our Website: https://iskcon-contest.netlify.app/?${userId}
+                🕉️ Hare Krishna!
+            `);
+    
+            window.open(`https://twitter.com/intent/tweet?text=${message}`, 'twitter', 'width=800,height=600');
+          }
+        </script>
+      </div>
+    </div>
+    
 
   <style>
 
