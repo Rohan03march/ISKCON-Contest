@@ -159,11 +159,16 @@ document.getElementById('copy-button').addEventListener('click', async () => {
         await updateDoc(userRef, { shares: increment(10) });
         console.log("Shares updated in the database.");
 
+        // Store the current timestamp in local storage
+        const currentTime = new Date().toISOString();
+        localStorage.setItem('lastUpdateTimestamp', currentTime);
+        localStorage.setItem('pointsDisplayed', 'false'); // Initialize or reset the flag
+
         // Show loading message
         const loadingMessage = document.getElementById('loading-message');
         loadingMessage.style.display = 'block';
 
-        // Delay the display update by 50 seconds (50,000 milliseconds)
+        // Delay the display update by 60 seconds (60000 milliseconds)
         setTimeout(async () => {
             try {
                 // Fetch the updated user data after delay
@@ -174,6 +179,9 @@ document.getElementById('copy-button').addEventListener('click', async () => {
                     const points = userData.points || 0;
                     const shares = userData.shares || 0;
                     document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
+                    
+                    // Update the flag to indicate that points are displayed
+                    localStorage.setItem('pointsDisplayed', 'true');
                 } else {
                     console.error("No such document!");
                 }
@@ -183,8 +191,80 @@ document.getElementById('copy-button').addEventListener('click', async () => {
                 // Hide loading message
                 loadingMessage.style.display = 'none';
             }
-        }, 70000); // Delay of 1/10 seconds
+        }, 60000); // 60 seconds delay
     } catch (error) {
         console.error("Error processing click event:", error);
     }
 });
+
+// On page load, check if the data needs to be updated
+window.addEventListener('load', async () => {
+    try {
+        const lastUpdateTimestamp = localStorage.getItem('lastUpdateTimestamp');
+        const pointsDisplayed = localStorage.getItem('pointsDisplayed') === 'true';
+
+        if (!lastUpdateTimestamp) return;
+
+        const lastUpdateTime = new Date(lastUpdateTimestamp);
+        const currentTime = new Date();
+        const timeElapsed = currentTime - lastUpdateTime; // Time elapsed in milliseconds
+
+        // Define the threshold for refreshing the display
+        const refreshThreshold = 60000; // 60,000 milliseconds = 60 seconds
+
+        // Check if the page load is within the 60-second window
+        if (timeElapsed <= refreshThreshold) {
+            // If within the delay, display updated points if points are already displayed
+            if (pointsDisplayed) {
+                const userRef = doc(db, "users", userId);
+                const userSnapshot = await getDoc(userRef);
+                if (userSnapshot.exists()) {
+                    const userData = userSnapshot.data();
+                    const points = userData.points || 0;
+                    const shares = userData.shares || 0;
+                    document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
+                } else {
+                    console.error("No such document!");
+                }
+            } else {
+                // Continue waiting if points are not yet displayed
+                document.getElementById('loading-message').style.display = 'block';
+                setTimeout(async () => {
+                    try {
+                        const userRef = doc(db, "users", userId);
+                        const userSnapshot = await getDoc(userRef);
+                        if (userSnapshot.exists()) {
+                            const userData = userSnapshot.data();
+                            const points = userData.points || 0;
+                            const shares = userData.shares || 0;
+                            document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
+                            localStorage.setItem('pointsDisplayed', 'true');
+                        } else {
+                            console.error("No such document!");
+                        }
+                    } catch (error) {
+                        console.error("Error fetching updated data:", error);
+                    } finally {
+                        document.getElementById('loading-message').style.display = 'none';
+                    }
+                }, refreshThreshold - timeElapsed); // Continue from where it left off
+            }
+        } else {
+            // If the delay has passed, fetch and display updated points immediately
+            const userRef = doc(db, "users", userId);
+            const userSnapshot = await getDoc(userRef);
+            if (userSnapshot.exists()) {
+                const userData = userSnapshot.data();
+                const points = userData.points || 0;
+                const shares = userData.shares || 0;
+                document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
+                localStorage.setItem('pointsDisplayed', 'true');
+            } else {
+                console.error("No such document!");
+            }
+        }
+    } catch (error) {
+        console.error("Error processing page load:", error);
+    }
+});
+
