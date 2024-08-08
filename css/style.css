@@ -5,7 +5,7 @@
     font-family:"Roboto",sans-serif;
 }
 .container {
-    background: white; /* White with 80% opacity */
+    background: rgba(255, 255, 255, 0.738); /* White with 80% opacity */
     width: 450px;
     padding: 1.5rem;
     margin: 50px auto;
