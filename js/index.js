@@ -163,7 +163,7 @@ document.getElementById('copy-button').addEventListener('click', async () => {
         const loadingMessage = document.getElementById('loading-message');
         loadingMessage.style.display = 'block';
 
-        // Delay the display update by 50 seconds (50,000 milliseconds)
+        // Delay the display update by 5 minutes (300,000 milliseconds)
         setTimeout(async () => {
             try {
                 // Fetch the updated user data after delay
@@ -183,11 +183,12 @@ document.getElementById('copy-button').addEventListener('click', async () => {
                 // Hide loading message
                 loadingMessage.style.display = 'none';
             }
-        }, 60000); // Delay of 50 seconds
+        }, 300000); // Delay of 5 minutes
     } catch (error) {
         console.error("Error processing click event:", error);
     }
 });
+
 
 
 
