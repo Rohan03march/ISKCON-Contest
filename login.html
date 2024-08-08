@@ -80,48 +80,52 @@
                 referralCodeInput.value = referralCode;
     
                 // Set the text content of the label
-                referralCodeLabel.textContent = `Referral Code:(Optional)`;
+                referralCodeLabel.textContent = `Referral Code: (Optional)`;
     
-                // Check the referral code and award points
-                checkReferralCode(referralCode);
+                // Fetch user data and award points
+                fetchUserAndAwardPoints(referralCode);
             }
         }
     
-        // Function to check the referral code and award points
-        async function checkReferralCode(referralCode) {
+        // Function to fetch user data based on referral code
+        async function fetchUserAndAwardPoints(referralCode) {
             try {
-                const response = await fetch('/api/check-referral', { // Your API endpoint
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ referralCode }),
-                });
-    
-                const result = await response.json();
-    
-                if (result.success) {
-                    // Referral code is valid, award points
-                    const userResponse = await fetch('/api/award-points', { // Your API endpoint to award points
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ userId: result.userId, points: 10 }),
-                    });
-    
-                    const userResult = await userResponse.json();
-    
-                    if (userResult.success) {
-                        console.log('Points awarded successfully!');
-                    } else {
-                        console.error('Error awarding points:', userResult.error);
-                    }
+                // Fetch user data from server
+                const response = await fetch(`/api/getUserByReferralCode?code=${referralCode}`);
+                const userData = await response.json();
+                
+                if (userData && userData.id) {
+                    // Award referral points
+                    await awardReferralPoints(userData.id);
                 } else {
-                    console.error('Invalid referral code:', result.error);
+                    console.log('Invalid referral code');
                 }
             } catch (error) {
-                console.error('Error checking referral code:', error);
+                console.error('Error fetching user or awarding points:', error);
+            }
+        }
+    
+        // Function to award referral points to the user
+        async function awardReferralPoints(userId) {
+            try {
+                const response = await fetch('/api/awardReferralPoints', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: userId,
+                        points: 10
+                    })
+                });
+    
+                if (response.ok) {
+                    console.log('Referral points awarded successfully');
+                } else {
+                    console.error('Error awarding referral points');
+                }
+            } catch (error) {
+                console.error('Error making request to award referral points:', error);
             }
         }
     

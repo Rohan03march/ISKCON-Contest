@@ -264,7 +264,7 @@
       <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends And Increase The Chance Of Winning!</h3>
       <div class="container">
         <textarea id="text-box" readonly></textarea>
-        <button id="copy-Button">Share</button>
+        <button id="copy-button">Share</button>
         <script>
             // Get the user ID and referral code from localStorage
             var userId = localStorage.getItem('loggedInUserId');
@@ -282,7 +282,7 @@
             }
         
             // Copy button functionality
-            document.getElementById('copy-Button').addEventListener('click', function() {
+            document.getElementById('copy-button').addEventListener('click', function() {
                 // Get the textarea element
                 var textBox = document.getElementById('text-box');
                 
@@ -318,7 +318,7 @@
           height: 67px; /* Adjust height based on content */
       }
 
-      #copy-Button {
+      #copy-button {
           padding: 10px;
           font-size: 16px;
           color: #fff;
@@ -332,11 +332,11 @@
           margin-top: 10px; /* Add space between textarea and button */
       }
 
-      #copy-Button:hover {
+      #copy-button:hover {
           background-color: #0056b3;
       }
 
-      #copy-Button:focus {
+      #copy-button:focus {
           outline: none;
       }
 
@@ -347,7 +347,7 @@
               min-height: 40px; /* Adjust based on content */
           }
 
-          #copy-Button {
+          #copy-button {
               font-size: 14px;
               padding: 8px;
               margin-top: 10px;
