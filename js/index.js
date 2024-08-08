@@ -188,3 +188,25 @@ document.getElementById('copy-button').addEventListener('click', async () => {
         console.error("Error processing click event:", error);
     }
 });
+
+
+
+async function updateReferralPoints(referralCode, userDocRef) {
+    if (!referralCode) return; // Exit if there's no referral code
+
+    // Reference to the referrer's document
+    const referrerDocRef = doc(db, "users", referralCode);
+    const referrerSnapshot = await getDoc(referrerDocRef);
+
+    if (referrerSnapshot.exists()) {
+        // Update referrer's points
+        await updateDoc(referrerDocRef, {
+            referral_points: referrerSnapshot.data().points + 10
+        });
+        
+        // Update new user's points
+        await updateDoc(userDocRef, {
+            referral_points: (await getDoc(userDocRef)).data().points + 10
+        });
+    }
+}

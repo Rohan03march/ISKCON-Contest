@@ -31,7 +31,6 @@ const generateReferralCode = () => {
     return 'REF' + Math.random().toString(36).substring(2, 8).toUpperCase();
 }
 
-// Sign Up Event Listener
 const signUp = document.getElementById('submitSignUp');
 signUp.addEventListener('click', async (event) => {
     event.preventDefault();
@@ -59,23 +58,32 @@ signUp.addEventListener('click', async (event) => {
             points: 0,
             referredBy: referralCode // Store the referral code here
         };
-        const docRef = doc(db, "users", user.uid);
-        await setDoc(docRef, userData);
 
-        // Check if referral code exists
-        if (referralCode) {
-            const referrerDoc = doc(db, "users", referralCode);
-            const referrerSnapshot = await getDoc(referrerDoc);
+        async function updateReferralPoints(referralCode, userDocRef) {
+            if (!referralCode) return; // Exit if there's no referral code
+        
+            // Reference to the referrer's document
+            const referrerDocRef = doc(db, "users", referralCode);
+            const referrerSnapshot = await getDoc(referrerDocRef);
+        
             if (referrerSnapshot.exists()) {
-                // Update points for both referrer and new user
-                await updateDoc(referrerDoc, {
-                    points: referrerSnapshot.data().points + 10
+                // Update referrer's points
+                await updateDoc(referrerDocRef, {
+                    referral_points: referrerSnapshot.data().points + 10
                 });
-                await updateDoc(docRef, {
-                    points: userData.points + 10
+                
+                // Update new user's points
+                await updateDoc(userDocRef, {
+                    referral_points: (await getDoc(userDocRef)).data().points + 10
                 });
             }
         }
+        
+        const docRef = doc(db, "users", user.uid);
+        await setDoc(docRef, userData);
+
+        // Update points if referral code exists
+        await updateReferralPoints(referralCode, docRef);
 
         showMessage('Account Created Successfully', 'signUpMessage');
         window.location.href = 'login.html';
@@ -84,6 +92,10 @@ signUp.addEventListener('click', async (event) => {
         showMessage('The User already exists', 'signUpMessage');
     }
 });
+
+
+
+
 
 
 

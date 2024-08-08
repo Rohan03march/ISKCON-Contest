@@ -61,6 +61,33 @@
         <div class="AHA">Already Have an Account?</div>
         <button id="signInButton">Sign In</button>
     </div>
+
+    <script>
+        // Function to get URL parameters
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Function to populate the referral code field and label
+function populateReferralCode() {
+    const referralCode = getQueryParam('referralCode'); // Extract the referralCode from URL
+    if (referralCode) {
+        const referralCodeInput = document.getElementById('referralCode');
+        const referralCodeLabel = document.querySelector('label[for="referralCode"]');
+        
+        // Set the value of the input field
+        referralCodeInput.value = referralCode;
+
+        // Set the text content of the label
+        referralCodeLabel.textContent = `Referral Code: ${referralCode} (Optional)`;
+    }
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', populateReferralCode);
+
+    </script>
 </div>
 
 
