@@ -64,30 +64,71 @@
 
     <script>
         // Function to get URL parameters
-function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-}
-
-// Function to populate the referral code field and label
-function populateReferralCode() {
-    const referralCode = getQueryParam('referralCode'); // Extract the referralCode from URL
-    if (referralCode) {
-        const referralCodeInput = document.getElementById('referralCode');
-        const referralCodeLabel = document.querySelector('label[for="referralCode"]');
-        
-        // Set the value of the input field
-        referralCodeInput.value = referralCode;
-
-        // Set the text content of the label
-        referralCodeLabel.textContent = `Referral Code:(Optional)`;
-    }
-}
-
-// Call the function when the page loads
-document.addEventListener('DOMContentLoaded', populateReferralCode);
-
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+    
+        // Function to populate the referral code field and label
+        function populateReferralCode() {
+            const referralCode = getQueryParam('referralCode'); // Extract the referralCode from URL
+            if (referralCode) {
+                const referralCodeInput = document.getElementById('referralCode');
+                const referralCodeLabel = document.querySelector('label[for="referralCode"]');
+                
+                // Set the value of the input field
+                referralCodeInput.value = referralCode;
+    
+                // Set the text content of the label
+                referralCodeLabel.textContent = `Referral Code:(Optional)`;
+    
+                // Check the referral code and award points
+                checkReferralCode(referralCode);
+            }
+        }
+    
+        // Function to check the referral code and award points
+        async function checkReferralCode(referralCode) {
+            try {
+                const response = await fetch('/api/check-referral', { // Your API endpoint
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ referralCode }),
+                });
+    
+                const result = await response.json();
+    
+                if (result.success) {
+                    // Referral code is valid, award points
+                    const userResponse = await fetch('/api/award-points', { // Your API endpoint to award points
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ userId: result.userId, points: 10 }),
+                    });
+    
+                    const userResult = await userResponse.json();
+    
+                    if (userResult.success) {
+                        console.log('Points awarded successfully!');
+                    } else {
+                        console.error('Error awarding points:', userResult.error);
+                    }
+                } else {
+                    console.error('Invalid referral code:', result.error);
+                }
+            } catch (error) {
+                console.error('Error checking referral code:', error);
+            }
+        }
+    
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', populateReferralCode);
     </script>
+    
 </div>
 
 
