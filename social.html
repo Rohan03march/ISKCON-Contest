@@ -266,37 +266,64 @@
         <textarea id="text-box" readonly></textarea>
         <button id="copy-button">Share</button>
         <script>
-            // Get the user ID and referral code from localStorage
-            var userId = localStorage.getItem('loggedInUserId');
-            var referralCode = localStorage.getItem('referralCode');
-            
-            // If user ID or referral code is not available, handle it here
-            if (!userId || !referralCode) {
-                console.error('User ID or Referral Code not found in localStorage');
-                document.getElementById('text-box').value = 'User ID or Referral Code not found';
-            } else {
-                // Generate the URL with the user ID and referral code
-                var message = `https://iskcon-contest.netlify.app/login/?referralCode=${referralCode}`;
-                // Set the text area content
-                document.getElementById('text-box').value = message;
-            }
-        
-            // Copy button functionality
-            document.getElementById('copy-button').addEventListener('click', function() {
-                // Get the textarea element
-                var textBox = document.getElementById('text-box');
-                
-                // Select the text in the textarea
-                textBox.select();
-                textBox.setSelectionRange(0, 99999); // For mobile devices
-        
-                // Copy the text to the clipboard
-                document.execCommand('copy');
-        
-                // Alert the user
-                alert('Text copied to clipboard!');
-            });
-        </script>
+          // Get the user ID and referral code from localStorage
+          var userId = localStorage.getItem('loggedInUserId');
+          var referralCode = localStorage.getItem('referralCode');
+          
+          // If user ID or referral code is not available, handle it here
+          if (!userId || !referralCode) {
+              console.error('User ID or Referral Code not found in localStorage');
+              document.getElementById('text-box').value = 'User ID or Referral Code not found';
+          } else {
+              // Generate the URL with the user ID and referral code
+              var message = `https://iskcon-contest.netlify.app/login/?referralCode=${referralCode}`;
+              // Set the text area content
+              document.getElementById('text-box').value = message;
+          }
+      
+          document.getElementById('copy-button').addEventListener('click', async () => {
+              try {
+                  if (!userId) return;
+      
+                  // Notify the user that the message is copied
+                  alert("Message copied!");
+      
+                  // Immediately update shares in the database
+                  const userRef = doc(db, "users", userId);
+                  await updateDoc(userRef, { shares: increment(10) });
+                  console.log("Shares updated in the database.");
+      
+                  // Show loading message
+                  const loadingMessage = document.getElementById('loading-message');
+                  loadingMessage.style.display = 'block';
+      
+                  // Delay the display update by 3 minutes (180,000 milliseconds)
+                  setTimeout(async () => {
+                      try {
+                          // Fetch the updated user data after delay
+                          const userSnapshot = await getDoc(userRef);
+                          if (userSnapshot.exists()) {
+                              const userData = userSnapshot.data();
+                              // Update the HTML to show the new share count and points
+                              const points = userData.points || 0;
+                              const shares = userData.shares || 0;
+                              document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
+                          } else {
+                              console.error("No such document!");
+                          }
+                      } catch (error) {
+                          console.error("Error fetching updated data:", error);
+                      } finally {
+                          // Hide loading message
+                          loadingMessage.style.display = 'none';
+                      }
+                  }, 150000); // 180,000 milliseconds = 3 minutes
+              } catch (error) {
+                  console.error("Error processing click event:", error);
+              }
+          });
+      </script>
+      
     <style>
       .container {
           max-width: 600px;
