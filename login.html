@@ -9,7 +9,7 @@
 <body>
     <style>
         body { 
-            background-image: url('img/360_F_240245718_jywhCTQ6jdEdbLXDHA6sZgLTAlhVczhC.webp');
+            background-image: url('assets/img/indexback.png');
             background-size: cover; /* Ensure the image covers the entire viewport */
             background-position: center center; /* Center the image */
             background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -20,58 +20,48 @@
             width: 100vw; /* Ensure the body takes the full viewport width */
         }
     </style>
-    <div class="container" id="signup" style="display:none;">
-        <h1 class="form-title">Register</h1>
-        <form method="post" action="">
-            <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
-            <div class="input-group">
-                <i class="fas fa-user" style="color: rgb(10, 10, 133);"></i>
-                <input type="text" id="fName" placeholder="First Name" required>
-                <label for="fName">First Name</label>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-user" style="color: rgb(10, 10, 133);"></i>
-                <input type="text" id="lName" placeholder="Last Name" required>
-                <label for="lName">Last Name</label>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-phone" style="color: rgb(10, 10, 133);"></i>
-                <input type="text" id="phoneNo" placeholder="Phone No" required>
-                <label for="phoneNo">Phone No</label>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-envelope" style="color: rgb(10, 10, 133);"></i>
-                <input type="email" id="rEmail" placeholder="Email" required>
-                <label for="rEmail">Email</label>
-            </div>
-            <div class="input-group">
-                <i class="fas fa-lock" style="color: rgb(10, 10, 133);"></i>
-                <input type="password" id="rPassword" placeholder="Password" required>
-                <label for="rPassword">Password</label>
-            </div>
-            <!-- Added Referral Code Field -->
-            <div class="input-group">
-                <i class="fas fa-gift" style="color: rgb(10, 10, 133);"></i>
-                <input type="text" id="referralCode" placeholder="Referral Code (Optional)">
-                <label for="referralCode">Referral Code (Optional)</label>
-            </div>
-            <button class="btn" id="submitSignUp">Sign Up</button>
-        </form>
-        <div class="links">
-            <div class="AHA">Already Have an Account?</div>
-            <button id="signInButton">Sign In</button>
+  <div class="container" id="signup" style="display:none;">
+    <h1 class="form-title">Register</h1>
+    <form method="post" action="">
+        <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="fName" placeholder="First Name" required>
+            <label for="fName">First Name</label>
         </div>
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="lName" placeholder="Last Name" required>
+            <label for="lName">Last Name</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-phone"></i>
+            <input type="text" id="phoneNo" placeholder="Phone No" required>
+            <label for="phoneNo">Phone No</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="rEmail" placeholder="Email" required>
+            <label for="rEmail">Email</label>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="rPassword" placeholder="Password" required>
+            <label for="rPassword">Password</label>
+        </div>
+        <!-- Added Referral Code Field -->
+        <div class="input-group">
+            <i class="fas fa-gift"></i>
+            <input type="text" id="referralCode" placeholder="Referral Code (Optional)">
+            <label for="referralCode">Referral Code (Optional)</label>
+        </div>
+        <button class="btn" id="submitSignUp">Sign Up</button>
+    </form>
+    <div class="links">
+        <div class="AHA">Already Have an Account?</div>
+        <button id="signInButton">Sign In</button>
     </div>
-
-    <script>
-        // When the page loads, populate the referral code field
-        window.onload = function() {
-            var referralCode = localStorage.getItem('referrer_uid');
-            if (referralCode) {
-                document.getElementById('referralCode').value = referralCode;
-            }
-        };
-    </script>
+</div>
 
 
   <div class="container" id="signIn">
@@ -80,12 +70,12 @@
           <div id="signInMessage" class="messageDiv" style="display:none;"></div>
 
           <div class="input-group">
-              <i class="fas fa-envelope" style="color: rgb(10, 10, 133);"></i>
+              <i class="fas fa-envelope"></i>
               <input type="email"  id="email" placeholder="Email" required>
               <label for="email">Email</label>
           </div>
           <div class="input-group">
-              <i class="fas fa-lock" style="color: rgb(10, 10, 133);"></i>
+              <i class="fas fa-lock"></i>
             <input type="password" id="password"  placeholder="Password" required>
               <label for="password">Password</label>
           </div>
