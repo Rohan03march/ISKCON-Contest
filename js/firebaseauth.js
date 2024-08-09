@@ -122,7 +122,7 @@ signIn.addEventListener('click', async (event) => {
             localStorage.setItem('loggedInUserId', user.uid);
             localStorage.setItem('referralCode', referralCode);
 
-            window.location.href = 'questions.html';
+            window.location.href = 'index2.html';
         } else {
             console.error('No such document!');
             showMessage('User document does not exist in Firestore', 'signInMessage');

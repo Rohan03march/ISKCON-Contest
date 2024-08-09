@@ -105,7 +105,7 @@ a:focus {
 /*header section*/
 .hero_area {
   position: relative;
-  background-color: #020230;
+  background: linear-gradient(to right, #360039, #6c0438, #ca5169);
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -481,7 +481,7 @@ a:focus {
 }
 
 .server_section {
-  background: linear-gradient(110deg, transparent 25%, #020230 25%);
+  background: linear-gradient(110deg, transparent 25%, #6c0438 50%);
   padding: 55px 0;
   color: #ffffff;
 }
@@ -1021,7 +1021,7 @@ a:focus {
 /* footer section*/
 .footer_section {
   position: relative;
-  background-color: #020230;
+  background: linear-gradient(to right, #360039, #6c0438, #ca5169);
   text-align: center;
 }
 
