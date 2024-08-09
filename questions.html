@@ -549,16 +549,20 @@
         // Hide the 'end quiz' button immediately
         document.getElementById('end-quiz-btn').style.display = 'none';
     
-        // Use setTimeout to delay the display of the 'sm' section by 5 seconds (5000 milliseconds)
-        setTimeout(() => {
-            // Display the 'sm' section after 5 seconds
-            document.getElementById('sm').style.display = 'block';
-            document.getElementById('questions-container').style.display = 'none';
-            document.getElementById('try-again-btn').style.display = 'none';
-            document.getElementById('result').style.display = 'none';
-            document.getElementById('Q/A').style.display = 'none'
-        }, 5000);
+        // Only proceed with the Firestore update if total points are 100 or more
+        if (totalPoints >= 100) {
+            setTimeout(() => {
+                document.getElementById('sm').style.display = 'block';
+                document.getElementById('try-again-btn').style.display = 'none';
+                document.getElementById('result').style.display = 'none';
+                document.getElementById('Q/A').style.display = 'none';
+            }, 5000);
+        } else {
+            // Display a message or handle the case where points are less than 100
+            document.getElementById('result').textContent += ' Points are less than 100, try Again.';
+        }
     }
+    
     
     
       function endQuiz() {

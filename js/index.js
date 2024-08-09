@@ -103,15 +103,16 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         if (userSnap.exists()) {
             const userData = userSnap.data();
             const currentPoints = userData.Points || 0;
+            const totalPoints = userRoundsPoints.reduce((total, roundPoints) => total + roundPoints, 0);
 
-            if (currentPoints <= 100) {
+            if (totalPoints >= 100) {
                 // Calculate new points, ensuring it does not exceed 100
-                const newPoints = Math.min(currentPoints + 100, 100);
-                
+                const newPoints = Math.min(currentPoints + totalPoints, 100);
+
                 await updateDoc(userRef, { AnswerPoints: newPoints });
                 console.log(`Points updated to ${newPoints}`);
             } else {
-                console.log("Points already at maximum.");
+                console.log("Total points are less than 100. No update.");
             }
         } else {
             console.log("User does not exist.");
@@ -120,6 +121,7 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
         console.error("Error updating document:", error);
     }
 });
+
 
 
 
