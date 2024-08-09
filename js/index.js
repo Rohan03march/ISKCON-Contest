@@ -259,18 +259,18 @@ document.getElementById('copy-button').addEventListener('click', async () => {
         const loadingMessage = document.getElementById('loading-message');
         loadingMessage.style.display = 'block';
 
-        // Delay the database update by 10 minutes (600,000 milliseconds)
+        // Delay the database update by 5 minutes (300,000 milliseconds)
         setTimeout(async () => {
             try {
-                // Immediately update shares in the database
+                // Update shares in the database
                 const userRef = doc(db, "users", userId);
                 await updateDoc(userRef, { shares: increment(10) });
                 console.log("Shares updated in the database.");
 
-                // Delay the display update by 10 seconds (10,000 milliseconds)
+                // Delay the display update by 10 seconds (10,000 milliseconds) after the database update
                 setTimeout(async () => {
                     try {
-                        // Fetch the updated user data after the additional delay
+                        // Fetch the updated user data after the delay
                         const userSnapshot = await getDoc(userRef);
                         if (userSnapshot.exists()) {
                             const userData = userSnapshot.data();
@@ -292,7 +292,7 @@ document.getElementById('copy-button').addEventListener('click', async () => {
             } catch (error) {
                 console.error("Error updating database:", error);
             }
-        }, 600000); // Delay of 10 minutes before database update
+        }, 300000); // Initial delay of 5 minutes before database update
 
     } catch (error) {
         console.error("Error processing click event:", error);
