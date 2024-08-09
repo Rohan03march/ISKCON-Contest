@@ -248,43 +248,57 @@ document.getElementById('copy-button').addEventListener('click', async () => {
     try {
         if (!userId) return;
 
+        // Copy the text from the textarea to the clipboard
+        const textToCopy = document.getElementById('text-box').value;
+        await navigator.clipboard.writeText(textToCopy);
+
         // Notify the user that the message is copied
         alert("Message copied!");
-
-        // Immediately update shares in the database
-        const userRef = doc(db, "users", userId);
-        await updateDoc(userRef, { shares: increment(10) });
-        console.log("Shares updated in the database.");
 
         // Show loading message
         const loadingMessage = document.getElementById('loading-message');
         loadingMessage.style.display = 'block';
 
-        // Delay the display update by 5 minutes (300,000 milliseconds)
+        // Delay the database update by 10 minutes (600,000 milliseconds)
         setTimeout(async () => {
             try {
-                // Fetch the updated user data after delay
-                const userSnapshot = await getDoc(userRef);
-                if (userSnapshot.exists()) {
-                    const userData = userSnapshot.data();
-                    // Update the HTML to show the new share count and points
-                    const points = userData.points || 0;
-                    const shares = userData.shares || 0;
-                    document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
-                } else {
-                    console.error("No such document!");
-                }
+                // Immediately update shares in the database
+                const userRef = doc(db, "users", userId);
+                await updateDoc(userRef, { shares: increment(10) });
+                console.log("Shares updated in the database.");
+
+                // Delay the display update by 10 seconds (10,000 milliseconds)
+                setTimeout(async () => {
+                    try {
+                        // Fetch the updated user data after the additional delay
+                        const userSnapshot = await getDoc(userRef);
+                        if (userSnapshot.exists()) {
+                            const userData = userSnapshot.data();
+                            // Update the HTML to show the new share count and points
+                            const points = userData.points || 0;
+                            const shares = userData.shares || 0;
+                            document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
+                        } else {
+                            console.error("No such document!");
+                        }
+                    } catch (error) {
+                        console.error("Error fetching updated data:", error);
+                    } finally {
+                        // Hide loading message
+                        loadingMessage.style.display = 'none';
+                    }
+                }, 10000); // Delay of 10 seconds after the database update
+
             } catch (error) {
-                console.error("Error fetching updated data:", error);
-            } finally {
-                // Hide loading message
-                loadingMessage.style.display = 'none';
+                console.error("Error updating database:", error);
             }
-        }, 300000); // Delay of 5 minutes
+        }, 600000); // Delay of 10 minutes before database update
+
     } catch (error) {
         console.error("Error processing click event:", error);
     }
 });
+
 
 
 
