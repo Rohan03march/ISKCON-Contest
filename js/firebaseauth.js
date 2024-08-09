@@ -59,26 +59,6 @@ signUp.addEventListener('click', async (event) => {
             referredBy: referralCode // Store the referral code here
         };
 
-        async function updateReferralPoints(referralCode, userDocRef) {
-            if (!referralCode) return; // Exit if there's no referral code
-        
-            // Reference to the referrer's document
-            const referrerDocRef = doc(db, "users", referralCode);
-            const referrerSnapshot = await getDoc(referrerDocRef);
-        
-            if (referrerSnapshot.exists()) {
-                // Update referrer's points
-                await updateDoc(referrerDocRef, {
-                    referral_points: referrerSnapshot.data().points + 10
-                });
-                
-                // Update new user's points
-                await updateDoc(userDocRef, {
-                    referral_points: (await getDoc(userDocRef)).data().points + 10
-                });
-            }
-        }
-        
         const docRef = doc(db, "users", user.uid);
         await setDoc(docRef, userData);
 
@@ -92,6 +72,7 @@ signUp.addEventListener('click', async (event) => {
         showMessage('The User already exists', 'signUpMessage');
     }
 });
+
 
 
 
@@ -180,3 +161,24 @@ service cloud.firestore {
   }
 }
 */ 
+
+
+async function updateReferralPoints(referralCode, userDocRef) {
+    if (!referralCode) return; // Exit if there's no referral code
+
+    // Reference to the referrer's document
+    const referrerDocRef = doc(db, "users", referralCode);
+    const referrerSnapshot = await getDoc(referrerDocRef);
+
+    if (referrerSnapshot.exists()) {
+        // Update referrer's points
+        const referrerData = referrerSnapshot.data();
+        await setDoc(referrerDocRef, {
+            points: referrerData.points ? referrerData.points + 10 : 10
+        }, { merge: true });
+        
+        console.log('Referral points awarded successfully');
+    } else {
+        console.log('Invalid referral code');
+    }
+}
