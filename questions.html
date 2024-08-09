@@ -386,12 +386,23 @@
     
   </style>
 
-  <div class="container">
+  <div class="container" id="con">
     <div class="quiz-box">
       <div id="questions-container"></div>
       <div class="button-container">
         <button class="button" onclick="tryAgain()" id="try-again-btn" style="display:none;">Try Again</button>
         <button class="button" onclick="endQuiz()" id="end-quiz-btn" style="display: none;">End Quiz</button>
+        <button class="button" onclick="submitQuiz()" id="submit-btn" style="display: none;">Submit</button>
+        <style>
+          #submit-btn {
+            background-color: #007bff;
+            color: white;
+          }
+          
+          #submit-btn:hover {
+            background-color: #0056b3;
+          }
+        </style>
       </div>
       <div class="score-container">
         <div class="points" id="points">Points: 0</div>
@@ -400,172 +411,184 @@
     </div>
     <!-- Notification message -->
     <div id="notification" class="notification">Congratulations! You reached 100 points!</div>
-  </div>
-
-  <script>
-    const questions = [
-      { question: 'Krishna was born in prison and taken by Vasudeva to which place?', answer: 'Gokul', options: ['Mathura', 'Gokul', 'Vrindavan', 'Nandagav'] },
-      { question: 'Lord Krishna had how many wives?', answer: '16,008', options: ['16,000', '16,008', '16,800', '16,108'] },
-      { question: 'Who witnessed galaxies inside the mouth of infant Krishna?', answer: 'Yashoda', options: ['Devaki', 'Rohini', 'Yashoda', 'Radha'] },
-      { question: 'Who sent devastating rainfall to Vrindavan?', answer: 'Indra', options: ['Indra', 'Shiva', 'Brahma', 'Varuna'] },
-      { question: 'Which hill did Lord Krishna lift?', answer: 'Govardhana', options: ['Sanjeevini', 'Vindhya', 'Pravarshana', 'Govardhana'] },
-      { question: 'What is the name of Krishna\'s sister?', answer: 'Subhadra', options: ['Subhadra', 'Uttara', 'Satyabhama', 'Rohini'] },
-      { question: 'Which river is connected to Lord Krishna\'s pastimes?', answer: 'Yamuna', options: ['Ganga', 'Yamuna', 'Saraswati', 'Kaveri'] },
-      { question: 'Who wrote the famous book "Krishna:The Supreme Personality of Godhead"?', answer: 'Srila Prabhupada', options: ['Bhaktivinod Thakur', 'Srila Prabhupada', 'George Harrison', 'Allen Ginsberg'] },
-      { question: 'When Krishna accepts food, what is it called?', answer: 'Prasadam', options: ['Prasadam', 'Teertha', 'Bhoga', 'Naivedya'] },
-      { question: 'What is the name of Krishna\'s flute?', answer: 'All the above', options: ['Venu', 'Murli', 'Vamsi', 'All the above'] }
-    ];
-  
-    let points = 0;
-    let currentQuestionIndex = 0;
-    let roundAttempts = 0;
-    const maxRounds = 5;
-    let userRoundsPoints = [];
-  
-    function loadQuestions() {
-      if (roundAttempts >= maxRounds) {
-        // Hide Q/A section and redirect to indexws.html
-        document.getElementById('Q/A').style.display = 'none';
-        window.location.href = 'social.html';
-        return;
-      }
-  
-      const container = document.getElementById('questions-container');
-      container.innerHTML = ''; // Clear previous questions
-  
-      questions.forEach((q, index) => {
-        const questionContainer = document.createElement('div');
-        questionContainer.classList.add('question-container');
-        
-        const questionElement = document.createElement('div');
-        questionElement.textContent = `${index + 1}. ${q.question}`;
-        questionElement.classList.add('question');
-        questionContainer.appendChild(questionElement);
-  
-        const optionsContainer = document.createElement('div');
-        optionsContainer.classList.add('options');
-        optionsContainer.setAttribute('data-question-index', index); // Set index for tracking
-  
-        q.options.forEach(option => {
-          const optionElement = document.createElement('div');
-          optionElement.textContent = option;
-          optionElement.classList.add('option');
-          optionElement.addEventListener('click', () => selectOption(optionElement, option, q.answer, index));
-          optionsContainer.appendChild(optionElement);
-        });
-  
-        questionContainer.appendChild(optionsContainer);
-        container.appendChild(questionContainer);
-      });
-  
-      document.getElementById('result').textContent = '';
-      document.getElementById('try-again-btn').style.display = 'none';
-      document.getElementById('end-quiz-btn').style.display = 'none';
-      document.getElementById('points').textContent = 'Points: ' + points;
-    }
-  
-    async function selectOption(element, selectedOption, correctAnswer, questionIndex) {
-      const optionsContainer = document.querySelector(`.options[data-question-index='${questionIndex}']`);
-      const allOptions = optionsContainer.querySelectorAll('.option');
+    <script>
+      const questions = [
+        { question: 'Krishna was born in prison and taken by Vasudeva to which place?', answer: 'Gokul', options: ['Mathura', 'Gokul', 'Vrindavan', 'Nandagav'] },
+        { question: 'Lord Krishna had how many wives?', answer: '16,008', options: ['16,000', '16,008', '16,800', '16,108'] },
+        { question: 'Who witnessed galaxies inside the mouth of infant Krishna?', answer: 'Yashoda', options: ['Devaki', 'Rohini', 'Yashoda', 'Radha'] },
+        { question: 'Who sent devastating rainfall to Vrindavan?', answer: 'Indra', options: ['Indra', 'Shiva', 'Brahma', 'Varuna'] },
+        { question: 'Which hill did Lord Krishna lift?', answer: 'Govardhana', options: ['Sanjeevini', 'Vindhya', 'Pravarshana', 'Govardhana'] },
+        { question: 'What is the name of Krishna\'s sister?', answer: 'Subhadra', options: ['Subhadra', 'Uttara', 'Satyabhama', 'Rohini'] },
+        { question: 'Which river is connected to Lord Krishna\'s pastimes?', answer: 'Yamuna', options: ['Ganga', 'Yamuna', 'Saraswati', 'Kaveri'] },
+        { question: 'Who wrote the famous book "Krishna:The Supreme Personality of Godhead"?', answer: 'Srila Prabhupada', options: ['Bhaktivinod Thakur', 'Srila Prabhupada', 'George Harrison', 'Allen Ginsberg'] },
+        { question: 'When Krishna accepts food, what is it called?', answer: 'Prasadam', options: ['Prasadam', 'Teertha', 'Bhoga', 'Naivedya'] },
+        { question: 'What is the name of Krishna\'s flute?', answer: 'All the above', options: ['Venu', 'Murli', 'Vamsi', 'All the above'] }
+      ];
     
-      // Disable all options to prevent multiple clicks
-      allOptions.forEach(opt => {
-        opt.classList.add('disabled'); // Add a class to visually indicate that the option is disabled
-        opt.removeEventListener('click', () => selectOption(opt, selectedOption, correctAnswer, questionIndex)); // Remove event listener
-      });
+      let points = 0;
+      let currentQuestionIndex = 0;
+      let roundAttempts = 0;
+      const maxRounds = 5;
+      let userRoundsPoints = [];
+      let questionsAnswered = 0;
     
-      // Apply styles to the selected option
-      if (selectedOption === correctAnswer) {
-        element.classList.add('correct'); // Green for correct
-        points += 10;
-        document.getElementById('result').textContent = 'Correct!';
-        document.getElementById('result').style.color = 'green';
-      } else {
-        element.classList.add('incorrect'); // Red for incorrect
-        document.getElementById('result').textContent = 'Incorrect.';
-        document.getElementById('result').style.color = 'red';
-      }
-    
-      document.getElementById('points').textContent = 'Points: ' + points;
-    
-      // Check if points have reached 100
-      if (points >= 100) {
-        const notification = document.getElementById('notification');
-        notification.style.display = 'block';
-        
-        // Update points in the Firestore database
-        try {
-          if (!userId) return;
-          const userRef = doc(db, "users", userId);
-          await updateDoc(userRef, { points: 100 });
-          console.log("Points updated in the database.");
-        } catch (error) {
-          console.error("Error updating points in the database:", error);
-        }
-    
-        setTimeout(() => {
-          notification.style.display = 'none';
-          // Redirect to indexws.html after the notification
+      function loadQuestions() {
+        if (roundAttempts >= maxRounds) {
+          document.getElementById('Q/A').style.display = 'none';
           window.location.href = 'social.html';
-        }, 2000); // Show the notification for 2 seconds
-        return;
-      }
-    
-      currentQuestionIndex++;
-    
-      // Move to the next question or end the round if all questions are answered
-      if (currentQuestionIndex >= questions.length) {
-        endRound();
-      }
-    }
-    
-  
-    function endRound() {
-      userRoundsPoints.push(points);
-  
-      roundAttempts++;
-      currentQuestionIndex = 0;
-      points = 0;
-  
-      const isFinalRound = roundAttempts >= maxRounds;
-      const totalPoints = userRoundsPoints.reduce((total, roundPoints) => total + roundPoints, 0);
-      const hasReached100Points = totalPoints >= 100;
-  
-      document.getElementById('questions-container').style.display = 'none';
-      document.getElementById('result').textContent = `Round ${roundAttempts} completed! You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
-      document.getElementById('try-again-btn').style.display = isFinalRound ? 'none' : 'inline';
-  
-      if (isFinalRound) {
-        if (hasReached100Points) {
-          document.getElementById('end-quiz-btn').style.display = 'inline'; // Show "End Quiz" button
-        } else {
-          document.getElementById('end-quiz-btn').style.display = 'none'; // Hide "End Quiz" button
+          return;
         }
-      }
-    }
-  
-    function endQuiz() {
-      document.getElementById('Q/A').style.display = 'none';
-      window.location.href = 'social.html';
-    }
-  
-    function tryAgain() {
-      if (roundAttempts < maxRounds) {
-        currentQuestionIndex = 0;
-        points = 0;
-        document.getElementById('points').textContent = 'Points: ' + points;
-        document.getElementById('questions-container').style.display = 'block';
+    
+        const container = document.getElementById('questions-container');
+        container.innerHTML = '';
+    
+        questions.forEach((q, index) => {
+          const questionContainer = document.createElement('div');
+          questionContainer.classList.add('question-container');
+          
+          const questionElement = document.createElement('div');
+          questionElement.textContent = `${index + 1}. ${q.question}`;
+          questionElement.classList.add('question');
+          questionContainer.appendChild(questionElement);
+    
+          const optionsContainer = document.createElement('div');
+          optionsContainer.classList.add('options');
+          optionsContainer.setAttribute('data-question-index', index);
+    
+          q.options.forEach(option => {
+            const optionElement = document.createElement('div');
+            optionElement.textContent = option;
+            optionElement.classList.add('option');
+            optionElement.addEventListener('click', () => selectOption(optionElement, option, q.answer, index));
+            optionsContainer.appendChild(optionElement);
+          });
+    
+          questionContainer.appendChild(optionsContainer);
+          container.appendChild(questionContainer);
+        });
+    
+        document.getElementById('result').textContent = '';
         document.getElementById('try-again-btn').style.display = 'none';
         document.getElementById('end-quiz-btn').style.display = 'none';
-        loadQuestions();
-      } else {
+        document.getElementById('submit-btn').style.display = 'inline'; // Show submit button
+        document.getElementById('points').textContent = 'Points: ' + points;
+      }
+    
+      function selectOption(element, selectedOption, correctAnswer, questionIndex) {
+        const optionsContainer = document.querySelector(`.options[data-question-index='${questionIndex}']`);
+        const allOptions = optionsContainer.querySelectorAll('.option');
+    
+        allOptions.forEach(opt => {
+          opt.classList.add('disabled');
+          opt.removeEventListener('click', () => selectOption(opt, selectedOption, correctAnswer, questionIndex));
+        });
+    
+        if (selectedOption === correctAnswer) {
+          element.classList.add('correct');
+          points += 10;
+        } else {
+          element.classList.add('incorrect');
+        }
+    
+        document.getElementById('points').textContent = 'Points: ' + points;
+    
+        questionsAnswered++;
+        
+        if (questionsAnswered >= 10) {
+          document.getElementById('submit-btn').style.display = 'inline';
+        }
+    
+        currentQuestionIndex++;
+        
+        if (currentQuestionIndex >= questions.length) {
+          endRound();
+        }
+      }
+    
+      function endRound() {
+        userRoundsPoints.push(points);
+    
+        roundAttempts++;
+        currentQuestionIndex = 0;
+        questionsAnswered = 0;
+        points = 0;
+    
+        const isFinalRound = roundAttempts >= maxRounds;
+        const totalPoints = userRoundsPoints.reduce((total, roundPoints) => total + roundPoints, 0);
+        const hasReached100Points = totalPoints >= 100;
+    
+        document.getElementById('questions-container').style.display = 'none';
+        document.getElementById('result').textContent = `Round ${roundAttempts} completed! You scored ${userRoundsPoints[roundAttempts - 1]} points.`;
+        document.getElementById('try-again-btn').style.display = isFinalRound ? 'none' : 'inline';
+    
+        if (isFinalRound) {
+          if (hasReached100Points) {
+            document.getElementById('end-quiz-btn').style.display = 'inline';
+          } else {
+            document.getElementById('end-quiz-btn').style.display = 'none';
+          }
+        }
+      }
+    
+      function submitQuiz() {
+        // Calculate the total points
+        const totalPoints = userRoundsPoints.reduce((total, roundPoints) => total + roundPoints, 0);
+    
+        // Display the result
+        const resultElement = document.getElementById('result');
+        resultElement.textContent = `Quiz Completed! You scored a total of ${totalPoints} points.`;
+        resultElement.style.color = 'blue';
+    
+        // Hide the questions container and submit button immediately
+        document.getElementById('questions-container').style.display = 'none';
+        document.getElementById('submit-btn').style.display = 'none';
+    
+        // Show the 'try again' button immediately
+        document.getElementById('try-again-btn').style.display = 'inline';
+    
+        // Hide the 'end quiz' button immediately
+        document.getElementById('end-quiz-btn').style.display = 'none';
+    
+        // Use setTimeout to delay the display of the 'sm' section by 5 seconds (5000 milliseconds)
+        setTimeout(() => {
+            // Display the 'sm' section after 5 seconds
+            document.getElementById('sm').style.display = 'block';
+            document.getElementById('questions-container').style.display = 'none';
+            document.getElementById('try-again-btn').style.display = 'none';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('Q/A').style.display = 'none'
+        }, 5000);
+    }
+    
+    
+      function endQuiz() {
         document.getElementById('Q/A').style.display = 'none';
         window.location.href = 'social.html';
       }
-    }
+    
+      function tryAgain() {
+        if (roundAttempts < maxRounds) {
+          currentQuestionIndex = 0;
+          points = 0;
+          questionsAnswered = 0;
+          document.getElementById('points').textContent = 'Points: ' + points;
+          document.getElementById('questions-container').style.display = 'block';
+          document.getElementById('try-again-btn').style.display = 'none';
+          document.getElementById('end-quiz-btn').style.display = 'none';
+          document.getElementById('submit-btn').style.display = 'none';
+          loadQuestions();
+        } else {
+          document.getElementById('Q/A').style.display = 'none';
+          window.location.href = 'social.html';
+        }
+      }
+    
+      loadQuestions();
+    </script>
+  </div>
+
   
-    loadQuestions();
-  </script>
+  
   
   
 </section>
@@ -620,6 +643,126 @@
       <input type="text" id="shareText" readonly style="position:absolute; left:-9999px;">
       <!--<button id="copyLink" style="background-color: transparent;"></button>-->
       <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends And Increase The Chance Of Winning!</h3>
+      <div class="container">
+        <textarea id="text-box" readonly></textarea>
+          <button id="copy-button">
+            <img src="img/Copy-24.png" alt="Copy Icon" class="icon">
+            <b>Copy</b>
+          </button>
+          <script>
+            // Get the user ID and referral code from localStorage
+            var userId = localStorage.getItem('loggedInUserId');
+            var referralCode = localStorage.getItem('referralCode');
+            
+            // If user ID or referral code is not available, handle it here
+            if (!userId || !referralCode) {
+                console.error('User ID or Referral Code not found in localStorage');
+                document.getElementById('text-box').value = 'User ID or Referral Code not found';
+            } else {
+                // Generate the URL with the user ID and referral code
+                var message = `https://iskcon-contest.netlify.app/login/?referralCode=${referralCode}`;
+                // Set the text area content
+                document.getElementById('text-box').value = message;
+            }
+      
+            document.getElementById('copy-button').addEventListener('click', async () => {
+                try {
+                    if (!userId) return;
+      
+                    // Copy the text from the textarea to the clipboard
+                    const textToCopy = document.getElementById('text-box').value;
+                    await navigator.clipboard.writeText(textToCopy);
+      
+                    // Notify the user that the message is copied
+                    alert("Message copied!");
+      
+                    // Immediately update shares in the database
+                    const userRef = doc(db, "users", userId);
+                    await updateDoc(userRef, { shares: increment(10) });
+                    console.log("Shares updated in the database.");
+      
+                    // Show loading message
+                    const loadingMessage = document.getElementById('loading-message');
+                    loadingMessage.style.display = 'block';
+      
+                    // Delay the display update by 3 minutes (180,000 milliseconds)
+                    setTimeout(async () => {
+                        try {
+                            // Fetch the updated user data after delay
+                            const userSnapshot = await getDoc(userRef);
+                            if (userSnapshot.exists()) {
+                                const userData = userSnapshot.data();
+                                // Update the HTML to show the new share count and points
+                                const points = userData.points || 0;
+                                const shares = userData.shares || 0;
+                                document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
+                            } else {
+                                console.error("No such document!");
+                            }
+                        } catch (error) {
+                            console.error("Error fetching updated data:", error);
+                        } finally {
+                            // Hide loading message
+                            loadingMessage.style.display = 'none';
+                        }
+                    }, 2400000); // 180,000 milliseconds = 3 minutes
+                } catch (error) {
+                    console.error("Error processing click event:", error);
+                }
+            });
+          </script>
+          
+          <style>
+            textarea {
+                width: 100%;
+                padding: 10px;
+                box-sizing: border-box;
+                font-size: 16px;
+                border-radius: 8px;
+                background-color: #ffffff;
+                color: #333;
+                resize: none;
+                overflow: hidden;
+                height: 67px;
+            }
+      
+            #copy-button {
+                padding: 10px;
+                font-size: 16px;
+                color: #fff;
+                background-color: #007bff;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                width: 20%;
+                box-sizing: border-box;
+                margin-top: 10px;
+            }
+      
+            #copy-button:hover {
+                background-color: #0056b3;
+            }
+      
+            #copy-button:focus {
+                outline: none;
+            }
+      
+            @media (max-width: 600px) {
+                textarea {
+                    font-size: 14px;
+                    padding: 8px;
+                    min-height: 40px;
+                }
+      
+                #copy-button {
+                    font-size: 14px;
+                    padding: 8px;
+                    margin-top: 10px;
+                }
+            }
+          </style>
+          </div>
       <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp">
         <button id="copyLink1" class="button">
             <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">
@@ -967,7 +1110,10 @@ window.addEventListener('beforeunload', () => {
 
  
 </section>
-<!--/Social media Section-->   
+<!--/Social media Section-->  
+
+
+
   </main>
 
 <!--Footer-->

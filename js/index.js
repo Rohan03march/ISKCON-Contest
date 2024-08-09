@@ -61,8 +61,9 @@ async function updateScoreDisplay() {
             const userData = docSnapshot.data();
             const points = userData.points || 0;  // Default to 0 if points is not set
             const shares = userData.shares || 0;  // Default to 0 if shares is not set
+            const answerPoints = userData.AnswerPoints || 0;
 
-            document.getElementById('score').innerText = `Points ${points} | Shares ${shares}`;
+            document.getElementById('score').innerText = `Points ${points+answerPoints} | Shares ${shares}`;
         } else {
             console.warn("No such document! Check if the document exists.");
         }
@@ -92,8 +93,36 @@ document.getElementById('copyLink').addEventListener('click', async () => {
     }
 });
 
+document.getElementById('submit-btn').addEventListener('click', async () => {
+    try {
+        if (!userId) return;
 
-// Example for adding event listeners to buttons to increase points
+        const userRef = doc(db, 'users', userId);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+            const userData = userSnap.data();
+            const currentPoints = userData.Points || 0;
+
+            if (currentPoints <= 100) {
+                // Calculate new points, ensuring it does not exceed 100
+                const newPoints = Math.min(currentPoints + 100, 100);
+                
+                await updateDoc(userRef, { AnswerPoints: newPoints });
+                console.log(`Points updated to ${newPoints}`);
+            } else {
+                console.log("Points already at maximum.");
+            }
+        } else {
+            console.log("User does not exist.");
+        }
+    } catch (error) {
+        console.error("Error updating document:", error);
+    }
+});
+
+
+
 const pointButtons = ['sbutton1', 'sbutton2', 'sbutton3', 'sbutton4', 'sbutton5', 'sbutton6'];
 pointButtons.forEach(buttonId => {
     document.getElementById(buttonId).addEventListener('click', async () => {
@@ -101,13 +130,38 @@ pointButtons.forEach(buttonId => {
             if (!userId) return;
 
             const userRef = doc(db, "users", userId);
-            await updateDoc(userRef, { points: increment(10) });
-            updateScoreDisplay();
+            const userDoc = await getDoc(userRef);
+            const userData = userDoc.exists() ? userDoc.data() : {};
+            const currentPoints = userData.points || 0;
+            const pressedButtons = userData.pressedButtons || [];
+
+            // Check if the button has already been pressed
+            if (pressedButtons.includes(buttonId)) {
+                console.log(`Button ${buttonId} has already been pressed.`);
+                return;
+            }
+
+            if (currentPoints < 60) {
+                // Calculate the new points value, which should not exceed 60
+                const newPoints = Math.min(currentPoints + 10, 60);
+
+                // Update the document with the new points value and add the button ID to pressedButtons
+                await updateDoc(userRef, {
+                    points: newPoints,
+                    pressedButtons: [...pressedButtons, buttonId]
+                });
+
+                updateScoreDisplay();
+            } else {
+                console.log("Cannot increment points. Maximum of 60 points reached.");
+            }
         } catch (error) {
-            console.error("Error", error);
+            console.error("Error updating points:", error);
         }
     });
 });
+
+
 
 // Share URL function
 const shareUrls = {
