@@ -135,12 +135,15 @@ async function initializeButtons() {
         const userData = userDoc.exists() ? userDoc.data() : {};
         const pressedButtons = userData.pressedButtons || [];
 
-        // Disable buttons that have already been pressed
+        // Update button state based on user data
         pointButtons.forEach(buttonId => {
-            if (pressedButtons.includes(buttonId)) {
-                const buttonElement = document.getElementById(buttonId);
-                if (buttonElement) {
+            const buttonElement = document.getElementById(buttonId);
+            if (buttonElement) {
+                if (pressedButtons.includes(buttonId)) {
                     buttonElement.disabled = true;
+                    buttonElement.classList.add('pressed');
+                } else {
+                    buttonElement.classList.remove('pressed');
                 }
             }
         });
@@ -181,8 +184,9 @@ pointButtons.forEach(buttonId => {
                         pressedButtons: [...pressedButtons, buttonId]
                     });
 
-                    // Disable the button after it has been clicked
+                    // Disable the button and apply the pressed style after it has been clicked
                     buttonElement.disabled = true;
+                    buttonElement.classList.add('pressed');
 
                     updateScoreDisplay();
                 } else {
@@ -197,6 +201,7 @@ pointButtons.forEach(buttonId => {
 
 // Call initializeButtons when the page loads
 window.addEventListener('load', initializeButtons);
+
 
 
 
