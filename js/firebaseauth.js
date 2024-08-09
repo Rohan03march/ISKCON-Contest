@@ -164,21 +164,31 @@ service cloud.firestore {
 
 
 async function updateReferralPoints(referralCode, userDocRef) {
-    if (!referralCode) return; // Exit if there's no referral code
+    if (!referralCode) {
+        console.log('No referral code provided.');
+        return; // Exit if there's no referral code
+    }
 
-    // Reference to the referrer's document
-    const referrerDocRef = doc(db, "users", referralCode);
-    const referrerSnapshot = await getDoc(referrerDocRef);
+    try {
+        // Reference to the referrer's document
+        const referrerDocRef = doc(db, "users", referralCode);
+        const referrerSnapshot = await getDoc(referrerDocRef);
 
-    if (referrerSnapshot.exists()) {
-        // Update referrer's points
-        const referrerData = referrerSnapshot.data();
-        await setDoc(referrerDocRef, {
-            points: referrerData.points ? referrerData.points + 10 : 10
-        }, { merge: true });
-        
-        console.log('Referral points awarded successfully');
-    } else {
-        console.log('Invalid referral code');
+        if (referrerSnapshot.exists()) {
+            // Update referrer's points
+            const referrerData = referrerSnapshot.data();
+            const newPoints = (referrerData.points || 0) + 10;
+
+            await setDoc(referrerDocRef, {
+                points: newPoints
+            }, { merge: true });
+
+            console.log('Referral points awarded successfully');
+        } else {
+            console.log('Invalid referral code:', referralCode);
+        }
+    } catch (error) {
+        console.error('Error updating referral points:', error);
     }
 }
+
