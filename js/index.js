@@ -267,3 +267,24 @@ async function updateReferralPoints(referralCode, userDocRef) {
         });
     }
 }
+
+
+
+async function checkQuizCompletion(userId) {
+    try {
+        const userDoc = doc(db, "users", userId);
+        const userSnap = await getDoc(userDoc);
+
+        if (userSnap.exists()) {
+            return userSnap.data().quizCompleted || false;
+        } else {
+            // Create a new document if it does not exist
+            await setDoc(userDoc, { quizCompleted: false, points: 0 });
+            return false; // Quiz is not completed
+        }
+    } catch (error) {
+        console.error("Error checking quiz completion:", error);
+        return false;
+    }
+}
+

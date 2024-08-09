@@ -85,8 +85,14 @@
       <!-- Add this to your index.html file -->
 <a id="participateButton" class="btn-getstarted" style="display: none;">Participate</a>
 <a id="logout" class="btn-getstarted" href="index.html"> logout</a>
-
-
+<a id="Ans" class="btn-getstarted" href="#">Answered Quiz?</a>
+<script>
+  document.getElementById('Ans').addEventListener('click', function() {
+    document.getElementById('Q/A').style.display = 'none';
+    document.getElementById('sm').style.display = 'block';
+    document.getElementById('Game').style.display = 'block'
+});
+</script>
     </div>
   </header>
 
@@ -556,6 +562,7 @@
                 document.getElementById('try-again-btn').style.display = 'none';
                 document.getElementById('result').style.display = 'none';
                 document.getElementById('Q/A').style.display = 'none';
+                document.getElementById('Game').style.display = 'block';
             }, 5000);
         } else {
             // Display a message or handle the case where points are less than 100
@@ -648,77 +655,84 @@
       <!--<button id="copyLink" style="background-color: transparent;"></button>-->
       <h3 id="copyLink" style="background-color: transparent; color: black">Share This To Your Friends And Increase The Chance Of Winning!</h3>
       <div class="container">
-        <textarea id="text-box" readonly></textarea>
-          <button id="copy-button">
-            <img src="img/Copy-24.png" alt="Copy Icon" class="icon">
-            <b>Copy</b>
-          </button>
-          <script>
-            // Get the user ID and referral code from localStorage
-            var userId = localStorage.getItem('loggedInUserId');
-            var referralCode = localStorage.getItem('referralCode');
-            
-            // If user ID or referral code is not available, handle it here
-            if (!userId || !referralCode) {
-                console.error('User ID or Referral Code not found in localStorage');
-                document.getElementById('text-box').value = 'User ID or Referral Code not found';
-            } else {
-                // Generate the URL with the user ID and referral code
-                var message = `https://iskcon-contest.netlify.app/login/?referralCode=${referralCode}`;
-                // Set the text area content
-                document.getElementById('text-box').value = message;
-            }
-      
-            document.getElementById('copy-button').addEventListener('click', async () => {
-                try {
-                    if (!userId) return;
-      
-                    // Copy the text from the textarea to the clipboard
-                    const textToCopy = document.getElementById('text-box').value;
-                    await navigator.clipboard.writeText(textToCopy);
-      
-                    // Notify the user that the message is copied
-                    alert("Message copied!");
-      
-                    // Immediately update shares in the database
-                    const userRef = doc(db, "users", userId);
-                    await updateDoc(userRef, { shares: increment(10) });
-                    console.log("Shares updated in the database.");
-      
-                    // Show loading message
-                    const loadingMessage = document.getElementById('loading-message');
-                    loadingMessage.style.display = 'block';
-      
-                    // Delay the display update by 3 minutes (180,000 milliseconds)
-                    setTimeout(async () => {
-                        try {
-                            // Fetch the updated user data after delay
-                            const userSnapshot = await getDoc(userRef);
-                            if (userSnapshot.exists()) {
-                                const userData = userSnapshot.data();
-                                // Update the HTML to show the new share count and points
-                                const points = userData.points || 0;
-                                const shares = userData.shares || 0;
-                                document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
-                            } else {
-                                console.error("No such document!");
-                            }
-                        } catch (error) {
-                            console.error("Error fetching updated data:", error);
-                        } finally {
-                            // Hide loading message
-                            loadingMessage.style.display = 'none';
-                        }
-                    }, 2400000); // 180,000 milliseconds = 3 minutes
-                } catch (error) {
-                    console.error("Error processing click event:", error);
-                }
-            });
-          </script>
+        <div class="text-container">
+          <textarea id="text-box" readonly></textarea>
+            <button id="copy-button">
+                <img src="img/Copy-24.png" alt="Copy Icon" class="icon">
+                <b>Copy</b>
+            </button>
+        </div>
+        <div id="loading-message" style="display:none;">Loading...</div>
+        <div id="score"></div>
+        <script>
+          // Get the user ID and referral code from localStorage
+          var userId = localStorage.getItem('loggedInUserId');
+          var referralCode = localStorage.getItem('referralCode');
           
-          <style>
+          // If user ID or referral code is not available, handle it here
+          if (!userId || !referralCode) {
+              console.error('User ID or Referral Code not found in localStorage');
+              document.getElementById('text-box').value = 'User ID or Referral Code not found';
+          } else {
+              // Generate the URL with the user ID and referral code
+              var message = `https://iskcon-contest.netlify.app/login/?referralCode=${referralCode}`;
+              // Set the text area content
+              document.getElementById('text-box').value = message;
+          }
+    
+          document.getElementById('copy-button').addEventListener('click', async () => {
+              try {
+                  if (!userId) return;
+    
+                  // Copy the text from the textarea to the clipboard
+                  const textToCopy = document.getElementById('text-box').value;
+                  await navigator.clipboard.writeText(textToCopy);
+    
+                  // Notify the user that the message is copied
+                  alert("Message copied!");
+    
+                  // Immediately update shares in the database
+                  const userRef = doc(db, "users", userId);
+                  await updateDoc(userRef, { shares: increment(10) });
+                  console.log("Shares updated in the database.");
+    
+                  // Show loading message
+                  const loadingMessage = document.getElementById('loading-message');
+                  loadingMessage.style.display = 'block';
+    
+                  // Delay the display update by 3 minutes (180,000 milliseconds)
+                  setTimeout(async () => {
+                      try {
+                          // Fetch the updated user data after delay
+                          const userSnapshot = await getDoc(userRef);
+                          if (userSnapshot.exists()) {
+                              const userData = userSnapshot.data();
+                              // Update the HTML to show the new share count and points
+                              const points = userData.points || 0;
+                              const shares = userData.shares || 0;
+                              document.getElementById('score').innerHTML = `Points: ${points} | Shares: ${shares}`;
+                          } else {
+                              console.error("No such document!");
+                          }
+                      } catch (error) {
+                          console.error("Error fetching updated data:", error);
+                      } finally {
+                          // Hide loading message
+                          loadingMessage.style.display = 'none';
+                      }
+                  }, 3600); // 180,000 milliseconds = 3 minutes
+              } catch (error) {
+                  console.error("Error processing click event:", error);
+              }
+          });
+        </script>
+        <style>
+            .text-container {
+                display: flex;
+                align-items: left;
+            }
             textarea {
-                width: 100%;
+                flex: 1;
                 padding: 10px;
                 box-sizing: border-box;
                 font-size: 16px;
@@ -727,9 +741,10 @@
                 color: #333;
                 resize: none;
                 overflow: hidden;
-                height: 67px;
+                max-height: 67px; /* You can adjust this to a minimum height you prefer */
+                margin-right: 10px; /* Space between textarea and button */
             }
-      
+    
             #copy-button {
                 padding: 10px;
                 font-size: 16px;
@@ -739,34 +754,35 @@
                 border-radius: 8px;
                 cursor: pointer;
                 transition: background-color 0.3s ease;
-                width: 20%;
+                width: 20%; /* Width of the button will adjust to its content */
                 box-sizing: border-box;
-                margin-top: 10px;
             }
-      
+    
             #copy-button:hover {
                 background-color: #0056b3;
             }
-      
+    
             #copy-button:focus {
                 outline: none;
             }
-      
+    
             @media (max-width: 600px) {
                 textarea {
                     font-size: 14px;
                     padding: 8px;
                     min-height: 40px;
                 }
-      
+    
                 #copy-button {
                     font-size: 14px;
                     padding: 8px;
                     margin-top: 10px;
+                    margin-right: 0; /* Remove right margin for small screens */
                 }
             }
-          </style>
-          </div>
+        </style>
+    </div>
+    
       <a href="javascript:" onclick="shareOnWhatsApp(); return false;" target="_blank" title="Share On WhatsApp">
         <button id="copyLink1" class="button">
             <img src="img/icons8-whatsapp-48.png" alt="Share on WhatsApp">
@@ -1195,7 +1211,7 @@ display: none;
               <a href="https://open.spotify.com/artist/0bbrfmzNUJe9L7i3c7bNU4"><i class="bi bi-spotify"></i></a>
           </div>
       </div>-->
-      <button class="play" style="display: none;">
+      <button class="play" id="Game" style="display: none;">
         <a href="game.html">Play Game</a>
         <style>
           .play {
