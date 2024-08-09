@@ -125,43 +125,79 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
 
 
 
-const pointButtons = ['sbutton1', 'sbutton2', 'sbutton3', 'sbutton4', 'sbutton5', 'sbutton6'];
-pointButtons.forEach(buttonId => {
-    document.getElementById(buttonId).addEventListener('click', async () => {
-        try {
-            if (!userId) return;
+// Initialize button state on page load
+async function initializeButtons() {
+    if (!userId) return;
 
-            const userRef = doc(db, "users", userId);
-            const userDoc = await getDoc(userRef);
-            const userData = userDoc.exists() ? userDoc.data() : {};
-            const currentPoints = userData.points || 0;
-            const pressedButtons = userData.pressedButtons || [];
+    try {
+        const userRef = doc(db, "users", userId);
+        const userDoc = await getDoc(userRef);
+        const userData = userDoc.exists() ? userDoc.data() : {};
+        const pressedButtons = userData.pressedButtons || [];
 
-            // Check if the button has already been pressed
+        // Disable buttons that have already been pressed
+        pointButtons.forEach(buttonId => {
             if (pressedButtons.includes(buttonId)) {
-                console.log(`Button ${buttonId} has already been pressed.`);
-                return;
+                const buttonElement = document.getElementById(buttonId);
+                if (buttonElement) {
+                    buttonElement.disabled = true;
+                }
             }
+        });
+    } catch (error) {
+        console.error("Error initializing buttons:", error);
+    }
+}
 
-            if (currentPoints < 60) {
-                // Calculate the new points value, which should not exceed 60
-                const newPoints = Math.min(currentPoints + 10, 60);
+// Event listeners for buttons
+const pointButtons = ['sbutton1', 'sbutton2', 'sbutton3', 'sbutton4', 'sbutton5', 'sbutton6'];
 
-                // Update the document with the new points value and add the button ID to pressedButtons
-                await updateDoc(userRef, {
-                    points: newPoints,
-                    pressedButtons: [...pressedButtons, buttonId]
-                });
+pointButtons.forEach(buttonId => {
+    const buttonElement = document.getElementById(buttonId);
+    if (buttonElement) {
+        buttonElement.addEventListener('click', async () => {
+            try {
+                if (!userId) return;
 
-                updateScoreDisplay();
-            } else {
-                console.log("Cannot increment points. Maximum of 60 points reached.");
+                const userRef = doc(db, "users", userId);
+                const userDoc = await getDoc(userRef);
+                const userData = userDoc.exists() ? userDoc.data() : {};
+                const currentPoints = userData.points || 0;
+                const pressedButtons = userData.pressedButtons || [];
+
+                // Check if the button has already been pressed
+                if (pressedButtons.includes(buttonId)) {
+                    console.log(`Button ${buttonId} has already been pressed.`);
+                    return;
+                }
+
+                if (currentPoints < 60) {
+                    // Calculate the new points value, which should not exceed 60
+                    const newPoints = Math.min(currentPoints + 10, 60);
+
+                    // Update the document with the new points value and add the button ID to pressedButtons
+                    await updateDoc(userRef, {
+                        points: newPoints,
+                        pressedButtons: [...pressedButtons, buttonId]
+                    });
+
+                    // Disable the button after it has been clicked
+                    buttonElement.disabled = true;
+
+                    updateScoreDisplay();
+                } else {
+                    console.log("Cannot increment points. Maximum of 60 points reached.");
+                }
+            } catch (error) {
+                console.error("Error updating points:", error);
             }
-        } catch (error) {
-            console.error("Error updating points:", error);
-        }
-    });
+        });
+    }
 });
+
+// Call initializeButtons when the page loads
+window.addEventListener('load', initializeButtons);
+
 
 
 
